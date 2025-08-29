@@ -64,7 +64,7 @@ function generateDataItemInput(itemId, dataItem) {
     if (isAutoPopulated) {
          inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
     } else if (dataItem.enumerated) {
-        options = parsePopulationNotes(dataItem.populationNotes); // Use the new robust parser for all
+        options = parsePopulationNotes(dataItem.populationNotes);
         
         if (itemId === 'DI-999') {
             const currentInterface = state.interfaces.find(i => i.id === state.currentInterfaceId);
@@ -81,17 +81,18 @@ function generateDataItemInput(itemId, dataItem) {
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         
         if (inputType === 'datetime') {
-            const now = new Date();
-            const timezoneOffset = -now.getTimezoneOffset();
-            const sign = timezoneOffset >= 0 ? '+' : '-';
-            const pad = num => String(num).padStart(2, '0');
-            const hoursOffset = pad(Math.floor(Math.abs(timezoneOffset) / 60));
-            const minutesOffset = pad(Math.abs(timezoneOffset) % 60);
-            
-            // Format to YYYY-MM-DDTHH:mm:ss+HH:MM
-            const nowISOString = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}${sign}${hoursOffset}:${minutesOffset}`;
-            
-            inputHtml = `<input type="text" value="${nowISOString}" placeholder="YYYY-MM-DDTHH:mm:ss+HH:MM" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
+            const nowISOString = getFormattedDateTime();
+            const updateButtonHtml = `
+                <button type="button" data-action="update-datetime" title="Update to now" class="p-2 text-[var(--purple)] hover:text-[var(--eon-red)] transition-colors rounded-lg hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg>
+                </button>
+            `;
+            inputHtml = `
+                <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-[var(--eon-red)] focus-within:border-transparent">
+                    <input type="text" value="${nowISOString}" placeholder="YYYY-MM-DDTHH:mm:ss+HH:MM" class="form-input w-full p-2 text-sm border-0 rounded-l-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>
+                    ${updateButtonHtml}
+                </div>
+            `;
         } else {
              switch (inputType) {
                 case 'number':
@@ -105,11 +106,13 @@ function generateDataItemInput(itemId, dataItem) {
             }
         }
     }
-    const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '';
-    return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label>${inputHtml}${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
+    const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '' : '';
+    const wrapperClass = inputType === 'datetime' ? '' : 'form-input-wrapper';
+
+    return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label><div class="${wrapperClass}">${inputHtml}</div>${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
 }
 
-// NEW, more robust parser for population notes
+// NEW, more robust parser for ALL population notes formats
 function parsePopulationNotes(notes) {
     if (!notes) return [];
     if (Array.isArray(notes)) {
@@ -117,25 +120,38 @@ function parsePopulationNotes(notes) {
     }
 
     const options = new Map();
-    // Handle "- C Created" and "1=Opt Out" formats
-    notes.split('\n').forEach(line => {
-        line = line.trim();
+    const cleanedNotes = notes.replace(/’/g, "'").replace(/–/g, "-");
+
+    // Split by common delimiters: newline, or ", -"
+    const parts = cleanedNotes.split(/\n|, -/);
+
+    parts.forEach(part => {
+        let line = part.trim();
         if (!line) return;
         
-        // Match "- C  Description" or "C = Description"
-        const match = line.match(/^-?([^\s=]+)\s*[=-]?\s+(.*)/);
+        // Remove leading dash if it exists
+        if (line.startsWith('-')) {
+            line = line.substring(1).trim();
+        }
+
+        // Try to match "CODE - Description", "CODE = Description", or "CODE Description"
+        const match = line.match(/^'([^']+)'\s+(.*)|^\s*([^\s=]+)\s*(?:-|=)?\s*(.*)/);
+
         if (match) {
-            const code = match[1].trim();
-            const desc = match[2].trim();
-            if (!options.has(code)) {
-                options.set(code, { value: code, label: `${code} - ${desc}` });
+            const code = (match[1] || match[3] || '').trim();
+            const desc = (match[2] || match[4] || '').trim();
+            if (code) {
+                const label = desc ? `${code} - ${desc}` : code;
+                 if (!options.has(code)) {
+                    options.set(code, { value: code, label: label });
+                }
             }
         }
     });
-
-    // Handle "_A, _B, _C" comma-separated format
-    if (options.size === 0 && notes.includes(',')) {
-        notes.split(',').forEach(part => {
+    
+    // Fallback for simple comma-separated lists like "_A, _B, _C"
+    if (options.size === 0 && cleanedNotes.includes(',')) {
+         cleanedNotes.split(',').forEach(part => {
             const code = part.trim();
             if (code && !options.has(code)) {
                 options.set(code, { value: code, label: code });
@@ -146,6 +162,15 @@ function parsePopulationNotes(notes) {
     return Array.from(options.values());
 }
 
+export function getFormattedDateTime() {
+    const now = new Date();
+    const timezoneOffset = -now.getTimezoneOffset();
+    const sign = timezoneOffset >= 0 ? '+' : '-';
+    const pad = num => String(num).padStart(2, '0');
+    const hoursOffset = pad(Math.floor(Math.abs(timezoneOffset) / 60));
+    const minutesOffset = pad(Math.abs(timezoneOffset) % 60);
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}${sign}${hoursOffset}:${minutesOffset}`;
+}
 
 function determineInputType(dataItem) {
     const name = dataItem.name.toLowerCase();
