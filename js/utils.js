@@ -85,3 +85,17 @@ export function showSuccessMessage(message) {
         }, 300);
     }, 3000);
 }
+
+export function generateSearchSuggestions(query, interfaces) {
+    if (query.length < 2) return [];
+
+    const suggestions = new Set();
+    const queryLower = query.toLowerCase();
+
+    interfaces.forEach(item => {
+        if (item.name.toLowerCase().includes(queryLower)) suggestions.add(item.name);
+        if (item.id.toLowerCase().includes(queryLower)) suggestions.add(item.id);
+    });
+
+    return Array.from(suggestions).slice(0, 8).sort();
+}
