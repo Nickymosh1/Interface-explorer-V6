@@ -12,14 +12,12 @@ export function showFormBuilder() {
     
     generateInterfaceForm(state.currentInterfaceId);
     
-    // Initialize all new date/time pickers after the form is built
     flatpickr(".flatpickr-datetime", {
         enableTime: true,
         enableSeconds: true,
-        // CORRECTED: This now saves in the required format with timezone offset
         dateFormat: "Y-m-d\\TH:i:S P", 
-        altInput: true, // Show a user-friendly format in the input box
-        altFormat: "F j, Y h:i:S K", // e.g., "August 29, 2025 01:49:27 PM"
+        altInput: true,
+        altFormat: "F j, Y h:i:S K",
     });
 }
 
@@ -71,7 +69,6 @@ function generateDataItemInput(itemId, dataItem) {
     
     const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
     
-    // CORRECTED LOGIC STRUCTURE
     if (isAutoPopulated) {
         const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : '1.0.0';
         inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
@@ -93,7 +90,6 @@ function generateDataItemInput(itemId, dataItem) {
         
         if (inputType === 'datetime') {
             const nowISOString = getFormattedDateTime();
-            // Add a specific class for flatpickr to target
             inputHtml = `<input type="text" value="${nowISOString}" placeholder="Select Date and Time..." class="form-input flatpickr-datetime w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
         } else {
              switch (inputType) {
@@ -112,34 +108,49 @@ function generateDataItemInput(itemId, dataItem) {
     return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label>${inputHtml}${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
 }
 
+// FINAL, ROBUST PARSER
 function parsePopulationNotes(notes) {
     if (!notes) return [];
     if (Array.isArray(notes)) {
         return notes.map(code => ({ value: code, label: code }));
     }
+
     const options = new Map();
-    const cleanedNotes = notes.replace(/’/g, "'").replace(/–/g, "-");
-    const parts = cleanedNotes.split(/\n|, -/);
+    const cleanedNotes = String(notes).replace(/’/g, "'").replace(/–/g, "-").trim();
+
+    let parts = [];
+    // Prioritize splitting by newline for multi-line lists
+    if (cleanedNotes.includes('\n')) {
+        parts = cleanedNotes.split('\n');
+    } 
+    // Otherwise, split by comma for single-line lists
+    else if (cleanedNotes.includes(',')) {
+        parts = cleanedNotes.split(',');
+    } 
+    // Otherwise, treat it as a single item
+    else {
+        parts = [cleanedNotes];
+    }
+
     parts.forEach(part => {
-        let line = part.trim();
+        const line = part.trim();
         if (!line) return;
-        if (line.startsWith('-')) line = line.substring(1).trim();
-        const match = line.match(/^'([^']+)'\s+(.*)|^\s*([^\s=]+)\s*(?:-|=)?\s*(.*)/);
+
+        // Remove leading dash, if it exists, for consistency
+        const cleanPart = line.startsWith('-') ? line.substring(1).trim() : line;
+        
+        // Match formats like "CODE - Description", "CODE = Description", or just "CODE"
+        const match = cleanPart.match(/^\s*([^\s=-]+)\s*(?:-|=)?\s*(.*)/);
         if (match) {
-            const code = (match[1] || match[3] || '').trim();
-            const desc = (match[2] || match[4] || '').trim();
-            if (code) {
-                const label = desc ? `${code} - ${desc}` : code;
-                 if (!options.has(code)) options.set(code, { value: code, label: label });
+            const code = match[1].trim();
+            const desc = match[2].trim();
+            const label = desc ? `${code} - ${desc}` : code;
+            if (code && !options.has(code)) {
+                options.set(code, { value: code, label: label });
             }
         }
     });
-    if (options.size === 0 && cleanedNotes.includes(',')) {
-         cleanedNotes.split(',').forEach(part => {
-            const code = part.trim();
-            if (code && !options.has(code)) options.set(code, { value: code, label: code });
-        });
-    }
+
     return Array.from(options.values());
 }
 
@@ -176,7 +187,6 @@ export function exportFormData() {
         const inputs = blockElement.querySelectorAll('[data-item-id]');
         inputs.forEach(input => {
             const itemId = input.dataset.itemId;
-            // For flatpickr, it stores the machine-readable value on the input element itself
             if (input.value) {
                 blockObject[itemId] = input.value.trim();
             }
