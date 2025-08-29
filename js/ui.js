@@ -172,13 +172,15 @@ function generateDataItemsHtml(interfaceItem) {
                               (comp.type === 'item' ? [comp.id] : []);
         let blockHtml = '';
         if (comp.type === 'header') {
-            return `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)]/70 sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.title)}</th></tr></thead>`;
+            // CHANGED: Removed /70 for an opaque background
+            return `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)] sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.title)}</th></tr></thead>`;
         }
         if (comp.type === 'block') {
              const block = state.dataBlocksCatalogue[comp.id];
              if (!block) return '';
-             blockHtml = `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)]/70 sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.titleOverride || block.title)}</th></tr></thead>
-                      <thead class="text-xs text-[var(--purple)] uppercase bg-[var(--birch)]/70 sticky top-9 z-10"><tr class="border-b"><th class="px-4 py-2">ID</th><th class="px-4 py-2">Data Item</th><th class="px-4 py-2 whitespace-nowrap">M/O/C</th><th class="px-4 py-2 w-1/4">Description / Rule</th><th class="px-4 py-2 w-1/4">Population Notes</th><th class="px-4 py-2">Example</th></tr></thead>`;
+             // CHANGED: Removed /70 for an opaque background on both theads
+             blockHtml = `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)] sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.titleOverride || block.title)}</th></tr></thead>
+                      <thead class="text-xs text-[var(--purple)] uppercase bg-[var(--birch)] sticky top-9 z-10"><tr class="border-b"><th class="px-4 py-2">ID</th><th class="px-4 py-2">Data Item</th><th class="px-4 py-2 whitespace-nowrap">M/O/C</th><th class="px-4 py-2 w-1/4">Description / Rule</th><th class="px-4 py-2 w-1/4">Population Notes</th><th class="px-4 py-2">Example</th></tr></thead>`;
         }
         const rowsHtml = itemsToRender.map(itemId => {
             const di = state.dataItemsCatalogue[itemId];
