@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHHS Interface Explorer | Enhanced Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="gradient-bg text-[var(--dark-purple)] min-h-screen">
+
+    <div id="loading-indicator" class="fixed inset-0 bg-white/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="text-center">
+            <svg class="w-12 h-12 text-[var(--eon-red)] animate-spin mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            <p class="mt-4 text-lg font-medium text-[var(--purple)]">Loading Interface Data...</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="text-center mb-8 md:mb-12">
+            <div class="float-animation inline-block">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold hero-text mb-3">MHHS Interface Explorer</h1>
+            </div>
+            <p class="text-base md:text-lg text-[var(--purple)] opacity-80 max-w-2xl mx-auto leading-relaxed">
+                Enhanced with smart search, filters, and rejection code lookup.
+            </p>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-6 md:gap-8">
+            <aside class="lg:w-1/3 xl:w-1/4 glass p-5 md:p-6 rounded-3xl shadow-2xl flex flex-col lg:sticky lg:top-8 lg:self-start">
+                <div class="flex items-center justify-between mb-5">
+                    <h2 id="filter-heading" class="text-xl font-bold text-[var(--eon-red)] flex-shrink-0">Find an Interface</h2>
+                    <div class="flex gap-2">
+                        <button id="rejectionCodesBtn" class="text-[var(--purple)] hover:text-[var(--eon-red)] transition-colors p-2 rounded-lg hover:bg-white/50" title="Rejection Codes Lookup">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </button>
+                        <button id="fillFormBtn" class="text-[var(--purple)] hover:text-[var(--eon-red)] transition-colors p-2 rounded-lg hover:bg-white/50" title="Fill Interface Form" disabled>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-5 flex-shrink-0">
+                    <div class="relative">
+                        <input type="search" id="searchInput" placeholder="Smart search: try typos, partial matches..." class="search-input w-full px-4 py-3 border-0 rounded-xl focus:ring-2 focus:ring-[var(--eon-red)] transition placeholder:text-[var(--purple)] placeholder:opacity-60 text-sm md:text-base pr-10">
+                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[var(--purple)] opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                        </div>
+                    </div>
+                    <div id="searchSuggestions" class="mt-2 bg-white rounded-xl shadow-lg border border-gray-200 max-h-40 overflow-y-auto hidden"></div>
+                </div>
+
+                <div role="group" aria-labelledby="filter-heading" class="flex flex-wrap gap-2 mb-4 flex-shrink-0">
+                    <button class="filter-btn border-0 text-[var(--purple)] bg-[var(--birch)] px-3 py-1.5 rounded-lg text-xs font-medium shadow-md" data-filter="all" aria-pressed="true">All Interfaces</button>
+                    <button class="filter-btn border-0 text-[var(--purple)] px-3 py-1.5 rounded-lg text-xs font-medium shadow-md" data-filter="supplier_send" aria-pressed="false" style="background: linear-gradient(135deg, #9254FF20, #9254FF10);">Supplier Send</button>
+                    <button class="filter-btn border-0 text-[var(--dark-purple)] px-3 py-1.5 rounded-lg text-xs font-medium shadow-md" data-filter="supplier_receive" aria-pressed="false" style="background: linear-gradient(135deg, #FFDE0030, #FFDE0020);">Supplier Receive</button>
+                    <button class="filter-btn border-0 text-[var(--purple)] px-3 py-1.5 rounded-lg text-xs font-medium shadow-md" data-filter="none" aria-pressed="false" style="background: linear-gradient(135deg, #e5e7eb, #f3f4f6);">Not Involved</button>
+                </div>
+
+                <div id="interfaceList" class="overflow-y-auto flex-1 pr-2 lg:max-h-[calc(100vh-20rem)]" role="region" aria-live="polite" aria-atomic="true"></div>
+            </aside>
+
+            <main id="detailsPanel" class="lg:w-2/3 xl:w-3/4 bg-white/80 p-5 md:p-8 rounded-3xl shadow-2xl relative" role="main" aria-live="polite">
+                <div id="rejectionCodesPanel" class="hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-[var(--eon-red)]">Rejection Codes Lookup</h2>
+                        <button id="closeRejectionCodes" class="text-[var(--purple)] hover:text-[var(--eon-red)] p-2 rounded-lg hover:bg-white/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="mb-6">
+                        <input type="search" id="rejectionCodeSearch" placeholder="Search rejection codes by ID, description, or keyword..." class="search-input w-full px-4 py-3 border-0 rounded-xl focus:ring-2 focus:ring-[var(--eon-red)] transition placeholder:text-[var(--purple)] placeholder:opacity-60 text-sm md:text-base">
+                    </div>
+                    <div id="rejectionCodesList" class="space-y-4 max-h-[70vh] overflow-y-auto pr-2"></div>
+                </div>
+
+                <div id="formBuilderPanel" class="hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-[var(--eon-red)]">Interface Form Builder</h2>
+                            <p id="formInterfaceName" class="text-sm text-[var(--purple)] opacity-80 mt-1"></p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="exportFormBtn" class="px-4 py-2 bg-[var(--data-leaf)] text-white rounded-lg text-sm hover:opacity-90 transition-opacity">
+                                Export JSON
+                            </button>
+                            <button id="closeFormBuilder" class="text-[var(--purple)] hover:text-[var(--eon-red)] p-2 rounded-lg hover:bg-white/50">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-[var(--birch)] rounded-xl">
+                            <div>
+                                <label class="block text-sm font-medium text-[var(--purple)] mb-2">Sender Information</label>
+                                <input type="text" id="senderName" placeholder="Sender Name" class="w-full p-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] mb-2">
+                                <input type="text" id="senderContact" placeholder="Contact Info" class="w-full p-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)]">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-[var(--purple)] mb-2">Receiver Information</label>
+                                <input type="text" id="receiverName" placeholder="Receiver Name" class="w-full p-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] mb-2">
+                                <input type="text" id="receiverContact" placeholder="Contact Info" class="w-full p-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)]">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="formContent" class="space-y-6 max-h-[65vh] overflow-y-auto pr-2"></div>
+                </div>
+
+                <div id="welcomeMessage" class="flex flex-col items-center justify-center h-full text-center py-16">
+                    <div class="hero-text mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 md:w-24 md:h-24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-3 hero-text">Enhanced Interface Explorer</h2>
+                    <p class="text-base md:text-lg text-[var(--purple)] opacity-80 max-w-md leading-relaxed">
+                        Select an interface to explore, or use the rejection codes lookup for quick reference.
+                    </p>
+                </div>
+
+                <div id="detailsContent" class="hidden"></div>
+            </main>
+        </div>
+    </div>
+
+    <template id="interface-card-template">
+        <div class="interface-card p-3 md:p-4 mb-2 bg-white rounded-xl cursor-pointer shadow-md" role="button" tabindex="0">
+            <p class="font-bold text-[var(--dark-purple)] pointer-events-none text-sm md:text-base mb-1" data-role="id"></p>
+            <p class="text-[var(--purple)] opacity-90 pointer-events-none leading-relaxed text-xs md:text-sm" data-role="name"></p>
+        </div>
+    </template>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
