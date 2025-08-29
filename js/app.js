@@ -23,7 +23,7 @@ async function initApp() {
     cacheDOMElements();
     loadFavorites();
 
-    const data = await fetchData('../interfaceData.json');
+    const data = await fetchData('interfaceData.json'); // Corrected path
     if (!data) {
         // Handle data loading failure
         DOMElements.interfaceList.innerHTML = `<p class="text-center text-red-600 p-4">Error: Could not load interface data. Please refresh the page.</p>`;
