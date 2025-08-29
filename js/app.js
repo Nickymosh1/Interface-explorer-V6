@@ -1,4 +1,3 @@
-// js/app.js (replace the whole file)
 
 import { state, loadFavorites } from './state.js';
 import { fetchData } from './api.js';
