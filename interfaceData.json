@@ -1477,6 +1477,10 @@
         { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
         { "type": "header", "title": "B037 blocks below are repeated for each Related MPAN available in Registration Service" },
         { "type": "block", "id": "B037_RelatedMPAN" }
+      ],
+      "eventCodes": [
+        "ChangeOfSupplier",
+        "InitialRegistration"
       ]
     },
     {
@@ -1519,6 +1523,9 @@
         { "type": "header", "title": ">*B911 - B038 & B075 below repeated for each Meter /MAP History Pair" },
         { "type": "block", "id": "B038_RelatedMeterDetails", "titleOverride": "> B038 - Related MPAN Meter Details" },
         { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> B075 - MPAN Related Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" }
+      ],
+      "eventCodes": [
+        "GainMPANInfo"
       ]
     },
     {
@@ -1542,6 +1549,11 @@
         { "type": "block", "id": "B095_IncomingMOP", "titleOverride": "B095- Incoming MOP Details (Mandatory for Event [MSDeAppUpdateRM] ) and where available in the Registration Service - Ref Interface Notes" },
         { "type": "block", "id": "B096_IncomingDC", "titleOverride": "B096 - Incoming DC Details (Mandatory for Event [DSDeAppUpdateRM] ) and where available in the Registration Service - Ref Interface Notes" },
         { "type": "block", "id": "B002_IncomingSupplier", "titleOverride": "B002 - Incoming Supplier Information (Mandatory)" }
+      ],
+      "eventCodes": [
+        "DSDeAppRM",
+        "MSDeAppRM",
+        "ReverseMigNotification"
       ]
     },
     {
@@ -1564,6 +1576,9 @@
         { "type": "item", "id": "DI-029" },
         { "type": "item", "id": "DI-037" },
         { "type": "block", "id": "B093_CommsHubInfo", "titleOverride": "B093 - Comms Hub Info (Mandatory if Event = [CommsHubInfo])" }
+      ],
+      "eventCodes": [
+        "CommsHubInfo"
       ]
     },
     {
@@ -1584,6 +1599,13 @@
         { "type": "block", "id": "B034_MeterMAPInfo", "titleOverride": "> B034 Meter MAP Info (Mandatory for Events [MeterInstall], [MeterExchange]; Optional for Events [MeterUpdate], [MeterHistoryUpdate])" },
         { "type": "block", "id": "B039_RemovedMeterInfo", "titleOverride": "B039 Removed Meter Information (Mandatory for Event Type [MeterRemoval], [MeterExchange]; Optional for Event [MeterHistoryUpdate] & [MeterUpdate])" },
         { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional & may only be used with [MeterInstall] , [MeterExchange] & [MeterUpdate])" }
+      ],
+      "eventCodes": [
+        "MeterExchange",
+        "MeterHistoryUpdate",
+        "MeterInstall",
+        "MeterRemoval",
+        "MeterUpdate"
       ]
     },
     {
@@ -1607,6 +1629,13 @@
         { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional & may only be used with [MeterInstall] & [MeterExchange], [Meter Update])" },
         { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "*B074 - MPAN Existing Meter Details (Mandatory if additional meters are Installed) - Repeated for each \"Installed Meter\" not impacted by the message" },
         { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": "> *B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record provided for each B074 Additional meter" }
+      ],
+      "eventCodes": [
+        "MeterExchange",
+        "MeterHistoryUpdate",
+        "MeterInstall",
+        "MeterRemoval",
+        "MeterUpdate"
       ]
     },
     {
@@ -1625,6 +1654,10 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B025_EnergisationStatus", "titleOverride": "B025 - Energisation Status (Mandatory if EventCode = [EnergisationStatusChange])" },
         { "type": "block", "id": "B040_EnergisationFailure", "titleOverride": "B040 - Failure to Action Site Energisation Status Chg (Mandatory if EventCode = [EnergisationStatusFailure])" }
+      ],
+      "eventCodes": [
+        "EnergisationStatusChange",
+        "EnergisationStatusFailure"
       ]
     },
     {
@@ -1643,6 +1676,9 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "R0_Response" },
         { "type": "block", "id": "B025_EnergisationStatus", "titleOverride": "B025- Energisation Status (Mandatory if EventCode = [EnergisationStatusChange])" }
+      ],
+      "eventCodes": [
+        "EnergisationStatusChange"
       ]
     },
     {
@@ -1662,6 +1698,11 @@
         { "type": "block", "id": "B041_DisconnectionInfo", "titleOverride": "B041 - MPAN Disconnection Information (Mandatory for [MPANDisconnection])" },
         { "type": "block", "id": "B098_ReconnectionInfo", "titleOverride": "B098 - MPAN Reconnection Information (Mandatory for [MPANReconnection])" },
         { "type": "block", "id": "B042_CSS_DeRegistration", "titleOverride": "B042 - MPAN CSS De-Registration Information (Mandatory for [CSSDeRegistration])" }
+      ],
+      "eventCodes": [
+        "CSSDeRegistration",
+        "MPANDisconnection",
+        "MPANReconnection"
       ]
     },
     {
@@ -1684,6 +1725,9 @@
         { "type": "block", "id": "B050_ECS_CCC_Data", "titleOverride": "> B050 - ECS CCC Determination Data (Mandatory) - Block Repeated for each variation in CCC Determination Data" },
         { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": ">> B046 - UTC Settlement Date (Mandatory) - Block Repeated for each UTC Settlement Day as required" },
         { "type": "block", "id": "B048_UTCSettlementDefaulted", "titleOverride": ">>> B048 - UTC Settlement Period Consumption Defaulted Data (Mandatory for EventCode =[ActivePowerDefaulted]) - Block Repeated as Required" }
+      ],
+      "eventCodes": [
+        "ActivePowerDefaulted"
       ]
     },
     {
@@ -1706,6 +1750,10 @@
         { "type": "block", "id": "B045_MQID" },
         { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "> B046 - UTC Settlement Day (Block below Repeated for each UTC Settlement Date)" },
         { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">> B047 - UTC Settlement Period Consumption Data (Mandatory) - Block below Repeated for each UTC Settlement Consumption Period as Required" }
+      ],
+      "eventCodes": [
+        "ActivePowerRejected",
+        "ConsumptionOnDeEnergisedMPAN"
       ]
     },
     {
@@ -1722,6 +1770,9 @@
         { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
         { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
         { "type": "block", "id": "M0_MPAN" }
+      ],
+      "eventCodes": [
+        "ConsumptionReplay"
       ]
     },
     {
@@ -1750,6 +1801,13 @@
         { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": ">> B046 - UTC Settlement Day Mandatory except [ReplayRequestRejected] - Block(s) below Repeated for each UTC Settlement Date as Required" },
         { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">>> B047 - UTC Settlement Period Consumption Data ( Mandatory for [ActivePower], [ReactivePower] and [ActivePowerRejected] )" },
         { "type": "block", "id": "B048_UTCSettlementDefaulted", "titleOverride": ">>> B048 - UTC Settlement Period Consumption Defaulted Data (Mandatory for [ActivePowerDefaulted])" }
+      ],
+      "eventCodes": [
+        "ActivePower",
+        "ActivePowerDefaulted",
+        "ActivePowerRejected",
+        "ReactivePower",
+        "ReplayRequestRejected"
       ]
     },
     {
@@ -1773,6 +1831,15 @@
         { "type": "block", "id": "B024_DUOS_Tariff", "titleOverride": "B024 - MPAN DUOS Tariff ID (Mandatory for [DUOSTariffIDChg] )" },
         { "type": "block", "id": "B028_DomPremiseIndicator", "titleOverride": "B028 - Domestic Premise Indicator (Mandatory for Event [DomPremInd])" },
         { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment (Mandatory for Event [DCCEnrolment]) (Mandatory for Commissioned Smart Meters)" }
+      ],
+      "eventCodes": [
+        "AddressChg",
+        "DCCEnrolment",
+        "DUOSTariffIDChg",
+        "DomPremInd",
+        "EnergyDirection",
+        "GSPChg",
+        "MUMIndicator"
       ]
     },
     {
@@ -1813,6 +1880,14 @@
         { "type": "block", "id": "M1_PrincipalMPAN" },
         { "type": "block", "id": "B090_SubsidiaryMPAN", "titleOverride": "*B090- MPAN Relationship Subsidiary MPAN (Mandatory) - Group below repeated for each Secondary MPAN as Required" },
         { "type": "block", "id": "B091_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "LinkedImportExportAdd",
+        "LinkedImportExportCreate",
+        "LinkedImportExportRemove",
+        "RelatedAdd",
+        "RelatedCreate",
+        "RelatedRemove"
       ]
     },
     {
@@ -1842,6 +1917,14 @@
         { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists) - *B907 block repeated for each Linked I/E MPAN in the group" },
         { "type": "block", "id": "B036_LinkedMeterDetails", "titleOverride": "> *B036 - Linked Import/Export Meter Details - *B910 B036 & B075 below repeated for each Meter /MAP pair" },
         { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> *B075 - MPAN Linked Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B036 Meter provided above" }
+      ],
+      "eventCodes": [
+        "LinkedImportExportAdd",
+        "LinkedImportExportCreate",
+        "LinkedImportExportRemove",
+        "RelatedAdd",
+        "RelatedCreate",
+        "RelatedRemove"
       ]
     },
     {
@@ -1863,6 +1946,10 @@
         { "type": "block", "id": "B045_MQID", "titleOverride": "B045 - MQID (Mandatory)" },
         { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "> *B046 - UTC Settlement Day (Mandatory) - Block below Repeated for each UTC Settlement Date" },
         { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">> *B047- UTC Settlement Period Consumption Data (Mandatory) - Block below Repeated for each UTC Settlement Consumption Period as Required" }
+      ],
+      "eventCodes": [
+        "ActivePower",
+        "ReactivePower"
       ]
     },
     {
@@ -1881,6 +1968,9 @@
         { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "*B046 - UTC Settlement Day" },
         { "type": "block", "id": "B051_LoadShapeCriteria", "titleOverride": "> *B051 - Load Shape Criteria (Mandatory), Repeated for each combination of LS Criteria" },
         { "type": "block", "id": "B052_LoadShapePeriodData", "titleOverride": ">> *B052 Load Shape Period Data (Mandatory), Repeated for each Settlement Period" }
+      ],
+      "eventCodes": [
+        "LSSPeriodData"
       ]
     },
     {
@@ -1900,6 +1990,9 @@
         { "type": "block", "id": "B051_LoadShapeCriteria", "titleOverride": "> *B051 - Load Shape Criteria (Mandatory), Repeated for each combination of LS Criteria" },
         { "type": "block", "id": "B054_LoadShapeAnnualConsumption", "titleOverride": "> B054 - Load Shape Annual Consumption, Repeated for each combination of LS Criteria" },
         { "type": "block", "id": "B053_LoadShapeTotalData", "titleOverride": ">> *B053 Load Shape Total Data (Mandatory), Repeated for each Combination of Load Shape Criteria" }
+      ],
+      "eventCodes": [
+        "LSSTotalsData"
       ]
     },
     {
@@ -1920,6 +2013,14 @@
         { "type": "block", "id": "B069_AdvisoryMeterID", "titleOverride": "B069 Supplier Advisory Notification Meter ID ( Mandatory for SN-RemoteEnabled and SN-RemoteDisabled)" },
         { "type": "block", "id": "B058_SupplierNominatedAC", "titleOverride": "B058 - Supplier Nominated Annual Consumption (Mandatory for Event [SN-SupplierAC])" },
         { "type": "block", "id": "B097_OffPeakDeclaration", "titleOverride": "*B097 - Off Peak Declaration (Mandatory for Event [SN-OffPeakDec]) - Block below Repeated for each Off Peak Consumption Day" }
+      ],
+      "eventCodes": [
+        "SN-NoComms",
+        "SN-OffPeakDec",
+        "SN-RemoteDisabled",
+        "SN-RemoteEnabled",
+        "SN-SupplierAC",
+        "SN-Vacant"
       ]
     },
     {
@@ -1960,6 +2061,12 @@
         { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030- IHD Info (Mandatory for Event [IHDInfo])" },
         { "type": "block", "id": "B031_SMSO_Info", "titleOverride": "B031 - SMSO (Mandatory for Event [SMSO])" },
         { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory where event is [SSCandProfileClass] AND Traditional Meters / Optional for other Meters)" }
+      ],
+      "eventCodes": [
+        "ConsentGranularity",
+        "IHDInfo",
+        "SMSO",
+        "SSCandProfileClass"
       ]
     },
     {
@@ -2002,6 +2109,12 @@
         { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - IHD Info (Mandatory for Event [IHDInfo])" },
         { "type": "block", "id": "B031_SMSO_Info", "titleOverride": "B031 - SMSO (Mandatory for Event [SMSO])" },
         { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory where event is [SSCandProfileClass] AND Traditional Meters / Optional for other Meters)" }
+      ],
+      "eventCodes": [
+        "ConsentGranularity",
+        "IHDInfo",
+        "SMSO",
+        "SSCandProfileClass"
       ]
     },
     {
@@ -2023,6 +2136,9 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B045_MQID", "titleOverride": "*B045 - MQID (Block repeated for each MQID as Required)" },
         { "type": "block", "id": "B073_ConsumptionAmendmentReq", "titleOverride": "*B073 - Supplier Consumption Amendment Request (Block repeated for each Consumption Period)" }
+      ],
+      "eventCodes": [
+        "ConsumptionAmendment"
       ]
     },
     {
@@ -2047,6 +2163,9 @@
         { "type": "block", "id": "R0_Response" },
         { "type": "block", "id": "B045_MQID", "titleOverride": "*B045 - MQID (Block repeated for each MQID as Required)" },
         { "type": "block", "id": "B073_ConsumptionAmendmentReq", "titleOverride": ">*B073 - Supplier Consumption Amendment Request (Block repeated for each Consumption Period(s))" }
+      ],
+      "eventCodes": [
+        "ConsumptionAmendment"
       ]
     },
     {
@@ -2108,6 +2227,10 @@
         { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available)" },
         { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSApp])" },
         { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071 - Proposed Data Service Details (Mandatory for Event [DSApp])" }
+      ],
+      "eventCodes": [
+        "DSApp",
+        "MSApp"
       ]
     },
     {
@@ -2145,6 +2268,10 @@
         { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
         { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSAppInitalResp])" },
         { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071- Proposed Data Service Details (Mandatory for Event [DSAppInitalResp])" }
+      ],
+      "eventCodes": [
+        "DSAppInitalResp",
+        "MSAppInitalResp"
       ]
     },
     {
@@ -2187,6 +2314,10 @@
         { "type": "header", "title": "> Repeated for each Installed Meter (B036) at the Related MPAN" },
         { "type": "block", "id": "B038_RelatedMeterDetails", "titleOverride": "> B038 - Related MPAN Meter Details" },
         { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record only for each B038 Meter provided above" }
+      ],
+      "eventCodes": [
+        "DSAppSPRequest",
+        "MSAppSPRequest"
       ]
     },
     {
@@ -2209,6 +2340,11 @@
         { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSAppSPResponse])" },
         { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071 - Proposed Data Service Details (Mandatory for Event [DSAppSPResponse )" },
         { "type": "block", "id": "B018_SDS_Nominated_MDR", "titleOverride": "B018 - SDS Nominated MDR (Mandatory for Event [SDS-MDRUpdate] & ([DSAppSPResponse] where Smart meters installed))" }
+      ],
+      "eventCodes": [
+        "DSAppSPResponse",
+        "MSAppSPResponse",
+        "SDS-MDRUpdate"
       ]
     },
     {
@@ -2234,6 +2370,17 @@
         { "type": "block", "id": "B066_DCC_MDR_Outcome", "titleOverride": "B066 - DCC MDR Outcome (Mandatory For Event[DCC-MDROutcome] Only)" },
         { "type": "block", "id": "B092_SDS_MDR_Update_Outcome", "titleOverride": "B092 - SDS MDR Update Outcome (Mandatory for Event [SDS-MDROutcome] Only)" },
         { "type": "block", "id": "B099_SDS_MDR_Update_Response", "titleOverride": "B099 - SDS MDR Update Outcome (Mandatory for Event [SDS-MDROutcome] Only)" }
+      ],
+      "eventCodes": [
+        "DCC-MDROutcome",
+        "DSAppAccepted",
+        "DSAppLapsed",
+        "DSAppRejected",
+        "IMS-SendMTD",
+        "MSAppAccepted",
+        "MSAppLapsed",
+        "MSAppRejected",
+        "SDS-MDROutcome"
       ]
     },
     {
@@ -2277,6 +2424,10 @@
         { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
         { "type": "header", "title": "B037 block below are repeated for each Related MPAN, where Related MPAN(s) exist" },
         { "type": "block", "id": "B037_RelatedMPAN" }
+      ],
+      "eventCodes": [
+        "DSAppActive",
+        "MSAppActive"
       ]
     },
     {
@@ -2305,6 +2456,12 @@
         { "type": "item", "id": "DI-205" },
         { "type": "item", "id": "DI-827" },
         { "type": "block", "id": "B002_IncomingSupplier", "titleOverride": "B002 - Incoming Supplier Information - Mandatory for Event [MSDeApp] & [DSDeApp] where De-appointment Reason Code is 'CSUPP'" }
+      ],
+      "eventCodes": [
+        "DSDeApp",
+        "DSDeAppUpdate",
+        "MSDeApp",
+        "MSDeAppUpdate"
       ]
     },
     {
@@ -2323,6 +2480,12 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B020_CDC_MS_Info", "titleOverride": "B020 - Customer Direct Contract MS Info ~ Mandatory for event [DirectContractMSAdd]" },
         { "type": "block", "id": "B021_CDC_DS_Info", "titleOverride": "B021 - Customer Direct Contract DS Info ~ Mandatory for event [DirectContractDSAdd]" }
+      ],
+      "eventCodes": [
+        "DirectContractDSAdd",
+        "DirectContractDSRemove",
+        "DirectContractMSAdd",
+        "DirectContractMSRemove"
       ]
     },
     {
@@ -2342,6 +2505,12 @@
         { "type": "block", "id": "R0_Response" },
         { "type": "block", "id": "B020_CDC_MS_Info", "titleOverride": "B020 - Customer Direct Contract MS Info ~ Mandatory for event [DirectContractMSAdd]" },
         { "type": "block", "id": "B021_CDC_DS_Info", "titleOverride": "B021 - Customer Direct Contract DS Info ~ Mandatory for event [DirectContractDSAdd]" }
+      ],
+      "eventCodes": [
+        "DirectContractDSAdd",
+        "DirectContractDSRemove",
+        "DirectContractMSAdd",
+        "DirectContractMSRemove"
       ]
     },
     {
@@ -2359,6 +2528,9 @@
         { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B059_AAC" }
+      ],
+      "eventCodes": [
+        "AnnualConsumption"
       ]
     },
     {
@@ -2377,6 +2549,18 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B064_CumulativeReading", "titleOverride": "* B064 - Cumulative Reading Information (Conditionally Mandatory) - Block Repeated for each Meter(s) associated with the MPAN" },
         { "type": "block", "id": "B065_ConfigurableReading", "titleOverride": "* B065 - Meter Configurable Register Reading (Conditionally Mandatory) - Block Repeated for each set of Configured Register(s) for each Meter" }
+      ],
+      "eventCodes": [
+        "DSEstimate",
+        "ReadingCOR",
+        "ReadingCOS",
+        "ReadingEnergisationChg",
+        "ReadingInstl",
+        "ReadingOnSite",
+        "ReadingOverride",
+        "ReadingRemv",
+        "ReadingRemote",
+        "SupplierAgreedCOS"
       ]
     },
     {
@@ -2394,6 +2578,9 @@
         { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B023_MPAN_ConnectionInfo" }
+      ],
+      "eventCodes": [
+        "ConnectionTypeChange"
       ]
     },
     {
@@ -2412,6 +2599,9 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B026_MarketSegment" },
         { "type": "block", "id": "B023_MPAN_ConnectionInfo" }
+      ],
+      "eventCodes": [
+        "MarketSegmentChange"
       ]
     },
     {
@@ -2429,6 +2619,12 @@
         { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "ConsentGranularityInvalid",
+        "InvalidMarketSegment",
+        "NoDSAppointed",
+        "NoMSAppointed"
       ]
     },
     {
@@ -2447,6 +2643,9 @@
         { "type": "block", "id": "P01_PublicationInfo" },
         { "type": "header", "title": "> P01 Block Below Repeated for each Distribution Variant" },
         { "type": "block", "id": "P02_DistributionVariant" }
+      ],
+      "eventCodes": [
+        "ISD"
       ]
     },
     {
@@ -2471,6 +2670,11 @@
         { "type": "block", "id": "B026_MarketSegment", "titleOverride": "B026 - MPAN Market Segment (Mandatory for Event [MPANCreation])" },
         { "type": "block", "id": "B079_MP_Status", "titleOverride": "B079 - Meter Point Registration Statuses (Mandatory for Event [MPStatusChange] & [MPANCreation])" },
         { "type": "block", "id": "B080_GreenDeal", "titleOverride": "B080 - Green Deal Information (Mandatory for Event [GreenDeal])" }
+      ],
+      "eventCodes": [
+        "GreenDeal",
+        "MPANCreation",
+        "MPStatusChange"
       ]
     },
     {
@@ -2496,6 +2700,9 @@
         { "type": "header", "title": "*B074 Block below repeated for each Installed Meter" },
         { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - Existing MPAN Meter Details (Mandatory if Metering Installed)" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "MDRStart"
       ]
     },
     {
@@ -2522,6 +2729,9 @@
         { "type": "header", "title": "*B074 Block below repeated for each Installed Meter" },
         { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - Existing MPAN Meter Details (Mandatory if Metering Installed)" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "MDRStartResponse"
       ]
     },
     {
@@ -2540,6 +2750,9 @@
         { "type": "block", "id": "M0_MPAN" },
         { "type": "block", "id": "B083_MDR_End_Date" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "MDRStartResponse"
       ]
     },
     {
@@ -2562,6 +2775,9 @@
         { "type": "header", "title": ">> B084 Block below Repeated for each UTC Settlement Consumption Period as Required" },
         { "type": "block", "id": "B084_MDR_Consumption", "titleOverride": ">> *B084 - MDR Settlement Period Consumption Data (Mandatory)" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "MDRConsumption"
       ]
     },
     {
@@ -2585,6 +2801,12 @@
         { "type": "block", "id": "B065_ConfigurableReading", "titleOverride": "* B065 - Meter Configurable Register Reading (Conditionally Mandatory for [ReadingRemote])" },
         { "type": "block", "id": "B077_MDR_RequestDate", "titleOverride": "B077- MDR Request Reference Date (Mandatory for [MDRTOU] & [MDRConsumption]" },
         { "type": "block", "id": "B060_AdditionalInfo" }
+      ],
+      "eventCodes": [
+        "MDRConsumption",
+        "MDRInstantaneous",
+        "MDRTOU",
+        "ReadingRemote"
       ]
     }
   ]
