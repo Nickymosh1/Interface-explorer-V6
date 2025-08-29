@@ -50,19 +50,36 @@ function generateFormHTML(interfaceItem) {
 
 function generateDataItemInput(itemId, dataItem) {
     const isRequired = dataItem.cmo === 'M';
-    const notes = dataItem.populationNotes?.trim() || '';
-    const options = notes ? parsePopulationNotes(notes) : [];
-    
-    const labelClass = isRequired ? 'text-red-700 font-semibold' : 'text-[var(--purple)] font-medium';
     const requiredIndicator = isRequired ? ' <span class="text-red-500">*</span>' : '';
+    const labelClass = isRequired ? 'text-red-700 font-semibold' : 'text-[var(--purple)] font-medium';
     
-    let inputHtml;
-    const inputType = determineInputType(dataItem);
+    let options = [];
+    let inputHtml = '';
     
+    // Check for enumerated data items to create dropdowns
+    if (dataItem.enumerated) {
+        // SPECIAL LOGIC FOR DI-999 EVENT CODE DROPDOWN
+        if (itemId === 'DI-999') {
+            const currentInterface = state.interfaces.find(i => i.id === state.currentInterfaceId);
+            const validCodes = currentInterface?.eventCodes || [];
+            
+            if (dataItem.populationNotes && Array.isArray(dataItem.populationNotes)) {
+                options = dataItem.populationNotes
+                    .filter(code => validCodes.includes(code))
+                    .map(code => ({ value: code, label: code }));
+            }
+        } 
+        // LOGIC FOR ALL OTHER ENUMERATED DROPDOWNS
+        else if (dataItem.populationNotes && typeof dataItem.populationNotes === 'string') {
+            options = parsePopulationNotes(dataItem.populationNotes);
+        }
+    }
+
     if (options.length > 0) {
         const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
         inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
     } else {
+        const inputType = determineInputType(dataItem);
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         switch (inputType) {
             case 'date':
