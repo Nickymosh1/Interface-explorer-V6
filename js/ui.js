@@ -177,24 +177,44 @@ function generateDataItemsHtml(interfaceItem) {
         if (comp.type === 'block') {
              const block = state.dataBlocksCatalogue[comp.id];
              if (!block) return '';
+             // CHANGED: Updated table header to include Payload Key
              blockHtml = `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)] sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.titleOverride || block.title)}</th></tr></thead>
-                      <thead class="text-xs text-[var(--purple)] uppercase bg-[var(--birch)] sticky top-9 z-10"><tr class="border-b"><th class="px-4 py-2">ID</th><th class="px-4 py-2">Data Item</th><th class="px-4 py-2 whitespace-nowrap">M/O/C</th><th class="px-4 py-2 w-1/4">Description / Rule</th><th class="px-4 py-2 w-1/4">Population Notes</th><th class="px-4 py-2">Example</th></tr></thead>`;
+                      <thead class="text-xs text-[var(--purple)] uppercase bg-[var(--birch)] sticky top-9 z-10"><tr class="border-b"><th class="px-4 py-2">ID / Payload Key</th><th class="px-4 py-2">Data Item</th><th class="px-4 py-2 whitespace-nowrap">M/O/C</th><th class="px-4 py-2 w-1/4">Description / Rule</th><th class="px-4 py-2 w-1/4">Population Notes</th><th class="px-4 py-2">Example</th></tr></thead>`;
         }
         const rowsHtml = itemsToRender.map(itemId => {
             const di = state.dataItemsCatalogue[itemId];
             if (!di) return '';
 
-            // --- NEW FILTERING LOGIC FOR THE DISPLAY TABLE ---
+            // --- NEW: LOGIC TO DISPLAY THE PAYLOAD KEY ---
+            const payloadKeyHtml = di.payloadKey
+                ? `<code class="block mt-1 text-purple-600 bg-purple-50 p-1 rounded-md text-[11px] font-normal">${escapeHtml(di.payloadKey)}</code>`
+                : '';
+
             let populationNotesContent = di.populationNotes;
-            // Check if the item is DI-999 and has the data structure we expect
             if (itemId === 'DI-999' && di.enumerated && Array.isArray(di.populationNotes)) {
-                // Get the valid codes from the parent interface object
                 const validCodes = interfaceItem?.eventCodes || [];
-                // Filter the big list down to only the valid codes
                 populationNotesContent = di.populationNotes
                     .filter(code => validCodes.includes(code))
-                    .join('\n'); // Join the filtered array into a string for display
+                    .join('\n');
             }
+
+            const notesHtml = populationNotesContent ? `<p class="text-[var(--purple)] opacity-90 whitespace-pre-wrap">${escapeHtml(populationNotesContent)}</p>` : '';
+            const exampleHtml = di.example ? `<code class="text-blue-600 bg-blue-50 p-1 rounded-md text-xs">${escapeHtml(di.example)}</code>` : '';
+            
+            // CHANGED: Added the payloadKeyHtml to the first table cell
+            return `<tr class="hover:bg-gray-50/50">
+                        <td class="px-4 py-3 font-mono font-semibold text-xs align-top">${escapeHtml(itemId)}${payloadKeyHtml}</td>
+                        <td class="px-4 py-3 align-top">${escapeHtml(di.name)}</td>
+                        <td class="px-4 py-3 font-semibold text-center align-top">${escapeHtml(di.cmo)}</td>
+                        <td class="px-4 py-3 text-xs opacity-80 align-top">${escapeHtml(di.rule)}</td>
+                        <td class="px-4 py-3 text-xs align-top">${notesHtml}</td>
+                        <td class="px-4 py-3 text-xs align-top">${exampleHtml}</td>
+                    </tr>`;
+        }).join('');
+        return blockHtml + `<tbody class="divide-y divide-gray-200/50">${rowsHtml}</tbody>`;
+      }).join('');
+      return `<div class="bg-white/50 rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-100 mt-6 md:mt-8"><h3 class="text-xl font-bold text-[var(--eon-red)] mb-4 flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" /></svg>Data Items</h3><div class="overflow-auto max-h-[80vh] pr-2"><table class="w-full text-sm text-left">${tableContent}</table></div></div>`;
+}
             // --- END OF NEW LOGIC ---
 
             const notesHtml = populationNotesContent ? `<p class="text-[var(--purple)] opacity-90 whitespace-pre-wrap">${escapeHtml(populationNotesContent)}</p>` : '';
