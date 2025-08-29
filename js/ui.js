@@ -236,3 +236,26 @@ export function hideFormBuilder() {
         DOMElements.detailsContent.classList.remove('hidden');
     }
 }
+
+export function renderSearchSuggestions(suggestions) {
+    if (suggestions.length === 0) {
+        DOMElements.searchSuggestions.classList.add('hidden');
+        return;
+    }
+
+    const html = suggestions.map(suggestion =>
+        `<div class="p-2 hover:bg-gray-50 cursor-pointer text-sm" data-suggestion="${escapeHtml(suggestion)}">${escapeHtml(suggestion)}</div>`
+    ).join('');
+
+    DOMElements.searchSuggestions.innerHTML = html;
+    DOMElements.searchSuggestions.classList.remove('hidden');
+}
+
+export function hideSearchSuggestions() {
+    // Hide after a short delay to allow click events to register first
+    setTimeout(() => {
+        if (DOMElements.searchSuggestions) {
+            DOMElements.searchSuggestions.classList.add('hidden');
+        }
+    }, 200);
+}
