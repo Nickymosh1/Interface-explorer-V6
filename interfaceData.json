@@ -1518,8 +1518,6 @@
       ],
       "payloadKey": "eventCode"
     }
-  }
-}
   },
   "dataBlocksCatalogue": {
     "S0_TransactionalInfo": { "title": "S0- Transactional Info (Mandatory)", "items": ["DI-000", "DI-992", "DI-999"] },
