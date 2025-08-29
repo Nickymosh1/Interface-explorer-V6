@@ -11,6 +11,14 @@ export function showFormBuilder() {
     DOMElements.formBuilderPanel.classList.remove('hidden');
     
     generateInterfaceForm(state.currentInterfaceId);
+    
+    // Initialize all new date/time pickers after the form is built
+    flatpickr(".flatpickr-datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d\\TH:i:S.000Z", // Store data in UTC ISO 8601 format
+        altInput: true, // Show a user-friendly format
+        altFormat: "F j, Y h:i K", // e.g., "August 29, 2025 01:37 PM"
+    });
 }
 
 function generateInterfaceForm(interfaceId) {
@@ -57,7 +65,7 @@ function generateDataItemInput(itemId, dataItem) {
     
     let options = [];
     let inputHtml = '';
-    let inputType = 'text'; // Default input type
+    let inputType = 'text';
     
     const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
     const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : (itemId === 'DI-992' ? '1.0.0' : '');
@@ -65,6 +73,7 @@ function generateDataItemInput(itemId, dataItem) {
     if (isAutoPopulated) {
          inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
     } else if (dataItem.enumerated) {
+        inputType = 'enum';
         options = parsePopulationNotes(dataItem.populationNotes);
         
         if (itemId === 'DI-999') {
@@ -75,7 +84,6 @@ function generateDataItemInput(itemId, dataItem) {
     }
 
     if (options.length > 0) {
-        inputType = 'enum';
         const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
         inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
     } else { 
@@ -83,18 +91,9 @@ function generateDataItemInput(itemId, dataItem) {
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         
         if (inputType === 'datetime') {
-            const nowISOString = getFormattedDateTime();
-            const updateButtonHtml = `
-                <button type="button" data-action="update-datetime" title="Update to now" class="p-2 text-[var(--purple)] hover:text-[var(--eon-red)] transition-colors rounded-lg hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h5M20 20v-5h-5M4 4l5 5M20 20l-5-5"></path></svg>
-                </button>
-            `;
-            inputHtml = `
-                <div class="flex items-center border border-gray-300 rounded-lg focus-within:ring-2 focus-within:ring-[var(--eon-red)] focus-within:border-transparent">
-                    <input type="text" value="${nowISOString}" placeholder="YYYY-MM-DDTHH:mm:ss+HH:MM" class="form-input w-full p-2 text-sm border-0 rounded-l-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>
-                    ${updateButtonHtml}
-                </div>
-            `;
+            const nowISOString = new Date().toISOString();
+            // Add a specific class for flatpickr to target
+            inputHtml = `<input type="text" value="${nowISOString}" placeholder="Select Date and Time..." class="form-input flatpickr-datetime w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
         } else {
              switch (inputType) {
                 case 'number':
@@ -108,72 +107,39 @@ function generateDataItemInput(itemId, dataItem) {
             }
         }
     }
-    
     const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '';
-
-    const wrapperClass = inputType === 'datetime' ? '' : 'form-input-wrapper';
-
-    return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label><div class="${wrapperClass}">${inputHtml}</div>${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
+    return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label>${inputHtml}${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
 }
 
-// NEW, more robust parser for ALL population notes formats
 function parsePopulationNotes(notes) {
     if (!notes) return [];
     if (Array.isArray(notes)) {
         return notes.map(code => ({ value: code, label: code }));
     }
-
     const options = new Map();
     const cleanedNotes = notes.replace(/’/g, "'").replace(/–/g, "-");
-
-    // Split by common delimiters: newline, or ", -"
     const parts = cleanedNotes.split(/\n|, -/);
-
     parts.forEach(part => {
         let line = part.trim();
         if (!line) return;
-        
-        // Remove leading dash if it exists
-        if (line.startsWith('-')) {
-            line = line.substring(1).trim();
-        }
-
-        // Try to match "CODE - Description", "CODE = Description", or "CODE Description"
+        if (line.startsWith('-')) line = line.substring(1).trim();
         const match = line.match(/^'([^']+)'\s+(.*)|^\s*([^\s=]+)\s*(?:-|=)?\s*(.*)/);
-
         if (match) {
             const code = (match[1] || match[3] || '').trim();
             const desc = (match[2] || match[4] || '').trim();
             if (code) {
                 const label = desc ? `${code} - ${desc}` : code;
-                 if (!options.has(code)) {
-                    options.set(code, { value: code, label: label });
-                }
+                 if (!options.has(code)) options.set(code, { value: code, label: label });
             }
         }
     });
-    
-    // Fallback for simple comma-separated lists like "_A, _B, _C"
     if (options.size === 0 && cleanedNotes.includes(',')) {
          cleanedNotes.split(',').forEach(part => {
             const code = part.trim();
-            if (code && !options.has(code)) {
-                options.set(code, { value: code, label: code });
-            }
+            if (code && !options.has(code)) options.set(code, { value: code, label: code });
         });
     }
-
     return Array.from(options.values());
-}
-
-export function getFormattedDateTime() {
-    const now = new Date();
-    const timezoneOffset = -now.getTimezoneOffset();
-    const sign = timezoneOffset >= 0 ? '+' : '-';
-    const pad = num => String(num).padStart(2, '0');
-    const hoursOffset = pad(Math.floor(Math.abs(timezoneOffset) / 60));
-    const minutesOffset = pad(Math.abs(timezoneOffset) % 60);
-    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}${sign}${hoursOffset}:${minutesOffset}`;
 }
 
 function determineInputType(dataItem) {
@@ -186,7 +152,7 @@ function determineInputType(dataItem) {
 }
 
 function getPlaceholderByType(type) {
-    return { datetime: 'YYYY-MM-DDTHH:mm:ss+HH:MM', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
+    return { datetime: 'Select Date and Time...', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
 }
 
 export function exportFormData() {
@@ -200,7 +166,12 @@ export function exportFormData() {
         inputs.forEach(input => {
             const itemId = input.dataset.itemId;
             if (input.value) {
-                blockObject[itemId] = input.value.trim();
+                // For flatpickr, get the actual data value from the hidden input
+                if (input.classList.contains('flatpickr-datetime')) {
+                    blockObject[itemId] = input._flatpickr.input.value;
+                } else {
+                    blockObject[itemId] = input.value.trim();
+                }
             }
         });
         if (Object.keys(blockObject).length > 0) {
