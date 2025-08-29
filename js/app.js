@@ -19,13 +19,15 @@ import { fuzzySearch } from './utils.js';
 document.addEventListener('DOMContentLoaded', initApp);
 
 async function initApp() {
-    showLoading();
-    cacheDOMElements();
+    // Correct Order: First, find all the elements on the page.
+    cacheDOMElements(); 
+    // THEN, show the loading spinner.
+    showLoading(); 
+    
     loadFavorites();
 
-    const data = await fetchData('interfaceData.json'); // Corrected path
+    const data = await fetchData('interfaceData.json');
     if (!data) {
-        // Handle data loading failure
         DOMElements.interfaceList.innerHTML = `<p class="text-center text-red-600 p-4">Error: Could not load interface data. Please refresh the page.</p>`;
         hideLoading();
         return;
@@ -35,7 +37,6 @@ async function initApp() {
 
     setupEventListeners();
     
-    // Read initial state from URL
     const params = new URLSearchParams(window.location.search);
     const initialSearch = params.get('search') || '';
     const initialFilter = params.get('filter') || 'all';
@@ -86,7 +87,6 @@ function setupEventListeners() {
         }
     });
 
-    // New delegated event listener for favorite button in details view
     DOMElements.detailsContent.addEventListener('click', e => {
         const favoriteButton = e.target.closest('[data-action="toggle-favorite"]');
         if (favoriteButton) {
@@ -109,9 +109,8 @@ function setupEventListeners() {
         renderRejectionCodesList(filtered);
     });
     
-    // Update URL on state change
     window.addEventListener('popstate', () => {
-        // Handle back/forward navigation if you want to re-read URL state
+        // This can be used to handle back/forward navigation if needed in the future
     });
 }
 
@@ -143,11 +142,9 @@ function filterAndRender() {
         if (searchTerms.length === 0) return true;
 
         const content = buildSearchableContent(item);
-        // Use a less strict threshold for better fuzzy matching
         return searchTerms.some(term => fuzzySearch(term, content, 0.3).matches);
     });
     
-    // Sort by relevance if searching
     if (state.currentSearchTerm) {
         state.filteredInterfaces.sort((a, b) => {
             const aScore = fuzzySearch(state.currentSearchTerm, buildSearchableContent(a)).score;
