@@ -29,7 +29,6 @@ function generateFormHTML(interfaceItem) {
         return '<p class="text-center text-[var(--purple)] opacity-80 p-8">No data items to fill for this interface.</p>';
     }
     return interfaceItem.composition.map(comp => {
-        // Assign a data-block-id to each containing div for the exporter
         const blockIdAttr = comp.id ? `data-block-id="${comp.id}"` : '';
 
         if (comp.type === 'header') {
@@ -59,70 +58,94 @@ function generateDataItemInput(itemId, dataItem) {
     let options = [];
     let inputHtml = '';
     
-    // Auto-populate DI-000 (Interface Id) and DI-992 (Schema Version)
     const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
     const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : (itemId === 'DI-992' ? '1.0.0' : '');
 
     if (isAutoPopulated) {
          inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
     } else if (dataItem.enumerated) {
+        options = parsePopulationNotes(dataItem.populationNotes); // Use the new robust parser for all
+        
         if (itemId === 'DI-999') {
             const currentInterface = state.interfaces.find(i => i.id === state.currentInterfaceId);
             const validCodes = currentInterface?.eventCodes || [];
-            
-            if (dataItem.populationNotes && Array.isArray(dataItem.populationNotes)) {
-                options = dataItem.populationNotes
-                    .filter(code => validCodes.includes(code))
-                    .map(code => ({ value: code, label: code }));
-            }
-        } 
-        else if (dataItem.populationNotes && typeof dataItem.populationNotes === 'string') {
-            options = parsePopulationNotes(dataItem.populationNotes);
+            options = options.filter(opt => validCodes.includes(opt.value));
         }
+    }
 
-        if (options.length > 0) {
-            const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
-            inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
-        }
-    } 
-    
-    if (!inputHtml) { // If it's not auto-populated or a dropdown, create a standard input
+    if (options.length > 0) {
+        const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
+        inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
+    } else { 
         const inputType = determineInputType(dataItem);
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
-        switch (inputType) {
-            case 'datetime':
-                inputHtml = `<input type="text" placeholder="YYYY-MM-DDTHH:mm:ssZ" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
-                break;
-            case 'number':
-                inputHtml = `<input type="number" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="number" ${isRequired ? 'required' : ''}>`;
-                break;
-            case 'textarea':
-                inputHtml = `<textarea rows="3" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="textarea" ${isRequired ? 'required' : ''}></textarea>`;
-                break;
-            default:
-                inputHtml = `<input type="text" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="text" ${isRequired ? 'required' : ''}>`;
+        
+        if (inputType === 'datetime') {
+            const now = new Date();
+            const timezoneOffset = -now.getTimezoneOffset();
+            const sign = timezoneOffset >= 0 ? '+' : '-';
+            const pad = num => String(num).padStart(2, '0');
+            const hoursOffset = pad(Math.floor(Math.abs(timezoneOffset) / 60));
+            const minutesOffset = pad(Math.abs(timezoneOffset) % 60);
+            
+            // Format to YYYY-MM-DDTHH:mm:ss+HH:MM
+            const nowISOString = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}${sign}${hoursOffset}:${minutesOffset}`;
+            
+            inputHtml = `<input type="text" value="${nowISOString}" placeholder="YYYY-MM-DDTHH:mm:ss+HH:MM" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
+        } else {
+             switch (inputType) {
+                case 'number':
+                    inputHtml = `<input type="number" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="number" ${isRequired ? 'required' : ''}>`;
+                    break;
+                case 'textarea':
+                    inputHtml = `<textarea rows="3" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="textarea" ${isRequired ? 'required' : ''}></textarea>`;
+                    break;
+                default:
+                    inputHtml = `<input type="text" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="text" ${isRequired ? 'required' : ''}>`;
+            }
         }
     }
     const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '';
     return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label>${inputHtml}${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
 }
 
-
+// NEW, more robust parser for population notes
 function parsePopulationNotes(notes) {
-    return notes.split('\n').map(line => {
-        const parts = line.split(/[-=]\s+/).map(s => s.trim()).filter(Boolean);
-        if (parts.length >= 2) {
-            return { value: parts[0], label: `${parts[0]} - ${parts.slice(1).join(' ')}` };
+    if (!notes) return [];
+    if (Array.isArray(notes)) {
+        return notes.map(code => ({ value: code, label: code }));
+    }
+
+    const options = new Map();
+    // Handle "- C Created" and "1=Opt Out" formats
+    notes.split('\n').forEach(line => {
+        line = line.trim();
+        if (!line) return;
+        
+        // Match "- C  Description" or "C = Description"
+        const match = line.match(/^-?([^\s=]+)\s*[=-]?\s+(.*)/);
+        if (match) {
+            const code = match[1].trim();
+            const desc = match[2].trim();
+            if (!options.has(code)) {
+                options.set(code, { value: code, label: `${code} - ${desc}` });
+            }
         }
-        if (parts.length === 1 && parts[0]) {
-             const singleParts = parts[0].split(/\s{2,}/);
-             if(singleParts.length >= 2) {
-                return { value: singleParts[0], label: `${singleParts[0]} - ${singleParts.slice(1).join(' ')}` };
-             }
-        }
-        return null;
-    }).filter(Boolean);
+    });
+
+    // Handle "_A, _B, _C" comma-separated format
+    if (options.size === 0 && notes.includes(',')) {
+        notes.split(',').forEach(part => {
+            const code = part.trim();
+            if (code && !options.has(code)) {
+                options.set(code, { value: code, label: code });
+            }
+        });
+    }
+
+    return Array.from(options.values());
 }
+
 
 function determineInputType(dataItem) {
     const name = dataItem.name.toLowerCase();
@@ -134,20 +157,16 @@ function determineInputType(dataItem) {
 }
 
 function getPlaceholderByType(type) {
-    return { datetime: 'YYYY-MM-DDTHH:mm:ssZ', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
+    return { datetime: 'YYYY-MM-DDTHH:mm:ss+HH:MM', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
 }
 
-// --- NEW EXPORT FUNCTION ---
 export function exportFormData() {
     if (!validateForm()) return;
-
     const finalPayload = {};
     const formBlocks = DOMElements.formContent.querySelectorAll('[data-block-id]');
-
     formBlocks.forEach(blockElement => {
         const blockId = blockElement.dataset.blockId;
         const blockObject = {};
-        
         const inputs = blockElement.querySelectorAll('[data-item-id]');
         inputs.forEach(input => {
             const itemId = input.dataset.itemId;
@@ -155,13 +174,10 @@ export function exportFormData() {
                 blockObject[itemId] = input.value.trim();
             }
         });
-
-        // Only add the block to the payload if it contains data
         if (Object.keys(blockObject).length > 0) {
             finalPayload[blockId] = blockObject;
         }
     });
-
     const filename = `${state.currentInterfaceId.replace('/', '_')}_payload.json`;
     downloadFile(JSON.stringify(finalPayload, null, 2), filename, 'application/json');
     showSuccessMessage('Payload exported successfully!');
