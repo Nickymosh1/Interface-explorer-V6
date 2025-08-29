@@ -8,7 +8,6 @@ export async function fetchData(url) {
         return await response.json();
     } catch (error) {
         console.error("Could not load interface data:", error);
-        // You can enhance this to show a more user-friendly error in the UI
         return null;
     }
 }
