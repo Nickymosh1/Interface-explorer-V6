@@ -1625,7 +1625,8 @@
         "SupplierAgreedCOS"
       ],
       "payloadKey": "eventCode"
-    },
+    }
+  },
 "dataBlocksCatalogue": {
     "S0_TransactionalInfo": {
       "title": "S0- Transactional Info (Mandatory)",
