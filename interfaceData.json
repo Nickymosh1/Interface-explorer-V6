@@ -1,209 +1,1411 @@
 {
   "dataItemsCatalogue": {
-    "DI-000": { "name": "Interface Id", "cmo": "M", "rule": "Interface Id" },
-    "DI-001": { "name": "Address Line 1", "cmo": "O", "rule": "A component of a metering point site address. There are defined parts of the address for each address line.", "example": "Yellow Door" },
-    "DI-002": { "name": "Address Line 2", "cmo": "O", "rule": "A component of a metering point site address", "example": "Flat 3" },
-    "DI-003": { "name": "Address Line 3", "cmo": "O", "rule": "A component of a metering point site address", "example": "Prince of Wales Public House" },
-    "DI-004": { "name": "Address Line 4", "cmo": "O", "rule": "A component of a metering point site address", "example": "Short Lane" },
-    "DI-005": { "name": "Address Line 5", "cmo": "O", "rule": "A component of a metering point site address", "example": "Long Road" },
-    "DI-006": { "name": "Address Line 6", "cmo": "O", "rule": "A component of a metering point site address", "example": "Localton" },
-    "DI-007": { "name": "Address Line 7", "cmo": "O", "rule": "A component of a metering point site address", "example": "Large Suburb" },
-    "DI-008": { "name": "Address Line 8", "cmo": "O", "rule": "A component of a metering point site address", "example": "CARDIFF" },
-    "DI-009": { "name": "Address Line 9", "cmo": "O", "rule": "A component of a metering point site address", "example": "Glamorgan" },
-    "DI-010": { "name": "Metering Point Postcode", "cmo": "O", "rule": "The full postcode of the metering point site.", "example": "CF1 1AA" },
-    "DI-015": { "name": "Connection Type Indicator", "cmo": "M", "rule": "A code to indicate the type of connection at the metering point.", "populationNotes": "- W  Whole Current\n- L  LV with CT\n- H  HV with CT\n- E  EHV with CT\n- U  Unmetered", "example": "W", "enumerated": true },
-    "DI-016": { "name": "Connection Type Effective From Date", "cmo": "M", "rule": "The date and time from which the metering point Connection Type is in effect.", "example": "2020-02-08T09:00:00+01:00" },
-    "DI-017": { "name": "Consent Granularity", "cmo": "M", "rule": "Describes the granularity of energy settlement data that a customer has deemed to have consented to.", "populationNotes": "- H Half Hourly Consent Granted\n- D Daily Consent Granted\n- M Monthly Reads Only\n- N No Consent", "example": "D", "enumerated": true },
-    "DI-018": { "name": "Consent Granularity Effective From Date", "cmo": "M", "rule": "The date from which the consent granularity was in effect.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-019": { "name": "Contract Reference Metering Service", "cmo": "O", "rule": "The unique reference of the contractual agreement between a supplier and the Metering Service.", "example": "CON12345" },
-    "DI-020": { "name": "Contract Reference Data Service", "cmo": "O", "rule": "The unique reference of the contractual agreement between a supplier and the data service.", "example": "CON12345" },
-    "DI-021": { "name": "Customer Direct Contract Metering Service", "cmo": "M", "rule": "An indicator to show if a direct customer contract exists between the customer and the Metering Service provider.", "populationNotes": "- Y Yes - N No", "example": "Y" },
-    "DI-022": { "name": "Customer Direct Contract Data Service", "cmo": "M", "rule": "An indicator to show if a direct customer contract exists between the customer and Data Service provider.", "populationNotes": "- Y Yes - N No", "example": "N" },
-    "DI-023": { "name": "Data Service Effective From Date", "cmo": "M", "rule": "The Date from which the Data Service was Appointed", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-025": { "name": "DCC Service Flag", "cmo": "M", "rule": "A DCC provided flag to indicate the status of the services being provided by the DCC to a Metering Point.", "populationNotes": "- A Active\n- I Installed Not Commissioned\n- N Non-Active", "example": "A", "enumerated": true },
-    "DI-026": { "name": "DCC Effective From Date (DCCF)", "cmo": "M", "rule": "The first inclusive calendar date for which the status of the DCC Service flag applies.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-027": { "name": "Disconnection Effective From Date", "cmo": "M", "rule": "The date on which the connection point is physically removed from the metering system.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-028": { "name": "Reconnection Effective From Date", "cmo": "M", "rule": "The date on which the connection point is physically reconnected to the metering system.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-029": { "name": "Distributor ID", "cmo": "M", "rule": "The market-wide unique reference for the distributor who is responsible for the distribution network that a metering point is connected to." },
-    "DI-030": { "name": "Domestic Premise Indicator", "cmo": "M", "rule": "A flag that indicates if the MPAN of the registration appointment is used to identify a domestic premise.", "populationNotes": "- T True (Domestic)\n- F False (Non-Domestic)", "example": "T", "enumerated": true },
-    "DI-031": { "name": "Load Shape Domestic Premise Indicator", "cmo": "O", "rule": "The Domectic Premise Indicator associated with a Load Shape", "populationNotes": "- T True (Domestic), - F False (Non-Domestic)", "example": "T" },
-    "DI-032": { "name": "Domestic Premise Indicator Effective From Date", "cmo": "M", "rule": "The date from which the metering point Domestic Premise Indicator is in effect.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-033": { "name": "Energisation Status", "cmo": "M", "rule": "Indicates if the metering point is considered energised (i.e. connected to the distribution system) and therefore active for settlement purposes.", "populationNotes": "- D De-Energised\n- E Energised", "example": "E", "enumerated": true },
-    "DI-034": { "name": "Energisation Status Effective From Date", "cmo": "M", "rule": "The settlement date and time from which an energisation status is in effect for a metering system.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-035": { "name": "Energy Direction", "cmo": "M", "rule": "Indicates the direction of energy at a metering point. Values can be I = import / E = export.", "populationNotes": "- I Import\n- E Export", "example": "I", "enumerated": true },
-    "DI-036": { "name": "GSP Group ID EffectiveFrom Date", "cmo": "M", "rule": "The date and time from which the GSP Group ID is in effect for the metering system.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-037": { "name": "GSP Group ID", "cmo": "M", "rule": "Identifies the distinct grid supply point group (physical region of the country) where the metering point is located.", "populationNotes": "_A, _B, _C, _D, _E, _F, _G, _H, _J, _K, _L, _M, _N, _P", "example": "_A", "enumerated": true },
-    "DI-038": { "name": "Associated Import/Export MPAN", "cmo": "M", "rule": "When this metering point is part of an import/export pair, this identifies the related import or export metering point. Where more than one import MPAN exists, this shall be populated with the Primary Import MPAN.", "example": "1200000000000" },
-    "DI-039": { "name": "Load Shape GSP Group ID", "cmo": "O", "rule": "The GSP Group ID associated with a Load Shape", "example": "_A" },
-    "DI-040": { "name": "Annual Load Shape Total", "cmo": "M", "rule": "Annual consumption associated with a particular Load Shape", "example": "123456789.123" },
-    "DI-041": { "name": "Load Shape 7 Day Rolling Off-peak Total", "cmo": "C", "rule": "The sum of the 7 day rolling Off-Peak total (kWh) using the Off-Peak total for the UTC date plus the last 6 UTC dates", "example": "123456789.123" },
-    "DI-042": { "name": "Load Shape 7 Day Rolling Peak Total", "cmo": "C", "rule": "The sum of the 7 day rolling Peak total (kWh) using the Peak total for the UTC date plus the last 6 UTC dates", "example": "123456789.123" },
-    "DI-043": { "name": "Load Shape 7 Day Rolling Total", "cmo": "M", "rule": "The sum of the 7 day rolling total (kWh) using the total for the UTC date plus the previous 6 UTC dates", "example": "123456789.123" },
-    "DI-044": { "name": "Load Shape Day Off-Peak Total", "cmo": "C", "rule": "The sum of Period Values for settlement periods (kWh) (1 to 14) or (2 to 15). UTC times Midnight -7pm", "example": "123456789.123" },
-    "DI-045": { "name": "Load Shape Day Peak Total", "cmo": "C", "rule": "The sum of Period Values (kWh) for settlement periods (15 to 48) or (1 and 16 to 48). UTC times 7pm - Midnight", "example": "123456789.123" },
-    "DI-046": { "name": "Load Shape Day Total", "cmo": "M", "rule": "The sum of all Period Values for the UTC Date.", "example": "123456789.123" },
-    "DI-048": { "name": "Manufacturers Make and Type", "cmo": "O", "rule": "The manufacturer's make name and type number of a Meter", "example": "Honeywell AS3000" },
-    "DI-050": { "name": "Market Segment Indicator", "cmo": "M", "rule": "An enumeration of Smart/Advanced/Unmetered.", "populationNotes": "- S Smart/Traditional\n- A Advanced\n- U Unmetered", "example": "S", "enumerated": true },
-    "DI-051": { "name": "Market Segment Indicator Effective From Date", "cmo": "M", "rule": "The date from which the metering point Market Segment is in effect.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-052": { "name": "Measurement Quantity ID", "cmo": "M", "rule": "Identifies the type of the quantity that is measured by the UTC Period Consumption Value.", "populationNotes": "- AI Active import\n- AE Active export\n- RI Reactive import\n- RE Reactive export", "example": "AI", "enumerated": true },
-    "DI-053": { "name": "Meter ID (Removed)", "cmo": "M", "rule": "Serial number of the removed physical meter.", "example": "12345678" },
-    "DI-054": { "name": "Meter Asset Provider Effective From Date", "cmo": "M", "rule": "The inclusive calendar date from which the meter asset provider is in effect for the metering system.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-055": { "name": "Meter Asset Provider ID", "cmo": "M", "rule": "The market-wide reference for the provider of the meter equipment.", "example": "NAMP" },
-    "DI-056": { "name": "Meter ID", "cmo": "M", "rule": "Serial number of the physical meter.", "example": "12345678" },
-    "DI-057": { "name": "Meter Installation Date/Time", "cmo": "M", "rule": "The date of installation for a meter at a metering point.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-058": { "name": "Meter Removal Date/time", "cmo": "O", "rule": "The date when the meter was removed from a metering point.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-059": { "name": "Meter Type", "cmo": "M", "rule": "The type of meter, in relation to its capabilities. E.g. AMR.S1, S2, S2ADE", "example": "S2ADE" },
-    "DI-060": { "name": "Modified Meter ID", "cmo": "O", "rule": "Updated/ Corrected Serial number of the physical meter.", "example": "12345678" },
-    "DI-061": { "name": "Metering Service Effective From Date", "cmo": "M", "rule": "The Date from which the Metering Service was Appointed", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-063": { "name": "MPAN Core", "cmo": "M", "rule": "A business key used to uniquely identify the metering point that is the subject of the update.", "example": "1200000000000" },
-    "DI-073": { "name": "Principal MPAN", "cmo": "M", "rule": "The Principal MPAN in a Related/Linked MPAN Relationship", "example": "1200000000000" },
-    "DI-074": { "name": "Subsidiary MPAN", "cmo": "M", "rule": "The subsidiary MPAN in a Related/Linked MPAN Relationship", "example": "1200000000000" },
-    "DI-075": { "name": "Primary MPAN", "cmo": "C", "rule": "The primary in a related MPAN relationship. The primary is associated with the base load settlement configuration (contains no value, if not part of related MPAN pair).", "example": "1200000000000" },
-    "DI-076": { "name": "Estimation Reason Code {e}", "cmo": "C", "rule": "Reason why Data Service had to provide Estimated/Zero Data", "populationNotes": "- 1 Opt Out\n- 2 Missing\n- 3 Invalid\n- 4 Comms Fault\n- 5 LTV\n- 6 Disabled\n- 7 De-Energised\n- 8 Disconnected\n- 9 Consumption Amendment\n- 10 Non-Smart", "example": "4", "enumerated": true },
-    "DI-077": { "name": "CSS RMP Deactivation Date", "cmo": "M", "rule": "The Date on which the CSS considers the MPAN to have been deactivated / terminated.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-079": { "name": "Secondary MPAN", "cmo": "C", "rule": "The secondary in a related MPAN relationship.", "example": "1200000000000" },
-    "DI-080": { "name": "Consumption Component Indicator", "cmo": "M", "rule": "C = Consumption L = Losses", "populationNotes": "- C  Consumption - L  Losses", "example": "C" },
-    "DI-081": { "name": "Settlement Period Duration", "cmo": "M", "rule": "The settlement period duration in minutes.", "example": "30" },
-    "DI-082": { "name": "Settlement Period Effective To Date/Time", "cmo": "M", "rule": "The UTC end date and time of the settlement period for a consumption value.", "example": "2020-02-08T00:30:00Z" },
-    "DI-083": { "name": "Settlement Period Quality Indicator {q}", "cmo": "M", "rule": "Describes if the UTC Period Consumption Value is an actual or what estimation method was used to estimate it.", "populationNotes": "- A Actual\n- E Estimate (UMS Only)\n- A1, A2, A3, AAE1, AAE2, AAE3, EAE1, EAE2, EAE3 (ADV Only)\n- E0 --> E9 Estimation Method 1 - 9\n- EA1-->EA13 ADS Estimation Methods\n- ZE De-Energised (for use with Unmetered Supplies only)\n- ZE1--> ZE3 Zero Estimation Method 1 -3", "example": "A", "enumerated": true },
-    "DI-085": { "name": "Electricity Smart Meter Equipment (ESME ID)", "cmo": "C", "rule": "The Electricity Smart Meter Equipment GUID is the unique identifier for a Smart electricity This is also known as the DCC GUID and is further defined within the DCC interface specifications.", "example": "AB-CD-EF-12-34-56-78-90" },
-    "DI-086": { "name": "Supplier Effective From Date", "cmo": "M", "rule": "The date and time from which a supplier came into effect, with regard to their relationship with the metering point.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-088": { "name": "Cumulative Register Reading", "cmo": "M", "rule": "The value of the Cumulative meter register at a specified date and time.", "example": "12345.67" },
-    "DI-089": { "name": "Cumulative Register Reading Date / Time", "cmo": "M", "rule": "The date and time [in UTC] of the Cumulative Register Meter Read.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-090": { "name": "Meter Location", "cmo": "M", "rule": "The actual location of the metering system within the site", "example": "01", "populationNotes": "- A Attic\n- B Bedroom\n- C Cellar/Basement\n- D Other not specified\n- E Indoors\n- F Not known\n- G Garage/Greenhouse\n- H Hall\n- I Cupboard\n- J Intake\n- K Kitchen\n- L Landing\n- M Sub Station\n- N TC Chamber\n- O Outbuilding Barn\n- P Pole\n- R Ladder required\n- S Understairs\n- T Toilet\n- U Upstairs\n- V Vestry\n- W Under Window\n- X Outside Box\n- Y O/S Box with restricted access\n- Z Communal Cupboard", "enumerated": true },
-    "DI-091": { "name": "Number of Displayed Register Digits", "cmo": "C", "rule": "The number of digits prior to the decimal point displayed by the total cumulative register of a smart meter", "example": "5" },
-    "DI-092": { "name": "Nature of Maintenance", "cmo": "O", "rule": "Details of the tests, maintenance and replacement work done by the Meter Operator on the meters, communications equipment and links in a Metering System.", "example": "Replaced SIM card" },
-    "DI-093": { "name": "Additional Information", "cmo": "O", "rule": "A free format character string for providing additional details.", "example": "Customer has a dog." },
-    "DI-094": { "name": "Reading Method", "cmo": "M", "rule": "Indicates how the Cumulative meter reading was obtained/derived", "populationNotes": "- A Actual Data Recovered from Meter\n- C Customer\n- E Estimate by SDS\n- S Estimate by Supplier\n- X Derived Reading (Based on Actual)\n- Y Derived Reading (Based on Estimate)", "example": "C", "enumerated": true },
-    "DI-096": { "name": "Site Visit Check Code", "cmo": "O", "rule": "A code identifying either nature of checks made/to be made on metering equipment during a site visit or identifying reason for failure to obtain readings.", "example": "01" },
-    "DI-097": { "name": "Failure to Energise/de-energise reason code", "cmo": "M", "rule": "The reason why the Energisation or De-Energisation has not been carried out.", "example": "01" },
-    "DI-098": { "name": "Supplier Notification Expiry Date", "cmo": "O", "rule": "The Date from which a Supper Notification [to DS] Expires", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-099": { "name": "Configurable Register Reading Date /Time", "cmo": "M", "rule": "The date and time [in UTC] of a Configurable Register Meter Read. This should be considered to be midnight where an exact time is unavailible", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-100": { "name": "Supplier Notification Effective From Date", "cmo": "M", "rule": "The Date from which a Supper Notification [to DS] becomes Effective From", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-101": { "name": "UTC Settlement Date", "cmo": "M", "rule": "UTC Date for which data applies", "example": "2020-02-08T00:00:00Z" },
-    "DI-102": { "name": "Load Shape Period Value", "cmo": "M", "rule": "Consumption Value (kWh) for the UTC Period Duration within a Load Shape.", "example": "12345.67" },
-    "DI-103": { "name": "Configurable Register ID", "cmo": "M", "rule": "Register ID relating to a specific configurable (billing) register on a Smart/Advanced Meter", "example": "01" },
-    "DI-104": { "name": "Configurable Register Reading", "cmo": "M", "rule": "Reading associated to a specific Register ID on a Smart/Advanced Meter", "example": "12345.67" },
-    "DI-108": { "name": "Distributor DIP ID", "cmo": "M", "rule": "The DIP ID of the distributor who is responsible for the distribution network that a metering point is connected to." },
-    "DI-109": { "name": "Distributor DIP EZ Name", "cmo": "O", "rule": "The DIP EZ Name of the distributor who is responsible for the distribution network that a metering point is connected to." },
-    "DI-111": { "name": "Green Deal Effective From Date", "cmo": "O", "rule": "The date from which a Green Deal agreement is considered to be in place." },
-    "DI-112": { "name": "Green Deal Effective To Date", "cmo": "O", "rule": "The date to which a Green Deal agreement is considered to be in place." },
-    "DI-120": { "name": "Additional Information", "cmo": "O", "rule": "A free format character string for providing additional details." },
-    "DI-121": { "name": "Outgoing Supplier Effective To Date", "cmo": "M", "rule": "The last inclusive settlement date after which a Supplier's registration to a metering system ceases to be valid.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-122": { "name": "Profile Class", "cmo": "C", "rule": "A legacy classification, maintined by Suppliers, retained soley to assist with the undertsanding of allocation of gross consumption to individual Settlement Periods.", "example": "01" },
-    "DI-123": { "name": "SSC", "cmo": "C", "rule": "A legacy classification, maintined by Suppliers, retained soley to assist with the undertsanding of allocation of gross consumption to individual Settlement Periods.", "example": "0393" },
-    "DI-124": { "name": "Profile Class Effective From Date", "cmo": "C", "rule": "The Date from which the current Profile Class became Effective", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-125": { "name": "SSC Effective From Date", "cmo": "C", "rule": "The Date from which the current Profile Class became Effective", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-126": { "name": "Traditional / Fall Back Read Frequency", "cmo": "O", "rule": "Supplier requested Traditional / Fall Back Meter Reading Frequency", "populationNotes": "- F Fortnightly, - W Weekly, - M Monthly, - Q Quarterly, - S Six Monthly, - A Annually", "example": "M" },
-    "DI-127": { "name": "Metered Indicator", "cmo": "M", "rule": "An indicator to show whether the Consumption Component is for a metered supply or unmetered supply.", "populationNotes": "- False = U - Unmetered, - True = M - Metered", "example": "True" },
-    "DI-128": { "name": "DUOS Tariff ID", "cmo": "M", "rule": "Reference to identify the DUoS Tariff assigned to an MPAN", "example": "N345A" },
-    "DI-129": { "name": "DUOS Tariff ID EffectiveFrom Date", "cmo": "M", "rule": "Date on which DUoS Tariff came into effect", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-130": { "name": "RMP Status (Registration)", "cmo": "M", "rule": "The MPAN RMP Status as held in the Registration Service", "populationNotes": "- C Created\n- O Operational\n- T Terminated", "example": "O", "enumerated": true },
-    "DI-131": { "name": "MP Status", "cmo": "M", "rule": "The MP or Trading Status as held in the Registration Service", "populationNotes": "- N New\n- R Registered\n- T Traded\n- X Disconnected", "example": "T", "enumerated": true },
-    "DI-134": { "name": "SMSO", "cmo": "M", "rule": "The Id of the operator a Supplier has procured data and communication services from in respect of a Metering System (applies only to certain types of SMETS1 Metering)." },
-    "DI-135": { "name": "SMSO Status Effective From Date", "cmo": "M", "rule": "The first inclusive calendar date that a Smart Metering System Operator ID is the provider of communications services to a Metering System (applies only to certain types of SMETS1 Metering).", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-136": { "name": "IHD Status Effective From Date", "cmo": "M", "rule": "The first inclusive calendar date that an a notable IHD status was provided.", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-137": { "name": "IHD Install Status", "cmo": "M", "rule": "Information regarding the In Home Display at a metering point.", "populationNotes": "- I Installed\n- D Declined\n- E Existing\n- F Failed", "example": "I", "enumerated": true },
-    "DI-138": { "name": "Customer Direct Contract Data Service DIP ID", "cmo": "C", "rule": "The DIP ID of the Data Service that has recorded the existence of a Customer Direct Contract for that MPAN." },
-    "DI-140": { "name": "Customer Direct Contract Metering Service DIP ID", "cmo": "C", "rule": "The DIP ID of the Metering Service that has recorded the existence of a Customer Direct Contract for that MPAN." },
-    "DI-143": { "name": "Proposed Appointment Response Code", "cmo": "C", "rule": "A code which defines the Appointment Request Outcome." },
-    "DI-145": { "name": "Customer Direct Contract Metering Service EffectiveTo Date", "cmo": "M", "rule": "Date on which Customer Direct Contract Metering Service Ends", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-146": { "name": "Customer Direct Contract Data Service EffectiveTo Date", "cmo": "M", "rule": "Date on which Customer Direct Contract Data Service Ends", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-147": { "name": "UTC Period Consumption Value {v}", "cmo": "M", "rule": "Consumption Value (kWh/kVARh) for the UTC Period Duration.", "example": "12.345" },
-    "DI-148": { "name": "Annual Consumption", "cmo": "M", "rule": "ECS Calculated Annual Consumption (kWh)", "example": "12345.67" },
-    "DI-149": { "name": "Annual Consumption EffectiveFrom Date", "cmo": "M", "rule": "Date on which Assumed Annual Consumption was Calculated/is Effective From", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-150": { "name": "Annual Consumption Quality Indicator", "cmo": "M", "rule": "Assumed Annual Consumption Quality Indicator", "populationNotes": "- A 100% Actual data, - 1  > 75% Actual data, - 2  <75% Actual data, - 3  100% Estimated data, - 4  > 50% no data, - 5  < 50% no data, - D Default", "example": "A" },
-    "DI-151": { "name": "Linked MPAN Energy Direction", "cmo": "M", "rule": "Energy Direction of the Linked MPANs", "populationNotes": "- I  Import, - E  Export", "example": "E" },
-    "DI-152": { "name": "Supplier Nominated Annual Consumption", "cmo": "M", "rule": "Supplier Nominated Annual Consumption Value, to be used as required by Data Service in preference to the ECS calculated Annual Consumption", "example": "12345.67" },
-    "DI-153": { "name": "UTC Period Consumption Value (Defaulted)", "cmo": "M", "rule": "Consumption Value (kWh/kVARh) for the UTC Period Duration.", "example": "12.345" },
-    "DI-154": { "name": "Default Load Shape Flag", "cmo": "M", "rule": "A flag to identify the period value is based on a default calculation.", "populationNotes": "- ‘A’  Actual, - ‘D’ – Default, - ‘E’ – Back Stop, - ‘B’ – No data available", "example": "D" },
-    "DI-155": { "name": "Settlement Impacted Data Service DIP ID", "cmo": "M", "rule": "DIP ID of the Data Service appointed for Defaulted SP" },
-    "DI-157": { "name": "Settlement Impacted Supplier DIP ID", "cmo": "M", "rule": "DIP ID of the Supplier Responsible for Defaulted SP" },
-    "DI-159": { "name": "Settlement Run Execution Date", "cmo": "M", "rule": "Date/Time at which Settlement Run was Executed", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-160": { "name": "Settlement Code", "cmo": "M", "rule": "A code which, together with the Settlement Date, identifies a Settlement published in the Settlement Timetable. It identifies the type of Settlement.", "populationNotes": "- SF  Final Initial Settlement, - R1  First Reconciliation, - R2  Second Reconciliation (Transition), - R3  Third Reconciliation (Transition), - RF  Final Reconciliation, - DR  Dispute, - DF  Final Dispute", "example": "SF" },
-    "DI-161": { "name": "Run Number", "cmo": "M", "rule": "The identifier, unique within an Agent system, which identifies a run of that system.", "example": "1" },
-    "DI-162": { "name": "Consumption Amendment Supplier Reference", "cmo": "O", "rule": "Supplier's Unique Reference Number for Consumption Amendment Request", "example": "12345678" },
-    "DI-163": { "name": "Consumption Amendment Period Start Date", "cmo": "M", "rule": "Consumption Amendment Period Start Date", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-164": { "name": "Consumption Amendment Period End Date", "cmo": "M", "rule": "Consumption Amendment Period End Date", "example": "2020-02-08T09:30:00+01:00" },
-    "DI-165": { "name": "Gross Revised Consumption", "cmo": "M", "rule": "Gross Revised Consumption (kWh/kVAR)", "example": "12345.67" },
-    "DI-166": { "name": "Supplier Consumption Amendment Reason Code", "cmo": "C", "rule": "Supplier Consumption Amendment Reason Code", "populationNotes": "- A Agreed Read, - E Estimation Issue, - M Metering Issue (Crossed/Missed Exchange/Found), - R Reading Issue (Transposed / Misread), - S Stolen/Lost Meter, - T Tampering/Theft, - X Other", "example": "A" },
-    "DI-167": { "name": "RMP Status Effective From Date", "cmo": "M", "rule": "The Effective From Date of MPAN RMP Status as held in the Registration Service" },
-    "DI-168": { "name": "MP Status Effective From Date", "cmo": "M", "rule": "The Effective From Date MP or Trading Status as held in the Registration Service" },
-    "DI-190": { "name": "Comms Hub Serial Number", "cmo": "M", "rule": "Comms Hub Serial Number" },
-    "DI-191": { "name": "Comms Hub GUID", "cmo": "M", "rule": "Comms Hub GUID" },
-    "DI-192": { "name": "GPF (Gas) GUID", "cmo": "O", "rule": "Comms Hub Associated Gas GUID (if available)" },
-    "DI-193": { "name": "Comms Hub Installation Date", "cmo": "O", "rule": "Comms Hub Installation Date" },
-    "DI-194": { "name": "Comms Hub F/W Version", "cmo": "O", "rule": "Comms Hub Firmware Version (if available)" },
-    "DI-195": { "name": "Comms Hub Activity", "cmo": "M", "rule": "Comms Hub Activity Type", "populationNotes": "- 1  Installation, - 2  Removal, - 3  Exchanged, - 4 Found (Found Asset or Initally installed by Gas Supplier), - 5  For Information", "example": "1" },
-    "DI-196": { "name": "MDR Request Reference Date", "cmo": "M", "rule": "Reference Date for which data should be recovered from the meter" },
-    "DI-200": { "name": "Incoming Supplier MPID", "cmo": "M", "rule": "Incoming Supplier MPID" },
-    "DI-201": { "name": "Outgoing Supplier MPID", "cmo": "M", "rule": "Outgoing Supplier MPID" },
-    "DI-202": { "name": "De-appointed Metering Service MPID", "cmo": "M", "rule": "De-appointed Metering Service MPID" },
-    "DI-203": { "name": "De-appointed Data Service MPID", "cmo": "M", "rule": "De-appointed Data Service MPID" },
-    "DI-204": { "name": "Incoming Metering Service MPID", "cmo": "M", "rule": "Incoming Metering Service MPID" },
-    "DI-205": { "name": "Incoming Data Service MPID", "cmo": "M", "rule": "Incoming Data Service MPID" },
-    "DI-206": { "name": "Service Provider Appointment Requesting Supplier MPID", "cmo": "M", "rule": "Service Provider Appointment Requesting Supplier MPID" },
-    "DI-207": { "name": "Current Metering Service MPID", "cmo": "C", "rule": "Metering Service MPID" },
-    "DI-208": { "name": "Current Data Service MPID", "cmo": "C", "rule": "Current Data Service MPID" },
-    "DI-209": { "name": "Assigned MDR MPID", "cmo": "M", "rule": "Assigned MDR MPID" },
-    "DI-212": { "name": "Import/Export MPAN Supplier MPID", "cmo": "C", "rule": "Import/Export MPAN Supplier MPID" },
-    "DI-213": { "name": "Proposed Metering Service MPID", "cmo": "M", "rule": "Proposed Metering Service MPID" },
-    "DI-214": { "name": "Proposed Data Service MPID", "cmo": "M", "rule": "Proposed Data Service MPID" },
-    "DI-215": { "name": "Supplier Nominated MDR MPID", "cmo": "O", "rule": "Supplier Nominated MDR MPID" },
-    "DI-216": { "name": "SDS Nominated MDR MPID", "cmo": "M", "rule": "SDS Nominated MDR MPID" },
-    "DI-217": { "name": "Incumbent Metering Service MPID", "cmo": "M", "rule": "Incumbent Metering Service MPID" },
-    "DI-300": { "name": "Consumption Component Class ID", "cmo": "M", "rule": "Valid values are in the range 100 --> 999", "example": "123" },
-    "DI-500": { "name": "MHHS Regime End Date", "cmo": "M", "rule": "The last Settlement Date which MPAN will be subject to MHHS Settlement Regime." },
-    "DI-501": { "name": "Reverse Migration Incoming MOP MPID", "cmo": "M", "rule": "MPID for the next/incoming MOP following Reverse Migration" },
-    "DI-502": { "name": "Reverse Migration Incoming MOP Effective From Date", "cmo": "M", "rule": "The Date from which MOP appointment is/was effective following Reverse Migration" },
-    "DI-503": { "name": "Reverse Migration Incoming DC MPID", "cmo": "M", "rule": "MPID for the next/incoming DC following Reverse Migration" },
-    "DI-504": { "name": "Reverse Migration Incoming DC Effective From Date", "cmo": "M", "rule": "The Date from which DC appointment is/was effective following Reverse Migration" },
-    "DI-510": { "name": "Off Peak Declaration Date", "cmo": "M", "rule": "Settlement Day to which OPD should be applied" },
-    "DI-511": { "name": "Off Peak Declaration Proportion", "cmo": "M", "rule": "Proportion (%) of consumption to be considered as Off-Peak" },
-    "DI-800": { "name": "Service Provider Appointment Scenario", "cmo": "M", "rule": "Code used to identify the scenario around Service Provider Appointment", "populationNotes": "- COS (Change of Supplier), - CSP (Change of SP), - USP (Update existing SP Appointment), - SEG (Change of Segment), - MCA (Migration Change of Agent), - MCS (Migration Change of Supplier), - ALG (Auto Alignment of MPAN Service Providers)", "example": "COS" },
-    "DI-801": { "name": "Import/Export MPAN Supplier DIP ID", "cmo": "C", "rule": "DIP ID of the Supplier Responsible for the Linked MPAN" },
-    "DI-803": { "name": "Incoming Supplier DIP ID", "cmo": "M", "rule": "The market-wide unique reference for a supplier that is responsible for the settlement liabilities." },
-    "DI-805": { "name": "Outgoing Supplier DIP ID", "cmo": "M", "rule": "The market-wide unique reference for a supplier that is responsible for the settlement liabilities." },
-    "DI-807": { "name": "Incumbent Metering Service DIP ID", "cmo": "M", "rule": "This is the Metering Service with responsibility for an MPAN at the point a Proposed Appointment Request is 'Accepted' by a Prospective Metering Service. This party is responsible for providing the Prospective MS with MTDs for Traditional and Advanced Meters." },
-    "DI-809": { "name": "Current Metering Service DIP ID", "cmo": "C", "rule": "DIP ID of the Metering Service Appointed at the point message was created by the Registration Service, i.e. the Currently Appointed Metering Service" },
-    "DI-811": { "name": "Current Data Service DIP ID", "cmo": "C", "rule": "DIP ID of the Data Service Appointed at the point message was created by the Registration Service, i.e. the Currently Appointed Data Service" },
-    "DI-813": { "name": "De-Appointed Metering Service DIP ID", "cmo": "M", "rule": "DIP ID for the Metering Service subject to De-Appointment" },
-    "DI-815": { "name": "Metering Service Effective To Date", "cmo": "M", "rule": "The Date at which the Metering Service is De-Appointed." },
-    "DI-816": { "name": "De-Appointed Data Service DIP ID", "cmo": "M", "rule": "DIP ID for the Data Service subject to De-Appointment" },
-    "DI-818": { "name": "Data Service Effective To Date", "cmo": "M", "rule": "The Date at which the Data Service is De-Appointed." },
-    "DI-819": { "name": "De-Appointment Reason Code", "cmo": "M", "rule": "A code indicating reason for termination of Service Provider Appointment", "populationNotes": "- CSUPP Change of Supplier, - CSERV  Change of Service Provider, - DEREG  RMP Terminated by CSS, - CSEGM  Change of Segment, - CCONN  Change of Connection Type, - IMPEXP  Linked MPAN, - RELATED Related MPAN", "example": "CSUPP" },
-    "DI-822": { "name": "Incoming Metering Service DIP ID", "cmo": "M", "rule": "DIP ID for the next/incoming Metering Service" },
-    "DI-824": { "name": "Incoming MS EffectiveFrom Date", "cmo": "M", "rule": "The Date from which next/incoming Metering Service appointment is/was effective" },
-    "DI-825": { "name": "Incoming Data Service DIP ID", "cmo": "M", "rule": "DIP ID for the next/incoming Data Service" },
-    "DI-827": { "name": "Incoming Data Service Effective From Date", "cmo": "M", "rule": "Incoming (Next) Data Service Effective From Date" },
-    "DI-828": { "name": "Proposed Metering Service DIP ID", "cmo": "M", "rule": "DIP ID of Metering Service supplier proposes should be appointed to an MPAN" },
-    "DI-830": { "name": "Proposed MS EffectiveFrom Date", "cmo": "M", "rule": "Date at which Supplier would like proposed Metering Service appointment to take effect" },
-    "DI-831": { "name": "Proposed Data Service DIP ID", "cmo": "M", "rule": "DIP ID of Data Service supplier proposes should be appointed to an MPAN" },
-    "DI-833": { "name": "Proposed DS Effective From Date", "cmo": "M", "rule": "Date at which Supplier would like proposed Data Service appointment to take effect" },
-    "DI-834": { "name": "Supplier Nominated MDR DIP ID", "cmo": "O", "rule": "The market-wide unique reference for a specific Meter Data Retriever (MDR)" },
-    "DI-836": { "name": "Supplier Nominated MDR Effective From Date", "cmo": "O", "rule": "Date from which Supplier would like Nominated MDR to apply" },
-    "DI-837": { "name": "Supplier Proposed Domestic Premise Indicator", "cmo": "M", "rule": "Supplier proposed DPI for a SP Appointment", "populationNotes": "- T True (Domestic), - F False (Non-Domestic)", "example": "T" },
-    "DI-838": { "name": "Supplier Proposed Consent Granularity", "cmo": "M", "rule": "Supplier proposed Consent Granularity for a SP Appointment", "populationNotes": "- H Half Hourly Consent Granted, - D Daily Consent Granted, - M Monthly Reads Only, - N No Consent", "example": "H" },
-    "DI-839": { "name": "SDS Nominated MDR DIP ID", "cmo": "M", "rule": "DIP ID of the MDR the SDS has requested to be assigned to an MPAN" },
-    "DI-841": { "name": "SDS Nominated MDR Effective From Date", "cmo": "M", "rule": "Date from which Supplier would like Nominated MDR to apply" },
-    "DI-842": { "name": "Assigned MDR DIP ID", "cmo": "M", "rule": "DIP ID of the MDR assigned to an MPAN" },
-    "DI-844": { "name": "Assigned MDR EffectiveFrom Date", "cmo": "M", "rule": "The Effective Date from which the MDR Effective Date to be recorded as in Registration and DCC" },
-    "DI-845": { "name": "Issuing Data Service DIP ID", "cmo": "M", "rule": "DIP ID of the Data Service submitting the data" },
-    "DI-847": { "name": "Service Provider App Requesting Supplier DIP ID", "cmo": "M", "rule": "DIP of Supplier making the Service Appointment Request" },
-    "DI-849": { "name": "CSS Registration ID", "cmo": "M", "rule": "The CSS identifier associated with a Supplier's Registration", "example": "1234567890" },
-    "DI-850": { "name": "MDR Effective To Date", "cmo": "M", "rule": "The Date at which the MDR stops collecting data." },
-    "DI-960": { "name": "Publication Description", "cmo": "M", "rule": "Description of Publication", "example": "ISD May 2024" },
-    "DI-961": { "name": "Publication Version ID", "cmo": "M", "rule": "Publication Version ID / Number", "example": "5.8.8" },
-    "DI-962": { "name": "Publication Issued Date", "cmo": "M", "rule": "Date/Time Publication was issued", "example": "2020-08-08T15:14:00+00:00" },
-    "DI-963": { "name": "Distribution Variant ID", "cmo": "M", "rule": "Unique Identifier for Distibution Variant", "example": "Full" },
-    "DI-964": { "name": "Distribution Variant Name", "cmo": "M", "rule": "Distribution Variant Name", "example": "Industry Standing Data" },
-    "DI-965": { "name": "Distribution Variant Description", "cmo": "O", "rule": "Distribution Variant Description", "example": "ISD tables that Suppliers want only" },
-    "DI-966": { "name": "Distribution Variant Version ID", "cmo": "M", "rule": "Version Number of the Distribution Variant", "example": "1.1.1" },
-    "DI-967": { "name": "Distribution Variant Issued Date", "cmo": "M", "rule": "Publication Date of the Distribution Variant", "example": "2020-08-08T15:14:00+00:00" },
-    "DI-968": { "name": "Distribution Variant Format", "cmo": "O", "rule": "File Type of the Distribution Variant Components (e.g. JSON/CSV/PDF File)", "example": "JSON" },
-    "DI-979": { "name": "Response Code", "cmo": "M", "rule": "Code used to identify the outcome of the Event Request", "populationNotes": "- A  Accepted - R  Rejected - L  Lapsed - W Warning", "example": "A" },
-    "DI-980": { "name": "Response Message", "cmo": "C", "rule": "Message describing the status/outcome of the previous originating transaction", "example": "ERR000 - This is an Error" },
-    "DI-992": { "name": "Schema Version", "cmo": "M", "rule": "The Scheme Version against which the message has been constructed", "example": "1.0.0" },
+    "DI-000": {
+      "name": "Interface Id",
+      "cmo": "M",
+      "rule": "Interface Id",
+      "payloadKey": "interfaceId"
+    },
+    "DI-001": {
+      "name": "Address Line 1",
+      "cmo": "O",
+      "rule": "A component of a metering point site address. There are defined parts of the address for each address line.",
+      "example": "Yellow Door",
+      "payloadKey": "addressLine1"
+    },
+    "DI-002": {
+      "name": "Address Line 2",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Flat 3",
+      "payloadKey": "addressLine2"
+    },
+    "DI-003": {
+      "name": "Address Line 3",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Prince of Wales Public House",
+      "payloadKey": "addressLine3"
+    },
+    "DI-004": {
+      "name": "Address Line 4",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Short Lane",
+      "payloadKey": "addressLine4"
+    },
+    "DI-005": {
+      "name": "Address Line 5",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Long Road",
+      "payloadKey": "addressLine5"
+    },
+    "DI-006": {
+      "name": "Address Line 6",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Localton",
+      "payloadKey": "addressLine6"
+    },
+    "DI-007": {
+      "name": "Address Line 7",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Large Suburb",
+      "payloadKey": "addressLine7"
+    },
+    "DI-008": {
+      "name": "Address Line 8",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "CARDIFF",
+      "payloadKey": "addressLine8"
+    },
+    "DI-009": {
+      "name": "Address Line 9",
+      "cmo": "O",
+      "rule": "A component of a metering point site address",
+      "example": "Glamorgan",
+      "payloadKey": "addressLine9"
+    },
+    "DI-010": {
+      "name": "Metering Point Postcode",
+      "cmo": "O",
+      "rule": "The full postcode of the metering point site.",
+      "example": "CF1 1AA",
+      "payloadKey": "postcode"
+    },
+    "DI-015": {
+      "name": "Connection Type Indicator",
+      "cmo": "M",
+      "rule": "A code to indicate the type of connection at the metering point.",
+      "populationNotes": "- W  Whole Current\n- L  LV with CT\n- H  HV with CT\n- E  EHV with CT\n- U  Unmetered",
+      "example": "W",
+      "enumerated": true,
+      "payloadKey": "connectionType"
+    },
+    "DI-016": {
+      "name": "Connection Type Effective From Date",
+      "cmo": "M",
+      "rule": "The date and time from which the metering point Connection Type is in effect.",
+      "example": "2020-02-08T09:00:00+01:00",
+      "payloadKey": "connectionTypeEffectiveFromDate"
+    },
+    "DI-017": {
+      "name": "Consent Granularity",
+      "cmo": "M",
+      "rule": "Describes the granularity of energy settlement data that a customer has deemed to have consented to.",
+      "populationNotes": "- H Half Hourly Consent Granted\n- D Daily Consent Granted\n- M Monthly Reads Only\n- N No Consent",
+      "example": "D",
+      "enumerated": true,
+      "payloadKey": "consentGranularity"
+    },
+    "DI-018": {
+      "name": "Consent Granularity Effective From Date",
+      "cmo": "M",
+      "rule": "The date from which the consent granularity was in effect.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "consentGranularityEffectiveFromDate"
+    },
+    "DI-019": {
+      "name": "Contract Reference Metering Service",
+      "cmo": "O",
+      "rule": "The unique reference of the contractual agreement between a supplier and the Metering Service.",
+      "example": "CON12345",
+      "payloadKey": "contractReferenceMS"
+    },
+    "DI-020": {
+      "name": "Contract Reference Data Service",
+      "cmo": "O",
+      "rule": "The unique reference of the contractual agreement between a supplier and the data service.",
+      "example": "CON12345",
+      "payloadKey": "contractReferenceDS"
+    },
+    "DI-021": {
+      "name": "Customer Direct Contract Metering Service",
+      "cmo": "M",
+      "rule": "An indicator to show if a direct customer contract exists between the customer and the Metering Service provider.",
+      "populationNotes": "- Y Yes - N No",
+      "example": "Y",
+      "payloadKey": "directContractMS"
+    },
+    "DI-022": {
+      "name": "Customer Direct Contract Data Service",
+      "cmo": "M",
+      "rule": "An indicator to show if a direct customer contract exists between the customer and Data Service provider.",
+      "populationNotes": "- Y Yes - N No",
+      "example": "N",
+      "payloadKey": "directContractDS"
+    },
+    "DI-023": {
+      "name": "Data Service Effective From Date",
+      "cmo": "M",
+      "rule": "The Date from which the Data Service was Appointed",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "dataServiceEffectiveFromDate"
+    },
+    "DI-025": {
+      "name": "DCC Service Flag",
+      "cmo": "M",
+      "rule": "A DCC provided flag to indicate the status of the services being provided by the DCC to a Metering Point.",
+      "populationNotes": "- A Active\n- I Installed Not Commissioned\n- N Non-Active",
+      "example": "A",
+      "enumerated": true,
+      "payloadKey": "dccServiceFlag"
+    },
+    "DI-026": {
+      "name": "DCC Effective From Date (DCCF)",
+      "cmo": "M",
+      "rule": "The first inclusive calendar date for which the status of the DCC Service flag applies.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "dccEffectiveFromDate"
+    },
+    "DI-027": {
+      "name": "Disconnection Effective From Date",
+      "cmo": "M",
+      "rule": "The date on which the connection point is physically removed from the metering system.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "disconnectionEffectiveFromDate"
+    },
+    "DI-028": {
+      "name": "Reconnection Effective From Date",
+      "cmo": "M",
+      "rule": "The date on which the connection point is physically reconnected to the metering system.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "reconnectionEffectiveFromDate"
+    },
+    "DI-029": {
+      "name": "Distributor ID",
+      "cmo": "M",
+      "rule": "The market-wide unique reference for the distributor who is responsible for the distribution network that a metering point is connected to.",
+      "payloadKey": "distributorID"
+    },
+    "DI-030": {
+      "name": "Domestic Premise Indicator",
+      "cmo": "M",
+      "rule": "A flag that indicates if the MPAN of the registration appointment is used to identify a domestic premise.",
+      "populationNotes": "- T True (Domestic)\n- F False (Non-Domestic)",
+      "example": "T",
+      "enumerated": true,
+      "payloadKey": "domesticPremiseIndicator"
+    },
+    "DI-031": {
+      "name": "Load Shape Domestic Premise Indicator",
+      "cmo": "O",
+      "rule": "The Domectic Premise Indicator associated with a Load Shape",
+      "populationNotes": "- T True (Domestic), - F False (Non-Domestic)",
+      "example": "T",
+      "payloadKey": "loadShapeDomesticPremiseIndicator"
+    },
+    "DI-032": {
+      "name": "Domestic Premise Indicator Effective From Date",
+      "cmo": "M",
+      "rule": "The date from which the metering point Domestic Premise Indicator is in effect.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "domesticPremiseIndicatorEffectiveFromDate"
+    },
+    "DI-033": {
+      "name": "Energisation Status",
+      "cmo": "M",
+      "rule": "Indicates if the metering point is considered energised (i.e. connected to the distribution system) and therefore active for settlement purposes.",
+      "populationNotes": "- D De-Energised\n- E Energised",
+      "example": "E",
+      "enumerated": true,
+      "payloadKey": "energisationStatus"
+    },
+    "DI-034": {
+      "name": "Energisation Status Effective From Date",
+      "cmo": "M",
+      "rule": "The settlement date and time from which an energisation status is in effect for a metering system.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "energisationStatusEffectiveFromDate"
+    },
+    "DI-035": {
+      "name": "Energy Direction",
+      "cmo": "M",
+      "rule": "Indicates the direction of energy at a metering point. Values can be I = import / E = export.",
+      "populationNotes": "- I Import\n- E Export",
+      "example": "I",
+      "enumerated": true,
+      "payloadKey": "energyDirection"
+    },
+    "DI-036": {
+      "name": "GSP Group ID EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "The date and time from which the GSP Group ID is in effect for the metering system.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "gspGroupIDEffectiveFromDate"
+    },
+    "DI-037": {
+      "name": "GSP Group ID",
+      "cmo": "M",
+      "rule": "Identifies the distinct grid supply point group (physical region of the country) where the metering point is located.",
+      "populationNotes": "_A, _B, _C, _D, _E, _F, _G, _H, _J, _K, _L, _M, _N, _P",
+      "example": "_A",
+      "enumerated": true,
+      "payloadKey": "gspGroupID"
+    },
+    "DI-038": {
+      "name": "Associated Import/Export MPAN",
+      "cmo": "M",
+      "rule": "When this metering point is part of an import/export pair, this identifies the related import or export metering point. Where more than one import MPAN exists, this shall be populated with the Primary Import MPAN.",
+      "example": "1200000000000",
+      "payloadKey": "associatedImportExportMPAN"
+    },
+    "DI-039": {
+      "name": "Load Shape GSP Group ID",
+      "cmo": "O",
+      "rule": "The GSP Group ID associated with a Load Shape",
+      "example": "_A",
+      "payloadKey": "loadShapeGSPGroupID"
+    },
+    "DI-040": {
+      "name": "Annual Load Shape Total",
+      "cmo": "M",
+      "rule": "Annual consumption associated with a particular Load Shape",
+      "example": "123456789.123",
+      "payloadKey": "annualLoadShapeTotal"
+    },
+    "DI-041": {
+      "name": "Load Shape 7 Day Rolling Off-peak Total",
+      "cmo": "C",
+      "rule": "The sum of the 7 day rolling Off-Peak total (kWh) using the Off-Peak total for the UTC date plus the last 6 UTC dates",
+      "example": "123456789.123",
+      "payloadKey": "loadShape7DayRollingOff-peakTotal"
+    },
+    "DI-042": {
+      "name": "Load Shape 7 Day Rolling Peak Total",
+      "cmo": "C",
+      "rule": "The sum of the 7 day rolling Peak total (kWh) using the Peak total for the UTC date plus the last 6 UTC dates",
+      "example": "123456789.123",
+      "payloadKey": "loadShape7DayRollingPeakTotal"
+    },
+    "DI-043": {
+      "name": "Load Shape 7 Day Rolling Total",
+      "cmo": "M",
+      "rule": "The sum of the 7 day rolling total (kWh) using the total for the UTC date plus the previous 6 UTC dates",
+      "example": "123456789.123",
+      "payloadKey": "loadShape7DayRollingTotal"
+    },
+    "DI-044": {
+      "name": "Load Shape Day Off-Peak Total",
+      "cmo": "C",
+      "rule": "The sum of Period Values for settlement periods (kWh) (1 to 14) or (2 to 15). UTC times Midnight -7pm",
+      "example": "123456789.123",
+      "payloadKey": "loadShapeDayOff-peakTotal"
+    },
+    "DI-045": {
+      "name": "Load Shape Day Peak Total",
+      "cmo": "C",
+      "rule": "The sum of Period Values (kWh) for settlement periods (15 to 48) or (1 and 16 to 48). UTC times 7pm - Midnight",
+      "example": "123456789.123",
+      "payloadKey": "loadShapeDayPeakTotal"
+    },
+    "DI-046": {
+      "name": "Load Shape Day Total",
+      "cmo": "M",
+      "rule": "The sum of all Period Values for the UTC Date.",
+      "example": "123456789.123",
+      "payloadKey": "loadShapeDayTotal"
+    },
+    "DI-048": {
+      "name": "Manufacturers Make and Type",
+      "cmo": "O",
+      "rule": "The manufacturer's make name and type number of a Meter",
+      "example": "Honeywell AS3000",
+      "payloadKey": "manufacturersMakeAndType"
+    },
+    "DI-050": {
+      "name": "Market Segment Indicator",
+      "cmo": "M",
+      "rule": "An enumeration of Smart/Advanced/Unmetered.",
+      "populationNotes": "- S Smart/Traditional\n- A Advanced\n- U Unmetered",
+      "example": "S",
+      "enumerated": true,
+      "payloadKey": "marketSegment"
+    },
+    "DI-051": {
+      "name": "Market Segment Indicator Effective From Date",
+      "cmo": "M",
+      "rule": "The date from which the metering point Market Segment is in effect.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "marketSegmentEffectiveFromDate"
+    },
+    "DI-052": {
+      "name": "Measurement Quantity ID",
+      "cmo": "M",
+      "rule": "Identifies the type of the quantity that is measured by the UTC Period Consumption Value.",
+      "populationNotes": "- AI Active import\n- AE Active export\n- RI Reactive import\n- RE Reactive export",
+      "example": "AI",
+      "enumerated": true,
+      "payloadKey": "measurementQuantityID"
+    },
+    "DI-053": {
+      "name": "Meter ID (Removed)",
+      "cmo": "M",
+      "rule": "Serial number of the removed physical meter.",
+      "example": "12345678",
+      "payloadKey": "meterIDRemoved"
+    },
+    "DI-054": {
+      "name": "Meter Asset Provider Effective From Date",
+      "cmo": "M",
+      "rule": "The inclusive calendar date from which the meter asset provider is in effect for the metering system.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "mAPEffectiveFromDate"
+    },
+    "DI-055": {
+      "name": "Meter Asset Provider ID",
+      "cmo": "M",
+      "rule": "The market-wide reference for the provider of the meter equipment.",
+      "example": "NAMP",
+      "payloadKey": "mAPID"
+    },
+    "DI-056": {
+      "name": "Meter ID",
+      "cmo": "M",
+      "rule": "Serial number of the physical meter.",
+      "example": "12345678",
+      "payloadKey": "meterID"
+    },
+    "DI-057": {
+      "name": "Meter Installation Date/Time",
+      "cmo": "M",
+      "rule": "The date of installation for a meter at a metering point.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "meterInstallationDateTime"
+    },
+    "DI-058": {
+      "name": "Meter Removal Date/time",
+      "cmo": "O",
+      "rule": "The date when the meter was removed from a metering point.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "meterRemovalDateTime"
+    },
+    "DI-059": {
+      "name": "Meter Type",
+      "cmo": "M",
+      "rule": "The type of meter, in relation to its capabilities. E.g. AMR.S1, S2, S2ADE",
+      "example": "S2ADE",
+      "payloadKey": "meterType"
+    },
+    "DI-060": {
+      "name": "Modified Meter ID",
+      "cmo": "O",
+      "rule": "Updated/ Corrected Serial number of the physical meter.",
+      "example": "12345678",
+      "payloadKey": "modifiedMeterID"
+    },
+    "DI-061": {
+      "name": "Metering Service Effective From Date",
+      "cmo": "M",
+      "rule": "The Date from which the Metering Service was Appointed",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "meteringServiceEffectiveFromDate"
+    },
+    "DI-063": {
+      "name": "MPAN Core",
+      "cmo": "M",
+      "rule": "A business key used to uniquely identify the metering point that is the subject of the update.",
+      "example": "1200000000000",
+      "payloadKey": "mPANCore"
+    },
+    "DI-073": {
+      "name": "Principal MPAN",
+      "cmo": "M",
+      "rule": "The Principal MPAN in a Related/Linked MPAN Relationship",
+      "example": "1200000000000",
+      "payloadKey": "principalMPAN"
+    },
+    "DI-074": {
+      "name": "Subsidiary MPAN",
+      "cmo": "M",
+      "rule": "The subsidiary MPAN in a Related/Linked MPAN Relationship",
+      "example": "1200000000000",
+      "payloadKey": "subsidiaryMPAN"
+    },
+    "DI-075": {
+      "name": "Primary MPAN",
+      "cmo": "C",
+      "rule": "The primary in a related MPAN relationship. The primary is associated with the base load settlement configuration (contains no value, if not part of related MPAN pair).",
+      "example": "1200000000000",
+      "payloadKey": "primaryMPAN"
+    },
+    "DI-076": {
+      "name": "Estimation Reason Code {e}",
+      "cmo": "C",
+      "rule": "Reason why Data Service had to provide Estimated/Zero Data",
+      "populationNotes": "- 1 Opt Out\n- 2 Missing\n- 3 Invalid\n- 4 Comms Fault\n- 5 LTV\n- 6 Disabled\n- 7 De-Energised\n- 8 Disconnected\n- 9 Consumption Amendment\n- 10 Non-Smart",
+      "example": "4",
+      "enumerated": true,
+      "payloadKey": "estimationReasonCodeE"
+    },
+    "DI-077": {
+      "name": "CSS RMP Deactivation Date",
+      "cmo": "M",
+      "rule": "The Date on which the CSS considers the MPAN to have been deactivated / terminated.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "cssRMPDeactivationDate"
+    },
+    "DI-079": {
+      "name": "Secondary MPAN",
+      "cmo": "C",
+      "rule": "The secondary in a related MPAN relationship.",
+      "example": "1200000000000",
+      "payloadKey": "secondaryMPAN"
+    },
+    "DI-080": {
+      "name": "Consumption Component Indicator",
+      "cmo": "M",
+      "rule": "C = Consumption L = Losses",
+      "populationNotes": "- C  Consumption - L  Losses",
+      "example": "C",
+      "payloadKey": "consumptionComponentIndicator"
+    },
+    "DI-081": {
+      "name": "Settlement Period Duration",
+      "cmo": "M",
+      "rule": "The settlement period duration in minutes.",
+      "example": "30",
+      "payloadKey": "settlementPeriodDuration"
+    },
+    "DI-082": {
+      "name": "Settlement Period Effective To Date/Time",
+      "cmo": "M",
+      "rule": "The UTC end date and time of the settlement period for a consumption value.",
+      "example": "2020-02-08T00:30:00Z",
+      "payloadKey": "settlementPeriodEffectiveToDateTime"
+    },
+    "DI-083": {
+      "name": "Settlement Period Quality Indicator {q}",
+      "cmo": "M",
+      "rule": "Describes if the UTC Period Consumption Value is an actual or what estimation method was used to estimate it.",
+      "populationNotes": "- A Actual\n- E Estimate (UMS Only)\n- A1, A2, A3, AAE1, AAE2, AAE3, EAE1, EAE2, EAE3 (ADV Only)\n- E0 --> E9 Estimation Method 1 - 9\n- EA1-->EA13 ADS Estimation Methods\n- ZE De-Energised (for use with Unmetered Supplies only)\n- ZE1--> ZE3 Zero Estimation Method 1 -3",
+      "example": "A",
+      "enumerated": true,
+      "payloadKey": "settlementPeriodQualityIndicatorQ"
+    },
+    "DI-085": {
+      "name": "Electricity Smart Meter Equipment (ESME ID)",
+      "cmo": "C",
+      "rule": "The Electricity Smart Meter Equipment GUID is the unique identifier for a Smart electricity This is also known as the DCC GUID and is further defined within the DCC interface specifications.",
+      "example": "AB-CD-EF-12-34-56-78-90",
+      "payloadKey": "electricitySmartMeterEquipmentEsmeId"
+    },
+    "DI-086": {
+      "name": "Supplier Effective From Date",
+      "cmo": "M",
+      "rule": "The date and time from which a supplier came into effect, with regard to their relationship with the metering point.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "supplierEffectiveFromDate"
+    },
+    "DI-088": {
+      "name": "Cumulative Register Reading",
+      "cmo": "M",
+      "rule": "The value of the Cumulative meter register at a specified date and time.",
+      "example": "12345.67",
+      "payloadKey": "cumulativeRegisterReading"
+    },
+    "DI-089": {
+      "name": "Cumulative Register Reading Date / Time",
+      "cmo": "M",
+      "rule": "The date and time [in UTC] of the Cumulative Register Meter Read.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "cumulativeRegisterReadingDateTime"
+    },
+    "DI-090": {
+      "name": "Meter Location",
+      "cmo": "M",
+      "rule": "The actual location of the metering system within the site",
+      "example": "01",
+      "populationNotes": "- A Attic\n- B Bedroom\n- C Cellar/Basement\n- D Other not specified\n- E Indoors\n- F Not known\n- G Garage/Greenhouse\n- H Hall\n- I Cupboard\n- J Intake\n- K Kitchen\n- L Landing\n- M Sub Station\n- N TC Chamber\n- O Outbuilding Barn\n- P Pole\n- R Ladder required\n- S Understairs\n- T Toilet\n- U Upstairs\n- V Vestry\n- W Under Window\n- X Outside Box\n- Y O/S Box with restricted access\n- Z Communal Cupboard",
+      "enumerated": true,
+      "payloadKey": "meterLocation"
+    },
+    "DI-091": {
+      "name": "Number of Displayed Register Digits",
+      "cmo": "C",
+      "rule": "The number of digits prior to the decimal point displayed by the total cumulative register of a smart meter",
+      "example": "5",
+      "payloadKey": "numberOfDisplayedRegisterDigits"
+    },
+    "DI-092": {
+      "name": "Nature of Maintenance",
+      "cmo": "O",
+      "rule": "Details of the tests, maintenance and replacement work done by the Meter Operator on the meters, communications equipment and links in a Metering System.",
+      "example": "Replaced SIM card",
+      "payloadKey": "natureOfMaintenance"
+    },
+    "DI-093": {
+      "name": "Additional Information",
+      "cmo": "O",
+      "rule": "A free format character string for providing additional details.",
+      "example": "Customer has a dog.",
+      "payloadKey": "additionalInformation"
+    },
+    "DI-094": {
+      "name": "Reading Method",
+      "cmo": "M",
+      "rule": "Indicates how the Cumulative meter reading was obtained/derived",
+      "populationNotes": "- A Actual Data Recovered from Meter\n- C Customer\n- E Estimate by SDS\n- S Estimate by Supplier\n- X Derived Reading (Based on Actual)\n- Y Derived Reading (Based on Estimate)",
+      "example": "C",
+      "enumerated": true,
+      "payloadKey": "readingMethod"
+    },
+    "DI-096": {
+      "name": "Site Visit Check Code",
+      "cmo": "O",
+      "rule": "A code identifying either nature of checks made/to be made on metering equipment during a site visit or identifying reason for failure to obtain readings.",
+      "example": "01",
+      "payloadKey": "siteVisitCheckCode"
+    },
+    "DI-097": {
+      "name": "Failure to Energise/de-energise reason code",
+      "cmo": "M",
+      "rule": "The reason why the Energisation or De-Energisation has not been carried out.",
+      "example": "01",
+      "payloadKey": "failureToEnergiseDe-energiseReasonCode"
+    },
+    "DI-098": {
+      "name": "Supplier Notification Expiry Date",
+      "cmo": "O",
+      "rule": "The Date from which a Supper Notification [to DS] Expires",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "supplierNotificationExpiryDate"
+    },
+    "DI-099": {
+      "name": "Configurable Register Reading Date /Time",
+      "cmo": "M",
+      "rule": "The date and time [in UTC] of a Configurable Register Meter Read. This should be considered to be midnight where an exact time is unavailible",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "configurableRegisterReadingDateTime"
+    },
+    "DI-100": {
+      "name": "Supplier Notification Effective From Date",
+      "cmo": "M",
+      "rule": "The Date from which a Supper Notification [to DS] becomes Effective From",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "supplierNotificationEffectiveFromDate"
+    },
+    "DI-101": {
+      "name": "UTC Settlement Date",
+      "cmo": "M",
+      "rule": "UTC Date for which data applies",
+      "example": "2020-02-08T00:00:00Z",
+      "payloadKey": "utcSettlementDate"
+    },
+    "DI-102": {
+      "name": "Load Shape Period Value",
+      "cmo": "M",
+      "rule": "Consumption Value (kWh) for the UTC Period Duration within a Load Shape.",
+      "example": "12345.67",
+      "payloadKey": "loadShapePeriodValue"
+    },
+    "DI-103": {
+      "name": "Configurable Register ID",
+      "cmo": "M",
+      "rule": "Register ID relating to a specific configurable (billing) register on a Smart/Advanced Meter",
+      "example": "01",
+      "payloadKey": "configurableRegisterID"
+    },
+    "DI-104": {
+      "name": "Configurable Register Reading",
+      "cmo": "M",
+      "rule": "Reading associated to a specific Register ID on a Smart/Advanced Meter",
+      "example": "12345.67",
+      "payloadKey": "configurableRegisterReading"
+    },
+    "DI-108": {
+      "name": "Distributor DIP ID",
+      "cmo": "M",
+      "rule": "The DIP ID of the distributor who is responsible for the distribution network that a metering point is connected to.",
+      "payloadKey": "distributorDipId"
+    },
+    "DI-109": {
+      "name": "Distributor DIP EZ Name",
+      "cmo": "O",
+      "rule": "The DIP EZ Name of the distributor who is responsible for the distribution network that a metering point is connected to.",
+      "payloadKey": "distributorDipEZName"
+    },
+    "DI-111": {
+      "name": "Green Deal Effective From Date",
+      "cmo": "O",
+      "rule": "The date from which a Green Deal agreement is considered to be in place.",
+      "payloadKey": "greenDealEffectiveFromDate"
+    },
+    "DI-112": {
+      "name": "Green Deal Effective To Date",
+      "cmo": "O",
+      "rule": "The date to which a Green Deal agreement is considered to be in place.",
+      "payloadKey": "greenDealEffectiveToDate"
+    },
+    "DI-120": {
+      "name": "Additional Information",
+      "cmo": "O",
+      "rule": "A free format character string for providing additional details.",
+      "payloadKey": "additionalInformation"
+    },
+    "DI-121": {
+      "name": "Outgoing Supplier Effective To Date",
+      "cmo": "M",
+      "rule": "The last inclusive settlement date after which a Supplier's registration to a metering system ceases to be valid.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "outgoingSupplierEffectiveToDate"
+    },
+    "DI-122": {
+      "name": "Profile Class",
+      "cmo": "C",
+      "rule": "A legacy classification, maintined by Suppliers, retained soley to assist with the undertsanding of allocation of gross consumption to individual Settlement Periods.",
+      "example": "01",
+      "payloadKey": "profileClass"
+    },
+    "DI-123": {
+      "name": "SSC",
+      "cmo": "C",
+      "rule": "A legacy classification, maintined by Suppliers, retained soley to assist with the undertsanding of allocation of gross consumption to individual Settlement Periods.",
+      "example": "0393",
+      "payloadKey": "ssc"
+    },
+    "DI-124": {
+      "name": "Profile Class Effective From Date",
+      "cmo": "C",
+      "rule": "The Date from which the current Profile Class became Effective",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "profileClassEffectiveFromDate"
+    },
+    "DI-125": {
+      "name": "SSC Effective From Date",
+      "cmo": "C",
+      "rule": "The Date from which the current Profile Class became Effective",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "sscEffectiveFromDate"
+    },
+    "DI-126": {
+      "name": "Traditional / Fall Back Read Frequency",
+      "cmo": "O",
+      "rule": "Supplier requested Traditional / Fall Back Meter Reading Frequency",
+      "populationNotes": "- F Fortnightly, - W Weekly, - M Monthly, - Q Quarterly, - S Six Monthly, - A Annually",
+      "example": "M",
+      "payloadKey": "traditionalFallBackReadFrequency"
+    },
+    "DI-127": {
+      "name": "Metered Indicator",
+      "cmo": "M",
+      "rule": "An indicator to show whether the Consumption Component is for a metered supply or unmetered supply.",
+      "populationNotes": "- False = U - Unmetered, - True = M - Metered",
+      "example": "True",
+      "payloadKey": "meteredIndicator"
+    },
+    "DI-128": {
+      "name": "DUOS Tariff ID",
+      "cmo": "M",
+      "rule": "Reference to identify the DUoS Tariff assigned to an MPAN",
+      "example": "N345A",
+      "payloadKey": "duosTariffID"
+    },
+    "DI-129": {
+      "name": "DUOS Tariff ID EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "Date on which DUoS Tariff came into effect",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "duosTariffIDEffectiveFromDate"
+    },
+    "DI-130": {
+      "name": "RMP Status (Registration)",
+      "cmo": "M",
+      "rule": "The MPAN RMP Status as held in the Registration Service",
+      "populationNotes": "- C Created\n- O Operational\n- T Terminated",
+      "example": "O",
+      "enumerated": true,
+      "payloadKey": "rmpStatusRegistration"
+    },
+    "DI-131": {
+      "name": "MP Status",
+      "cmo": "M",
+      "rule": "The MP or Trading Status as held in the Registration Service",
+      "populationNotes": "- N New\n- R Registered\n- T Traded\n- X Disconnected",
+      "example": "T",
+      "enumerated": true,
+      "payloadKey": "mpStatus"
+    },
+    "DI-134": {
+      "name": "SMSO",
+      "cmo": "M",
+      "rule": "The Id of the operator a Supplier has procured data and communication services from in respect of a Metering System (applies only to certain types of SMETS1 Metering).",
+      "payloadKey": "smso"
+    },
+    "DI-135": {
+      "name": "SMSO Status Effective From Date",
+      "cmo": "M",
+      "rule": "The first inclusive calendar date that a Smart Metering System Operator ID is the provider of communications services to a Metering System (applies only to certain types of SMETS1 Metering).",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "smsoStatusEffectiveFromDate"
+    },
+    "DI-136": {
+      "name": "IHD Status Effective From Date",
+      "cmo": "M",
+      "rule": "The first inclusive calendar date that an a notable IHD status was provided.",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "ihdStatusEffectiveFromDate"
+    },
+    "DI-137": {
+      "name": "IHD Install Status",
+      "cmo": "M",
+      "rule": "Information regarding the In Home Display at a metering point.",
+      "populationNotes": "- I Installed\n- D Declined\n- E Existing\n- F Failed",
+      "example": "I",
+      "enumerated": true,
+      "payloadKey": "ihdInstallStatus"
+    },
+    "DI-138": {
+      "name": "Customer Direct Contract Data Service DIP ID",
+      "cmo": "C",
+      "rule": "The DIP ID of the Data Service that has recorded the existence of a Customer Direct Contract for that MPAN.",
+      "payloadKey": "directContractDSDipId"
+    },
+    "DI-140": {
+      "name": "Customer Direct Contract Metering Service DIP ID",
+      "cmo": "C",
+      "rule": "The DIP ID of the Metering Service that has recorded the existence of a Customer Direct Contract for that MPAN.",
+      "payloadKey": "directContractMSDipId"
+    },
+    "DI-143": {
+      "name": "Proposed Appointment Response Code",
+      "cmo": "C",
+      "rule": "A code which defines the Appointment Request Outcome.",
+      "payloadKey": "appointmentResponseCode"
+    },
+    "DI-145": {
+      "name": "Customer Direct Contract Metering Service EffectiveTo Date",
+      "cmo": "M",
+      "rule": "Date on which Customer Direct Contract Metering Service Ends",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "directContractMSEffectiveToDate"
+    },
+    "DI-146": {
+      "name": "Customer Direct Contract Data Service EffectiveTo Date",
+      "cmo": "M",
+      "rule": "Date on which Customer Direct Contract Data Service Ends",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "directContractDSEffectiveToDate"
+    },
+    "DI-147": {
+      "name": "UTC Period Consumption Value {v}",
+      "cmo": "M",
+      "rule": "Consumption Value (kWh/kVARh) for the UTC Period Duration.",
+      "example": "12.345",
+      "payloadKey": "utcPeriodConsumptionValueV"
+    },
+    "DI-148": {
+      "name": "Annual Consumption",
+      "cmo": "M",
+      "rule": "ECS Calculated Annual Consumption (kWh)",
+      "example": "12345.67",
+      "payloadKey": "annualConsumption"
+    },
+    "DI-149": {
+      "name": "Annual Consumption EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "Date on which Assumed Annual Consumption was Calculated/is Effective From",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "annualConsumptionEffectiveFromDate"
+    },
+    "DI-150": {
+      "name": "Annual Consumption Quality Indicator",
+      "cmo": "M",
+      "rule": "Assumed Annual Consumption Quality Indicator",
+      "populationNotes": "- A 100% Actual data, - 1  > 75% Actual data, - 2  <75% Actual data, - 3  100% Estimated data, - 4  > 50% no data, - 5  < 50% no data, - D Default",
+      "example": "A",
+      "payloadKey": "annualConsumptionQualityIndicator"
+    },
+    "DI-151": {
+      "name": "Linked MPAN Energy Direction",
+      "cmo": "M",
+      "rule": "Energy Direction of the Linked MPANs",
+      "populationNotes": "- I  Import, - E  Export",
+      "example": "E",
+      "payloadKey": "linkedMPANEnergyDirection"
+    },
+    "DI-152": {
+      "name": "Supplier Nominated Annual Consumption",
+      "cmo": "M",
+      "rule": "Supplier Nominated Annual Consumption Value, to be used as required by Data Service in preference to the ECS calculated Annual Consumption",
+      "example": "12345.67",
+      "payloadKey": "supplierNominatedAnnualConsumption"
+    },
+    "DI-153": {
+      "name": "UTC Period Consumption Value (Defaulted)",
+      "cmo": "M",
+      "rule": "Consumption Value (kWh/kVARh) for the UTC Period Duration.",
+      "example": "12.345",
+      "payloadKey": "utcPeriodConsumptionValueDefaulted"
+    },
+    "DI-154": {
+      "name": "Default Load Shape Flag",
+      "cmo": "M",
+      "rule": "A flag to identify the period value is based on a default calculation.",
+      "populationNotes": "- \u2018A\u2019  Actual, - \u2018D\u2019 \u2013 Default, - \u2018E\u2019 \u2013 Back Stop, - \u2018B\u2019 \u2013 No data available",
+      "example": "D",
+      "payloadKey": "defaultLoadShapeFlag"
+    },
+    "DI-155": {
+      "name": "Settlement Impacted Data Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of the Data Service appointed for Defaulted SP",
+      "payloadKey": "settlementImpactedDSDipId"
+    },
+    "DI-157": {
+      "name": "Settlement Impacted Supplier DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of the Supplier Responsible for Defaulted SP",
+      "payloadKey": "settlementImpactedSupplierDipId"
+    },
+    "DI-159": {
+      "name": "Settlement Run Execution Date",
+      "cmo": "M",
+      "rule": "Date/Time at which Settlement Run was Executed",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "settlementRunExecutionDate"
+    },
+    "DI-160": {
+      "name": "Settlement Code",
+      "cmo": "M",
+      "rule": "A code which, together with the Settlement Date, identifies a Settlement published in the Settlement Timetable. It identifies the type of Settlement.",
+      "populationNotes": "- SF  Final Initial Settlement, - R1  First Reconciliation, - R2  Second Reconciliation (Transition), - R3  Third Reconciliation (Transition), - RF  Final Reconciliation, - DR  Dispute, - DF  Final Dispute",
+      "example": "SF",
+      "payloadKey": "settlementCode"
+    },
+    "DI-161": {
+      "name": "Run Number",
+      "cmo": "M",
+      "rule": "The identifier, unique within an Agent system, which identifies a run of that system.",
+      "example": "1",
+      "payloadKey": "runNumber"
+    },
+    "DI-162": {
+      "name": "Consumption Amendment Supplier Reference",
+      "cmo": "O",
+      "rule": "Supplier's Unique Reference Number for Consumption Amendment Request",
+      "example": "12345678",
+      "payloadKey": "consumptionAmendmentSupplierReference"
+    },
+    "DI-163": {
+      "name": "Consumption Amendment Period Start Date",
+      "cmo": "M",
+      "rule": "Consumption Amendment Period Start Date",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "consumptionAmendmentPeriodStartDate"
+    },
+    "DI-164": {
+      "name": "Consumption Amendment Period End Date",
+      "cmo": "M",
+      "rule": "Consumption Amendment Period End Date",
+      "example": "2020-02-08T09:30:00+01:00",
+      "payloadKey": "consumptionAmendmentPeriodEndDate"
+    },
+    "DI-165": {
+      "name": "Gross Revised Consumption",
+      "cmo": "M",
+      "rule": "Gross Revised Consumption (kWh/kVAR)",
+      "example": "12345.67",
+      "payloadKey": "grossRevisedConsumption"
+    },
+    "DI-166": {
+      "name": "Supplier Consumption Amendment Reason Code",
+      "cmo": "C",
+      "rule": "Supplier Consumption Amendment Reason Code",
+      "populationNotes": "- A Agreed Read, - E Estimation Issue, - M Metering Issue (Crossed/Missed Exchange/Found), - R Reading Issue (Transposed / Misread), - S Stolen/Lost Meter, - T Tampering/Theft, - X Other",
+      "example": "A",
+      "payloadKey": "supplierConsumptionAmendmentReasonCode"
+    },
+    "DI-167": {
+      "name": "RMP Status Effective From Date",
+      "cmo": "M",
+      "rule": "The Effective From Date of MPAN RMP Status as held in the Registration Service",
+      "payloadKey": "rMPStatusEffectiveFromDate"
+    },
+    "DI-168": {
+      "name": "MP Status Effective From Date",
+      "cmo": "M",
+      "rule": "The Effective From Date MP or Trading Status as held in the Registration Service",
+      "payloadKey": "mPStatusEffectiveFromDate"
+    },
+    "DI-190": {
+      "name": "Comms Hub Serial Number",
+      "cmo": "M",
+      "rule": "Comms Hub Serial Number",
+      "payloadKey": "commsHubSerialNumber"
+    },
+    "DI-191": {
+      "name": "Comms Hub GUID",
+      "cmo": "M",
+      "rule": "Comms Hub GUID",
+      "payloadKey": "commsHubGUID"
+    },
+    "DI-192": {
+      "name": "GPF (Gas) GUID",
+      "cmo": "O",
+      "rule": "Comms Hub Associated Gas GUID (if available)",
+      "payloadKey": "gpfGasGuid"
+    },
+    "DI-193": {
+      "name": "Comms Hub Installation Date",
+      "cmo": "O",
+      "rule": "Comms Hub Installation Date",
+      "payloadKey": "commsHubInstallationDate"
+    },
+    "DI-194": {
+      "name": "Comms Hub F/W Version",
+      "cmo": "O",
+      "rule": "Comms Hub Firmware Version (if available)",
+      "payloadKey": "commsHubFWVersion"
+    },
+    "DI-195": {
+      "name": "Comms Hub Activity",
+      "cmo": "M",
+      "rule": "Comms Hub Activity Type",
+      "populationNotes": "- 1  Installation, - 2  Removal, - 3  Exchanged, - 4 Found (Found Asset or Initally installed by Gas Supplier), - 5  For Information",
+      "example": "1",
+      "payloadKey": "commsHubActivity"
+    },
+    "DI-196": {
+      "name": "MDR Request Reference Date",
+      "cmo": "M",
+      "rule": "Reference Date for which data should be recovered from the meter",
+      "payloadKey": "mDRRequestReferenceDate"
+    },
+    "DI-200": {
+      "name": "Incoming Supplier MPID",
+      "cmo": "M",
+      "rule": "Incoming Supplier MPID",
+      "payloadKey": "incomingSupplierMPID"
+    },
+    "DI-201": {
+      "name": "Outgoing Supplier MPID",
+      "cmo": "M",
+      "rule": "Outgoing Supplier MPID",
+      "payloadKey": "outgoingSupplierMPID"
+    },
+    "DI-202": {
+      "name": "De-appointed Metering Service MPID",
+      "cmo": "M",
+      "rule": "De-appointed Metering Service MPID",
+      "payloadKey": "de-appointedMeteringServiceMPID"
+    },
+    "DI-203": {
+      "name": "De-appointed Data Service MPID",
+      "cmo": "M",
+      "rule": "De-appointed Data Service MPID",
+      "payloadKey": "de-appointedDataServiceMPID"
+    },
+    "DI-204": {
+      "name": "Incoming Metering Service MPID",
+      "cmo": "M",
+      "rule": "Incoming Metering Service MPID",
+      "payloadKey": "incomingMeteringServiceMPID"
+    },
+    "DI-205": {
+      "name": "Incoming Data Service MPID",
+      "cmo": "M",
+      "rule": "Incoming Data Service MPID",
+      "payloadKey": "incomingDataServiceMPID"
+    },
+    "DI-206": {
+      "name": "Service Provider Appointment Requesting Supplier MPID",
+      "cmo": "M",
+      "rule": "Service Provider Appointment Requesting Supplier MPID",
+      "payloadKey": "requestingSupplierMPID"
+    },
+    "DI-207": {
+      "name": "Current Metering Service MPID",
+      "cmo": "C",
+      "rule": "Metering Service MPID",
+      "payloadKey": "currentMeteringServiceMPID"
+    },
+    "DI-208": {
+      "name": "Current Data Service MPID",
+      "cmo": "C",
+      "rule": "Current Data Service MPID",
+      "payloadKey": "currentDataServiceMPID"
+    },
+    "DI-209": {
+      "name": "Assigned MDR MPID",
+      "cmo": "M",
+      "rule": "Assigned MDR MPID",
+      "payloadKey": "assignedMDRMPID"
+    },
+    "DI-212": {
+      "name": "Import/Export MPAN Supplier MPID",
+      "cmo": "C",
+      "rule": "Import/Export MPAN Supplier MPID",
+      "payloadKey": "importExportMPANSupplierMPID"
+    },
+    "DI-213": {
+      "name": "Proposed Metering Service MPID",
+      "cmo": "M",
+      "rule": "Proposed Metering Service MPID",
+      "payloadKey": "proposedMeteringServiceMPID"
+    },
+    "DI-214": {
+      "name": "Proposed Data Service MPID",
+      "cmo": "M",
+      "rule": "Proposed Data Service MPID",
+      "payloadKey": "proposedDataServiceMPID"
+    },
+    "DI-215": {
+      "name": "Supplier Nominated MDR MPID",
+      "cmo": "O",
+      "rule": "Supplier Nominated MDR MPID",
+      "payloadKey": "supplierNominatedMDRMPID"
+    },
+    "DI-216": {
+      "name": "SDS Nominated MDR MPID",
+      "cmo": "M",
+      "rule": "SDS Nominated MDR MPID",
+      "payloadKey": "sdsNominatedMDRMPID"
+    },
+    "DI-217": {
+      "name": "Incumbent Metering Service MPID",
+      "cmo": "M",
+      "rule": "Incumbent Metering Service MPID",
+      "payloadKey": "incumbentMeteringServiceMPID"
+    },
+    "DI-300": {
+      "name": "Consumption Component Class ID",
+      "cmo": "M",
+      "rule": "Valid values are in the range 100 --> 999",
+      "example": "123",
+      "payloadKey": "consumptionComponentClassID"
+    },
+    "DI-500": {
+      "name": "MHHS Regime End Date",
+      "cmo": "M",
+      "rule": "The last Settlement Date which MPAN will be subject to MHHS Settlement Regime.",
+      "payloadKey": "mHHSRegimeEndDate"
+    },
+    "DI-501": {
+      "name": "Reverse Migration Incoming MOP MPID",
+      "cmo": "M",
+      "rule": "MPID for the next/incoming MOP following Reverse Migration",
+      "payloadKey": "reverseMigrationIncomingMOPMPID"
+    },
+    "DI-502": {
+      "name": "Reverse Migration Incoming MOP Effective From Date",
+      "cmo": "M",
+      "rule": "The Date from which MOP appointment is/was effective following Reverse Migration",
+      "payloadKey": "reverseMigrationIncomingMOPEffectiveFromDate"
+    },
+    "DI-503": {
+      "name": "Reverse Migration Incoming DC MPID",
+      "cmo": "M",
+      "rule": "MPID for the next/incoming DC following Reverse Migration",
+      "payloadKey": "reverseMigrationIncomingDCMPID"
+    },
+    "DI-504": {
+      "name": "Reverse Migration Incoming DC Effective From Date",
+      "cmo": "M",
+      "rule": "The Date from which DC appointment is/was effective following Reverse Migration",
+      "payloadKey": "reverseMigrationIncomingDCEffectiveFromDate"
+    },
+    "DI-510": {
+      "name": "Off Peak Declaration Date",
+      "cmo": "M",
+      "rule": "Settlement Day to which OPD should be applied",
+      "payloadKey": "offPeakDeclarationDate"
+    },
+    "DI-511": {
+      "name": "Off Peak Declaration Proportion",
+      "cmo": "M",
+      "rule": "Proportion (%) of consumption to be considered as Off-Peak",
+      "payloadKey": "offPeakDeclarationProportion"
+    },
+    "DI-800": {
+      "name": "Service Provider Appointment Scenario",
+      "cmo": "M",
+      "rule": "Code used to identify the scenario around Service Provider Appointment",
+      "populationNotes": "- COS (Change of Supplier), - CSP (Change of SP), - USP (Update existing SP Appointment), - SEG (Change of Segment), - MCA (Migration Change of Agent), - MCS (Migration Change of Supplier), - ALG (Auto Alignment of MPAN Service Providers)",
+      "example": "COS",
+      "payloadKey": "appointmentScenario"
+    },
+    "DI-801": {
+      "name": "Import/Export MPAN Supplier DIP ID",
+      "cmo": "C",
+      "rule": "DIP ID of the Supplier Responsible for the Linked MPAN",
+      "payloadKey": "importExportMPANSupplierDipId"
+    },
+    "DI-803": {
+      "name": "Incoming Supplier DIP ID",
+      "cmo": "M",
+      "rule": "The market-wide unique reference for a supplier that is responsible for the settlement liabilities.",
+      "payloadKey": "incomingSupplierDipId"
+    },
+    "DI-805": {
+      "name": "Outgoing Supplier DIP ID",
+      "cmo": "M",
+      "rule": "The market-wide unique reference for a supplier that is responsible for the settlement liabilities.",
+      "payloadKey": "outgoingSupplierDipId"
+    },
+    "DI-807": {
+      "name": "Incumbent Metering Service DIP ID",
+      "cmo": "M",
+      "rule": "This is the Metering Service with responsibility for an MPAN at the point a Proposed Appointment Request is 'Accepted' by a Prospective Metering Service. This party is responsible for providing the Prospective MS with MTDs for Traditional and Advanced Meters.",
+      "payloadKey": "incumbentMeteringServiceDipId"
+    },
+    "DI-809": {
+      "name": "Current Metering Service DIP ID",
+      "cmo": "C",
+      "rule": "DIP ID of the Metering Service Appointed at the point message was created by the Registration Service, i.e. the Currently Appointed Metering Service",
+      "payloadKey": "currentMeteringServiceDipId"
+    },
+    "DI-811": {
+      "name": "Current Data Service DIP ID",
+      "cmo": "C",
+      "rule": "DIP ID of the Data Service Appointed at the point message was created by the Registration Service, i.e. the Currently Appointed Data Service",
+      "payloadKey": "currentDataServiceDipId"
+    },
+    "DI-813": {
+      "name": "De-Appointed Metering Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID for the Metering Service subject to De-Appointment",
+      "payloadKey": "de-AppointedMeteringServiceDipId"
+    },
+    "DI-815": {
+      "name": "Metering Service Effective To Date",
+      "cmo": "M",
+      "rule": "The Date at which the Metering Service is De-Appointed.",
+      "payloadKey": "meteringServiceEffectiveToDate"
+    },
+    "DI-816": {
+      "name": "De-Appointed Data Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID for the Data Service subject to De-Appointment",
+      "payloadKey": "de-AppointedDataServiceDipId"
+    },
+    "DI-818": {
+      "name": "Data Service Effective To Date",
+      "cmo": "M",
+      "rule": "The Date at which the Data Service is De-Appointed.",
+      "payloadKey": "dataServiceEffectiveToDate"
+    },
+    "DI-819": {
+      "name": "De-Appointment Reason Code",
+      "cmo": "M",
+      "rule": "A code indicating reason for termination of Service Provider Appointment",
+      "populationNotes": "- CSUPP Change of Supplier, - CSERV  Change of Service Provider, - DEREG  RMP Terminated by CSS, - CSEGM  Change of Segment, - CCONN  Change of Connection Type, - IMPEXP  Linked MPAN, - RELATED Related MPAN",
+      "example": "CSUPP",
+      "payloadKey": "de-AppointmentReasonCode"
+    },
+    "DI-822": {
+      "name": "Incoming Metering Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID for the next/incoming Metering Service",
+      "payloadKey": "incomingMeteringServiceDipId"
+    },
+    "DI-824": {
+      "name": "Incoming MS EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "The Date from which next/incoming Metering Service appointment is/was effective",
+      "payloadKey": "incomingMSEffectiveFromDate"
+    },
+    "DI-825": {
+      "name": "Incoming Data Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID for the next/incoming Data Service",
+      "payloadKey": "incomingDataServiceDipId"
+    },
+    "DI-827": {
+      "name": "Incoming Data Service Effective From Date",
+      "cmo": "M",
+      "rule": "Incoming (Next) Data Service Effective From Date",
+      "payloadKey": "incomingDataServiceEffectiveFromDate"
+    },
+    "DI-828": {
+      "name": "Proposed Metering Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of Metering Service supplier proposes should be appointed to an MPAN",
+      "payloadKey": "proposedMeteringServiceDipId"
+    },
+    "DI-830": {
+      "name": "Proposed MS EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "Date at which Supplier would like proposed Metering Service appointment to take effect",
+      "payloadKey": "proposedMSEffectiveFromDate"
+    },
+    "DI-831": {
+      "name": "Proposed Data Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of Data Service supplier proposes should be appointed to an MPAN",
+      "payloadKey": "proposedDataServiceDipId"
+    },
+    "DI-833": {
+      "name": "Proposed DS Effective From Date",
+      "cmo": "M",
+      "rule": "Date at which Supplier would like proposed Data Service appointment to take effect",
+      "payloadKey": "proposedDSEffectiveFromDate"
+    },
+    "DI-834": {
+      "name": "Supplier Nominated MDR DIP ID",
+      "cmo": "O",
+      "rule": "The market-wide unique reference for a specific Meter Data Retriever (MDR)",
+      "payloadKey": "supplierNominatedMDRDipId"
+    },
+    "DI-836": {
+      "name": "Supplier Nominated MDR Effective From Date",
+      "cmo": "O",
+      "rule": "Date from which Supplier would like Nominated MDR to apply",
+      "payloadKey": "supplierNominatedMDREffectiveFromDate"
+    },
+    "DI-837": {
+      "name": "Supplier Proposed Domestic Premise Indicator",
+      "cmo": "M",
+      "rule": "Supplier proposed DPI for a SP Appointment",
+      "populationNotes": "- T True (Domestic), - F False (Non-Domestic)",
+      "example": "T",
+      "payloadKey": "supplierProposedDomesticPremiseIndicator"
+    },
+    "DI-838": {
+      "name": "Supplier Proposed Consent Granularity",
+      "cmo": "M",
+      "rule": "Supplier proposed Consent Granularity for a SP Appointment",
+      "populationNotes": "- H Half Hourly Consent Granted, - D Daily Consent Granted, - M Monthly Reads Only, - N No Consent",
+      "example": "H",
+      "payloadKey": "supplierProposedConsentGranularity"
+    },
+    "DI-839": {
+      "name": "SDS Nominated MDR DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of the MDR the SDS has requested to be assigned to an MPAN",
+      "payloadKey": "sdsNominatedMDRDipId"
+    },
+    "DI-841": {
+      "name": "SDS Nominated MDR Effective From Date",
+      "cmo": "M",
+      "rule": "Date from which Supplier would like Nominated MDR to apply",
+      "payloadKey": "sdsNominatedMDREffectiveFromDate"
+    },
+    "DI-842": {
+      "name": "Assigned MDR DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of the MDR assigned to an MPAN",
+      "payloadKey": "assignedMDRDipId"
+    },
+    "DI-844": {
+      "name": "Assigned MDR EffectiveFrom Date",
+      "cmo": "M",
+      "rule": "The Effective Date from which the MDR Effective Date to be recorded as in Registration and DCC",
+      "payloadKey": "assignedMDREffectiveFromDate"
+    },
+    "DI-845": {
+      "name": "Issuing Data Service DIP ID",
+      "cmo": "M",
+      "rule": "DIP ID of the Data Service submitting the data",
+      "payloadKey": "issuingDataServiceDipId"
+    },
+    "DI-847": {
+      "name": "Service Provider App Requesting Supplier DIP ID",
+      "cmo": "M",
+      "rule": "DIP of Supplier making the Service Appointment Request",
+      "payloadKey": "requestingSupplierDipId"
+    },
+    "DI-849": {
+      "name": "CSS Registration ID",
+      "cmo": "M",
+      "rule": "The CSS identifier associated with a Supplier's Registration",
+      "example": "1234567890",
+      "payloadKey": "cssRegistrationID"
+    },
+    "DI-850": {
+      "name": "MDR Effective To Date",
+      "cmo": "M",
+      "rule": "The Date at which the MDR stops collecting data.",
+      "payloadKey": "mDREffectiveToDate"
+    },
+    "DI-960": {
+      "name": "Publication Description",
+      "cmo": "M",
+      "rule": "Description of Publication",
+      "example": "ISD May 2024",
+      "payloadKey": "publicationDescription"
+    },
+    "DI-961": {
+      "name": "Publication Version ID",
+      "cmo": "M",
+      "rule": "Publication Version ID / Number",
+      "example": "5.8.8",
+      "payloadKey": "publicationVersionID"
+    },
+    "DI-962": {
+      "name": "Publication Issued Date",
+      "cmo": "M",
+      "rule": "Date/Time Publication was issued",
+      "example": "2020-08-08T15:14:00+00:00",
+      "payloadKey": "publicationIssuedDate"
+    },
+    "DI-963": {
+      "name": "Distribution Variant ID",
+      "cmo": "M",
+      "rule": "Unique Identifier for Distibution Variant",
+      "example": "Full",
+      "payloadKey": "distributionVariantID"
+    },
+    "DI-964": {
+      "name": "Distribution Variant Name",
+      "cmo": "M",
+      "rule": "Distribution Variant Name",
+      "example": "Industry Standing Data",
+      "payloadKey": "distributionVariantName"
+    },
+    "DI-965": {
+      "name": "Distribution Variant Description",
+      "cmo": "O",
+      "rule": "Distribution Variant Description",
+      "example": "ISD tables that Suppliers want only",
+      "payloadKey": "distributionVariantDescription"
+    },
+    "DI-966": {
+      "name": "Distribution Variant Version ID",
+      "cmo": "M",
+      "rule": "Version Number of the Distribution Variant",
+      "example": "1.1.1",
+      "payloadKey": "distributionVariantVersionID"
+    },
+    "DI-967": {
+      "name": "Distribution Variant Issued Date",
+      "cmo": "M",
+      "rule": "Publication Date of the Distribution Variant",
+      "example": "2020-08-08T15:14:00+00:00",
+      "payloadKey": "distributionVariantIssuedDate"
+    },
+    "DI-968": {
+      "name": "Distribution Variant Format",
+      "cmo": "O",
+      "rule": "File Type of the Distribution Variant Components (e.g. JSON/CSV/PDF File)",
+      "example": "JSON",
+      "payloadKey": "distributionVariantFormat"
+    },
+    "DI-979": {
+      "name": "Response Code",
+      "cmo": "M",
+      "rule": "Code used to identify the outcome of the Event Request",
+      "populationNotes": "- A  Accepted - R  Rejected - L  Lapsed - W Warning",
+      "example": "A",
+      "payloadKey": "responseCode"
+    },
+    "DI-980": {
+      "name": "Response Message",
+      "cmo": "C",
+      "rule": "Message describing the status/outcome of the previous originating transaction",
+      "example": "ERR000 - This is an Error",
+      "payloadKey": "responseMessage"
+    },
+    "DI-992": {
+      "name": "Schema Version",
+      "cmo": "M",
+      "rule": "The Scheme Version against which the message has been constructed",
+      "example": "1.0.0",
+      "payloadKey": "schemaVersion"
+    },
     "DI-999": {
       "name": "Event Code",
       "cmo": "M",
@@ -313,8 +1515,11 @@
         "SDS-MDROutcome",
         "SDS-MDRUpdate",
         "SupplierAgreedCOS"
-      ]
+      ],
+      "payloadKey": "eventCode"
     }
+  }
+}
   },
   "dataBlocksCatalogue": {
     "S0_TransactionalInfo": { "title": "S0- Transactional Info (Mandatory)", "items": ["DI-000", "DI-992", "DI-999"] },
