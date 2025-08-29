@@ -4,7 +4,7 @@
       "name": "Interface Id",
       "cmo": "M",
       "rule": "Interface Id",
-      "payloadKey": "interfaceId"
+      "payloadKey": "interfaceID"
     },
     "DI-001": {
       "name": "Address Line 1",
@@ -244,7 +244,7 @@
       "populationNotes": "_A, _B, _C, _D, _E, _F, _G, _H, _J, _K, _L, _M, _N, _P",
       "example": "_A",
       "enumerated": true,
-      "payloadKey": "gspGroupID"
+      "payloadKey": "GSPGroupID"
     },
     "DI-038": {
       "name": "Associated Import/Export MPAN",
@@ -409,7 +409,7 @@
       "cmo": "M",
       "rule": "A business key used to uniquely identify the metering point that is the subject of the update.",
       "example": "1200000000000",
-      "payloadKey": "mPANCore"
+      "payloadKey": "MPANCore"
     },
     "DI-073": {
       "name": "Principal MPAN",
@@ -620,7 +620,7 @@
       "name": "Distributor DIP ID",
       "cmo": "M",
       "rule": "The DIP ID of the distributor who is responsible for the distribution network that a metering point is connected to.",
-      "payloadKey": "distributorDipId"
+      "payloadKey": "distributorDIPID"
     },
     "DI-109": {
       "name": "Distributor DIP EZ Name",
@@ -845,7 +845,7 @@
       "name": "Default Load Shape Flag",
       "cmo": "M",
       "rule": "A flag to identify the period value is based on a default calculation.",
-      "populationNotes": "- \u2018A\u2019  Actual, - \u2018D\u2019 \u2013 Default, - \u2018E\u2019 \u2013 Back Stop, - \u2018B\u2019 \u2013 No data available",
+      "populationNotes": "- ‘A’  Actual, - ‘D’ – Default, - ‘E’ – Back Stop, - ‘B’ – No data available",
       "example": "D",
       "payloadKey": "defaultLoadShapeFlag"
     },
@@ -1384,6 +1384,18 @@
       "example": "JSON",
       "payloadKey": "distributionVariantFormat"
     },
+    "DI-977": {
+      "name": "SubText",
+      "cmo": "MO",
+      "rule": "Data item to support testing",
+      "payloadKey": "subText"
+    },
+    "DI-978": {
+      "name": "Service Ticket URL",
+      "cmo": "MO",
+      "rule": "URL to access message specific Support Ticket",
+      "payloadKey": "serviceTicketURL"
+    },
     "DI-979": {
       "name": "Response Code",
       "cmo": "M",
@@ -1399,12 +1411,108 @@
       "example": "ERR000 - This is an Error",
       "payloadKey": "responseMessage"
     },
+    "DI-981": {
+      "name": "Secondary Recipient(s)",
+      "cmo": "MC",
+      "rule": "DIP generated addresses based on Interface Id, MPAN and role lookup",
+      "payloadKey": "secondaryRecipients"
+    },
+    "DI-982": {
+      "name": "Primary Recipient(s)",
+      "cmo": "MC",
+      "rule": "Primary recipent(s); sender determined",
+      "payloadKey": "primaryRecipients"
+    },
+    "DI-983": {
+      "name": "Sender EZ Name",
+      "cmo": "OO",
+      "rule": "Sending parties DIP Participant EZ name",
+      "payloadKey": "senderEZName"
+    },
+    "DI-984": {
+      "name": "Sender Role",
+      "cmo": "MM",
+      "rule": "DIP Role of Sending Party",
+      "payloadKey": "senderRoleID"
+    },
+    "DI-985": {
+      "name": "Sender Correlation ID",
+      "cmo": "MO",
+      "rule": "Previously Issued Correlation ID, to which this message also relates",
+      "payloadKey": "senderCorrelationID"
+    },
+    "DI-986": {
+      "name": "Publication ID",
+      "cmo": "MM",
+      "rule": "Publication Reference number",
+      "payloadKey": "publicationID"
+    },
+    "DI-987": {
+      "name": "DIP Correlation ID",
+      "cmo": "MO",
+      "rule": "DIP Assigned Correlation ID which an be referened in future related messages",
+      "payloadKey": "initialCorrelationID"
+    },
+    "DI-988": {
+      "name": "Replay Indicator",
+      "cmo": "MM",
+      "rule": "Indicates if messages is being Replayed",
+      "payloadKey": "replayIndicator"
+    },
+    "DI-989": {
+      "name": "Transaction Timestamp",
+      "cmo": "MM",
+      "rule": "Timestamp the message was accepted by the DIP",
+      "payloadKey": "transactionTimestamp"
+    },
+    "DI-990": {
+      "name": "Transaction ID",
+      "cmo": "MM",
+      "rule": "Unique Reference assigned by the DIP",
+      "payloadKey": "transactionID"
+    },
+    "DI-991": {
+      "name": "Environment",
+      "cmo": "MM",
+      "rule": "Environment Indicator to denote what Environment Message is Valid In",
+      "payloadKey": "environmentTag"
+    },
     "DI-992": {
       "name": "Schema Version",
       "cmo": "M",
       "rule": "The Scheme Version against which the message has been constructed",
       "example": "1.0.0",
       "payloadKey": "schemaVersion"
+    },
+    "DI-993": {
+      "name": "Always",
+      "cmo": "MC",
+      "rule": "DIP generated address based on Interface Id",
+      "payloadKey": "always"
+    },
+    "DI-995": {
+      "name": "Sender Unique Reference",
+      "cmo": "MM",
+      "rule": "Unique Reference provided by the Sender",
+      "payloadKey": "senderUniqueReference"
+    },
+    "DI-996": {
+      "name": "Connection Provider DIP ID",
+      "cmo": "MO",
+      "rule": "Set if Connection Proviser submits message on behalf of Sender",
+      "payloadKey": "DIPConnectionProviderID"
+    },
+    "DI-997": {
+      "name": "Sender DIP ID",
+      "cmo": "MM",
+      "rule": "Sending party's DIP Participant ID",
+      "payloadKey": "senderDIPID"
+    },
+    "DI-998": {
+      "name": "Sender Timestamp",
+      "cmo": "MM",
+      "rule": "Timestamp the message was sent by the participant",
+      "payloadKey": "senderTimestamp"
     },
     "DI-999": {
       "name": "Event Code",
