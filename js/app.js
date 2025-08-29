@@ -1,3 +1,5 @@
+// js/app.js (replace the whole file)
+
 import { state, loadFavorites } from './state.js';
 import { fetchData } from './api.js';
 import {
@@ -11,19 +13,18 @@ import {
     hideFormBuilder,
     renderRejectionCodesList,
     showLoading,
-    hideLoading
+    hideLoading,
+    renderSearchSuggestions,
+    hideSearchSuggestions
 } from './ui.js';
 import { showFormBuilder, exportFormData } from './formBuilder.js';
-import { fuzzySearch } from './utils.js';
+import { fuzzySearch, generateSearchSuggestions } from './utils.js';
 
 document.addEventListener('DOMContentLoaded', initApp);
 
 async function initApp() {
-    // Correct Order: First, find all the elements on the page.
     cacheDOMElements(); 
-    // THEN, show the loading spinner.
     showLoading(); 
-    
     loadFavorites();
 
     const data = await fetchData('interfaceData.json');
@@ -63,13 +64,31 @@ async function initApp() {
 
 function setupEventListeners() {
     let debounceTimer;
-    DOMElements.searchInput.addEventListener('input', e => {
+    
+    // --- UPDATED SEARCH LOGIC ---
+    const handleSearch = () => {
+        state.currentSearchTerm = DOMElements.searchInput.value;
+        const suggestions = generateSearchSuggestions(state.currentSearchTerm, state.interfaces);
+        renderSearchSuggestions(suggestions);
+        
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
-            state.currentSearchTerm = e.target.value;
+        debounceTimer = setTimeout(filterAndRender, 200);
+    };
+
+    DOMElements.searchInput.addEventListener('input', handleSearch);
+    DOMElements.searchInput.addEventListener('focus', handleSearch);
+    DOMElements.searchInput.addEventListener('blur', hideSearchSuggestions);
+
+    DOMElements.searchSuggestions.addEventListener('click', e => {
+        const suggestionEl = e.target.closest('[data-suggestion]');
+        if (suggestionEl) {
+            DOMElements.searchInput.value = suggestionEl.dataset.suggestion;
+            state.currentSearchTerm = suggestionEl.dataset.suggestion;
+            hideSearchSuggestions();
             filterAndRender();
-        }, 200);
+        }
     });
+    // --- END OF UPDATED SEARCH LOGIC ---
 
     DOMElements.filterButtons.forEach(button => {
         button.addEventListener('click', () => {
