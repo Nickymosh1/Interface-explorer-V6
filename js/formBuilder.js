@@ -57,6 +57,7 @@ function generateDataItemInput(itemId, dataItem) {
     
     let options = [];
     let inputHtml = '';
+    let inputType = 'text'; // Default input type
     
     const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
     const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : (itemId === 'DI-992' ? '1.0.0' : '');
@@ -74,10 +75,11 @@ function generateDataItemInput(itemId, dataItem) {
     }
 
     if (options.length > 0) {
+        inputType = 'enum';
         const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
         inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
     } else { 
-        const inputType = determineInputType(dataItem);
+        inputType = determineInputType(dataItem);
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         
         if (inputType === 'datetime') {
@@ -106,7 +108,9 @@ function generateDataItemInput(itemId, dataItem) {
             }
         }
     }
-    const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '' : '';
+    
+    const validationHtml = dataItem.rule ? `<p class="text-xs text-gray-600 mt-1">${escapeHtml(dataItem.rule)}</p>` : '';
+
     const wrapperClass = inputType === 'datetime' ? '' : 'form-input-wrapper';
 
     return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label><div class="${wrapperClass}">${inputHtml}</div>${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
