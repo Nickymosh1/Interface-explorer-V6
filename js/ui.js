@@ -172,20 +172,32 @@ function generateDataItemsHtml(interfaceItem) {
                               (comp.type === 'item' ? [comp.id] : []);
         let blockHtml = '';
         if (comp.type === 'header') {
-            // CHANGED: Removed /70 for an opaque background
             return `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)] sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.title)}</th></tr></thead>`;
         }
         if (comp.type === 'block') {
              const block = state.dataBlocksCatalogue[comp.id];
              if (!block) return '';
-             // CHANGED: Removed /70 for an opaque background on both theads
              blockHtml = `<thead class="text-xs text-[var(--dark-purple)] uppercase bg-[var(--birch)] sticky top-0 z-10"><tr class="border-b"><th colspan="6" class="px-4 py-2 font-bold">${escapeHtml(comp.titleOverride || block.title)}</th></tr></thead>
                       <thead class="text-xs text-[var(--purple)] uppercase bg-[var(--birch)] sticky top-9 z-10"><tr class="border-b"><th class="px-4 py-2">ID</th><th class="px-4 py-2">Data Item</th><th class="px-4 py-2 whitespace-nowrap">M/O/C</th><th class="px-4 py-2 w-1/4">Description / Rule</th><th class="px-4 py-2 w-1/4">Population Notes</th><th class="px-4 py-2">Example</th></tr></thead>`;
         }
         const rowsHtml = itemsToRender.map(itemId => {
             const di = state.dataItemsCatalogue[itemId];
             if (!di) return '';
-            const notesHtml = di.populationNotes ? `<p class="text-[var(--purple)] opacity-90 whitespace-pre-wrap">${escapeHtml(di.populationNotes)}</p>` : '';
+
+            // --- NEW FILTERING LOGIC FOR THE DISPLAY TABLE ---
+            let populationNotesContent = di.populationNotes;
+            // Check if the item is DI-999 and has the data structure we expect
+            if (itemId === 'DI-999' && di.enumerated && Array.isArray(di.populationNotes)) {
+                // Get the valid codes from the parent interface object
+                const validCodes = interfaceItem?.eventCodes || [];
+                // Filter the big list down to only the valid codes
+                populationNotesContent = di.populationNotes
+                    .filter(code => validCodes.includes(code))
+                    .join('\n'); // Join the filtered array into a string for display
+            }
+            // --- END OF NEW LOGIC ---
+
+            const notesHtml = populationNotesContent ? `<p class="text-[var(--purple)] opacity-90 whitespace-pre-wrap">${escapeHtml(populationNotesContent)}</p>` : '';
             const exampleHtml = di.example ? `<code class="text-blue-600 bg-blue-50 p-1 rounded-md text-xs">${escapeHtml(di.example)}</code>` : '';
             return `<tr class="hover:bg-gray-50/50"><td class="px-4 py-3 font-mono font-semibold text-xs align-top">${escapeHtml(itemId)}</td><td class="px-4 py-3 align-top">${escapeHtml(di.name)}</td><td class="px-4 py-3 font-semibold text-center align-top">${escapeHtml(di.cmo)}</td><td class="px-4 py-3 text-xs opacity-80 align-top">${escapeHtml(di.rule)}</td><td class="px-4 py-3 text-xs align-top">${notesHtml}</td><td class="px-4 py-3 text-xs align-top">${exampleHtml}</td></tr>`;
         }).join('');
