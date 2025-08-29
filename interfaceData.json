@@ -1452,31 +1452,98 @@
       "context": "Following a successful Change of Supplier, the CSS will notify this to the Registration Service. The Registration Service will then notify parties that a successful Change of Supplier has taken place. This provides the Gaining Supplier with key information about the MPAN as it currently exists in the Registration Service.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory)" },
-        { "type": "block", "id": "B002_IncomingSupplier", "titleOverride": "B002 - Incoming Supplier Information - Mandatory for Event [ChangeOfSupplier] & [InitialRegistration]" },
-        { "type": "block", "id": "B003_OutgoingSupplier", "titleOverride": "B003 - Outgoing Supplier Information - Mandatory for Event [ChangeOfSupplier]" },
-        { "type": "block", "id": "B004_DomPremiseIndicator" },
-        { "type": "block", "id": "B005_IncumbentServiceProviders", "titleOverride": "B005 - Incumbent / Outgoing Service Providers (Mandatory for [ChangeOfSupplier] (where available in Registration Service)" },
-        { "type": "block", "id": "B006_CustomerDirectContracts", "titleOverride": "B006 - Customer Direct Contracts (Mandatory if Customer Direct Contract is Registered/Recorded)" },
-        { "type": "block", "id": "B022_MPAN_Address" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" },
-        { "type": "block", "id": "B024_DUOS_Tariff" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B026_MarketSegment" },
-        { "type": "block", "id": "B027_AnnualConsumption", "titleOverride": "B027- Assumed Annual Consumption (Mandatory where available in Registration Service)" },
-        { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment Status (Conditionally Mandatory - Required only for Smart Meters if available)" },
-        { "type": "block", "id": "B030_IHD_Info" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory for Traditional Meters / Optional for other Meters OR where not available in Registration Service)" },
-        { "type": "header", "title": "B035 blocks below are repeated for each Linked Import/Export MPAN" },
-        { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
-        { "type": "header", "title": "B037 blocks below are repeated for each Related MPAN available in Registration Service" },
-        { "type": "block", "id": "B037_RelatedMPAN" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B002_IncomingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B003_OutgoingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B004_DomPremiseIndicator"
+        },
+        {
+          "type": "block",
+          "id": "B005_IncumbentServiceProviders"
+        },
+        {
+          "type": "block",
+          "id": "B006_CustomerDirectContracts"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B027_AnnualConsumption"
+        },
+        {
+          "type": "block",
+          "id": "B029_DCC_Enrolment"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        },
+        {
+          "type": "block",
+          "id": "B035_LinkedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B037_RelatedMPAN"
+        }
       ],
       "eventCodes": [
         "ChangeOfSupplier",
@@ -1492,37 +1559,102 @@
       "context": "Following notification of a potential/pending Switch from CSS, the Registration Service will issue this message to the incoming Supplier to advise the incoming Supplier of Site Information so that the Supplier can determine the correct Service Providers to appoint (this is the equivilent to the D0217/D0260)",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory)" },
-        { "type": "block", "id": "B005_IncumbentServiceProviders", "titleOverride": "B005 - Incumbent/Outgoing Service Providers (Mandatory - Where available in Registration Service)" },
-        { "type": "block", "id": "B006_CustomerDirectContracts", "titleOverride": "B006 - Customer Direct Contracts (Mandatory if Customer Direct Contract is Registered/Recorded)" },
-        { "type": "block", "id": "B022_MPAN_Address" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" },
-        { "type": "block", "id": "B024_DUOS_Tariff" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B026_MarketSegment" },
-        { "type": "block", "id": "B027_AnnualConsumption", "titleOverride": "B027- Assumed Annual Consumption (Mandatory where available in Registration Service)" },
-        { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment Status (Conditionally Mandatory - Required only for Smart Meters if available)" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional)" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory for Traditional Meters / Optional for other Meters OR where not available in Registration Service)" },
-        { "type": "header", "title": "*B905 - B074 and B075 Blocks below are repeated for each Installed Meter" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - MPAN Existing Meter Info (Mandatory if Metering Installed)" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": "> B075 - MPAN Existing Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" },
-        { "type": "header", "title": "*B907 - B035 block below is repeated for each Linked Import/Export MPAN" },
-        { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
-        { "type": "header", "title": ">*B910 B036 & B075 below repeated for each Meter /MAP History pair" },
-        { "type": "block", "id": "B036_LinkedMeterDetails", "titleOverride": "> *B036 - Linked Import/Export Meter Details" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> *B075 - MPAN Linked Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" },
-        { "type": "header", "title": "*B908 - B037 blocks below is repeated for each Related MPAN that exists" },
-        { "type": "block", "id": "B037_RelatedMPAN" },
-        { "type": "header", "title": ">*B911 - B038 & B075 below repeated for each Meter /MAP History Pair" },
-        { "type": "block", "id": "B038_RelatedMeterDetails", "titleOverride": "> B038 - Related MPAN Meter Details" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> B075 - MPAN Related Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B005_IncumbentServiceProviders"
+        },
+        {
+          "type": "block",
+          "id": "B006_CustomerDirectContracts"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B027_AnnualConsumption"
+        },
+        {
+          "type": "block",
+          "id": "B029_DCC_Enrolment"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B075_ExistingMeterMAPInfo"
+        },
+        {
+          "type": "block",
+          "id": "B035_LinkedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B036_LinkedMeterDetails"
+        },
+        {
+          "type": "block",
+          "id": "B037_RelatedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B038_RelatedMeterDetails"
+        }
       ],
       "eventCodes": [
         "GainMPANInfo"
@@ -1537,18 +1669,54 @@
       "context": "This provides Notification of a Reverse Migration to MDS/LDSO. It also advises MHHS Service Providers that they have been De-Appointed (as a result of a Reverse Migration) and where appropriate details of the incoming 'old regime' agents i.e. MOP / DC.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory)" },
-        { "type": "block", "id": "B094_ReverseMigration", "titleOverride": "B094- Reverse Migration Notification (Mandatory for Event [ReverseMigNotification])" },
-        { "type": "block", "id": "B008_MS_DeApp", "titleOverride": "B008 - Metering Service De-Appointment Details (Mandatory for [MSDeAppRM])" },
-        { "type": "block", "id": "B009_DS_DeApp", "titleOverride": "B009 - Data Service De-Appointment Details (Mandatory for [DSDeAppRM])" },
-        { "type": "block", "id": "B095_IncomingMOP", "titleOverride": "B095- Incoming MOP Details (Mandatory for Event [MSDeAppUpdateRM] ) and where available in the Registration Service - Ref Interface Notes" },
-        { "type": "block", "id": "B096_IncomingDC", "titleOverride": "B096 - Incoming DC Details (Mandatory for Event [DSDeAppUpdateRM] ) and where available in the Registration Service - Ref Interface Notes" },
-        { "type": "block", "id": "B002_IncomingSupplier", "titleOverride": "B002 - Incoming Supplier Information (Mandatory)" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B094_ReverseMigration"
+        },
+        {
+          "type": "block",
+          "id": "B008_MS_DeApp"
+        },
+        {
+          "type": "block",
+          "id": "B009_DS_DeApp"
+        },
+        {
+          "type": "block",
+          "id": "B095_IncomingMOP"
+        },
+        {
+          "type": "block",
+          "id": "B096_IncomingDC"
+        },
+        {
+          "type": "block",
+          "id": "B002_IncomingSupplier"
+        }
       ],
       "eventCodes": [
         "DSDeAppRM",
@@ -1565,17 +1733,34 @@
       "context": "Use of this interface is optional. It is provided for use by Smart Metering Services & Suppliers that bilaterally agree to share Comms Hub information between themselves.",
       "supplier_type": "supplier_both",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "header", "title": "M0 - MPAN (Mandatory)" },
-        { "type": "item", "id": "DI-063" },
-        { "type": "item", "id": "DI-108" },
-        { "type": "item", "id": "DI-109" },
-        { "type": "item", "id": "DI-029" },
-        { "type": "item", "id": "DI-037" },
-        { "type": "block", "id": "B093_CommsHubInfo", "titleOverride": "B093 - Comms Hub Info (Mandatory if Event = [CommsHubInfo])" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "header",
+          "title": "M0 - MPAN (Mandatory)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B093_CommsHubInfo"
+        }
       ],
       "eventCodes": [
         "CommsHubInfo"
@@ -1590,15 +1775,42 @@
       "context": "This interface is used by Metering Services to notify any changes required to Metering Technical Information, to the Registration Service For example, Meter Installations, Removals and Exchanges. The interface also allows for corrections to the currently installed meter & the historical record of installed metering assets.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B033_NewMeterInfo", "titleOverride": "B033 - New/Revised Meter Information (Mandatory if Event = [MeterInstall], [MeterExchange], [MeterUpdate], [MeterHistoryUpdate])" },
-        { "type": "block", "id": "B034_MeterMAPInfo", "titleOverride": "> B034 Meter MAP Info (Mandatory for Events [MeterInstall], [MeterExchange]; Optional for Events [MeterUpdate], [MeterHistoryUpdate])" },
-        { "type": "block", "id": "B039_RemovedMeterInfo", "titleOverride": "B039 Removed Meter Information (Mandatory for Event Type [MeterRemoval], [MeterExchange]; Optional for Event [MeterHistoryUpdate] & [MeterUpdate])" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional & may only be used with [MeterInstall] , [MeterExchange] & [MeterUpdate])" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B033_NewMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B034_MeterMAPInfo"
+        },
+        {
+          "type": "block",
+          "id": "B039_RemovedMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        }
       ],
       "eventCodes": [
         "MeterExchange",
@@ -1617,18 +1829,54 @@
       "context": "This interface is used by Registration Service to notify the outcome of changes of Metering Technical Information to the Metering Service, and if successfull other participants. For example, Meter Installations, Removals and Exchanges. This response also includes confirmation of other existing meter(s) installed at the MPAN, which were not impacted by the Metering Event.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B033_NewMeterInfo", "titleOverride": "B033 - New/Revised Meter Information (Mandatory if Event = [MeterInstall], [MeterExchange], [MeterUpdate], [MeterHistoryUpdate])" },
-        { "type": "block", "id": "B034_MeterMAPInfo", "titleOverride": "> *B034 - Meter MAP Info (Mandatory for Events [MeterInstall], [MeterExchange]; Optional for Events [MeterUpdate], [MeterHistoryUpdate])" },
-        { "type": "block", "id": "B039_RemovedMeterInfo", "titleOverride": "B039 - Removed Meter Information (Mandatory for Event Type [MeterRemoval], [MeterExchange]; Optional for Event [MeterHistoryUpdate] & [MeterUpdate])" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional & may only be used with [MeterInstall] & [MeterExchange], [Meter Update])" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "*B074 - MPAN Existing Meter Details (Mandatory if additional meters are Installed) - Repeated for each \"Installed Meter\" not impacted by the message" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": "> *B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record provided for each B074 Additional meter" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B033_NewMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B034_MeterMAPInfo"
+        },
+        {
+          "type": "block",
+          "id": "B039_RemovedMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B075_ExistingMeterMAPInfo"
+        }
       ],
       "eventCodes": [
         "MeterExchange",
@@ -1647,13 +1895,34 @@
       "context": "This interface is used by the Metering Service to notify the Registration Service of changes to the energisation status or to inform the Supplier where a request to change the energisation status has been rejected.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B025_EnergisationStatus", "titleOverride": "B025 - Energisation Status (Mandatory if EventCode = [EnergisationStatusChange])" },
-        { "type": "block", "id": "B040_EnergisationFailure", "titleOverride": "B040 - Failure to Action Site Energisation Status Chg (Mandatory if EventCode = [EnergisationStatusFailure])" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B040_EnergisationFailure"
+        }
       ],
       "eventCodes": [
         "EnergisationStatusChange",
@@ -1669,13 +1938,34 @@
       "context": "This interface is used by Registration Service to notify the outcome of Change of Energisation Status Requests.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B025_EnergisationStatus", "titleOverride": "B025- Energisation Status (Mandatory if EventCode = [EnergisationStatusChange])" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        }
       ],
       "eventCodes": [
         "EnergisationStatusChange"
@@ -1690,14 +1980,38 @@
       "context": "This interface is used by Registration Service to notify participants that an MPAN has been Disconnected by LDSO and/or terminated by CSS. It is no longer possible to register an MPAN following this point.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B041_DisconnectionInfo", "titleOverride": "B041 - MPAN Disconnection Information (Mandatory for [MPANDisconnection])" },
-        { "type": "block", "id": "B098_ReconnectionInfo", "titleOverride": "B098 - MPAN Reconnection Information (Mandatory for [MPANReconnection])" },
-        { "type": "block", "id": "B042_CSS_DeRegistration", "titleOverride": "B042 - MPAN CSS De-Registration Information (Mandatory for [CSSDeRegistration])" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B041_DisconnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B098_ReconnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B042_CSS_DeRegistration"
+        }
       ],
       "eventCodes": [
         "CSSDeRegistration",
@@ -1714,17 +2028,50 @@
       "context": "This interface will be issued by ECS/MDS to advise Supplier, Data Service and if required the LDSO of the volume(s) for each Settlement Period which have been Defaulted",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B043_ImpactedParticipants" },
-        { "type": "block", "id": "B049_SettlementRunInfo" },
-        { "type": "block", "id": "B067_ConnectionType" },
-        { "type": "block", "id": "B050_ECS_CCC_Data", "titleOverride": "> B050 - ECS CCC Determination Data (Mandatory) - Block Repeated for each variation in CCC Determination Data" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": ">> B046 - UTC Settlement Date (Mandatory) - Block Repeated for each UTC Settlement Day as required" },
-        { "type": "block", "id": "B048_UTCSettlementDefaulted", "titleOverride": ">>> B048 - UTC Settlement Period Consumption Defaulted Data (Mandatory for EventCode =[ActivePowerDefaulted]) - Block Repeated as Required" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B043_ImpactedParticipants"
+        },
+        {
+          "type": "block",
+          "id": "B049_SettlementRunInfo"
+        },
+        {
+          "type": "block",
+          "id": "B067_ConnectionType"
+        },
+        {
+          "type": "block",
+          "id": "B050_ECS_CCC_Data"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B048_UTCSettlementDefaulted"
+        }
       ],
       "eventCodes": [
         "ActivePowerDefaulted"
@@ -1739,17 +2086,50 @@
       "context": "Rejection of Data Service provided Actual or Estimated UTC Settlement Period Consumption data/ Warning of Consumption on a De-energised MPAN",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B044_DataServiceInfo" },
-        { "type": "block", "id": "B067_ConnectionType" },
-        { "type": "block", "id": "B045_MQID" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "> B046 - UTC Settlement Day (Block below Repeated for each UTC Settlement Date)" },
-        { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">> B047 - UTC Settlement Period Consumption Data (Mandatory) - Block below Repeated for each UTC Settlement Consumption Period as Required" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B044_DataServiceInfo"
+        },
+        {
+          "type": "block",
+          "id": "B067_ConnectionType"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B047_UTCSettlementConsumption"
+        }
       ],
       "eventCodes": [
         "ActivePowerRejected",
@@ -1765,11 +2145,26 @@
       "context": "This interface is used by Advanced Data Services to request a Replay of historic Consumption submissions for a newly acquired MPAN, from the DIP.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1- Sender Info - (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" }
+        {
+          "type": "header",
+          "title": "S1- Sender Info - (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        }
       ],
       "eventCodes": [
         "ConsumptionReplay"
@@ -1784,23 +2179,74 @@
       "context": "This interface is used by the DIP in order to Replay historic Consumption submissions for a newly acquired MPAN, back to the Advanced Data Service.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "S2 - Original Message (S1) Info (Mandatory for [ActivePower], [ReactivePower], [ActivePowerRejected],[ActivePowerDefaulted])" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R1_ConsumptionReqResponse" },
-        { "type": "block", "id": "R0_Response", "titleOverride": "R0 - Response (Mandatory for [ActivePowerRejected] )" },
-        { "type": "block", "id": "B044_DataServiceInfo", "titleOverride": "B044 - Submitting Data Service (Mandatory for [ActivePower], [ReactivePower] and [ActivePowerRejected])" },
-        { "type": "block", "id": "B043_ImpactedParticipants", "titleOverride": "B043 - Impacted Participants (Mandatory for [ActivePowerDefaulted])" },
-        { "type": "block", "id": "B049_SettlementRunInfo", "titleOverride": "B049 - Settlement Run Info (Mandatory for [ActivePowerDefaulted])" },
-        { "type": "block", "id": "B067_ConnectionType", "titleOverride": "B067 - Connection Type (Mandatory except for [ReplayRequestRejected])" },
-        { "type": "block", "id": "B045_MQID", "titleOverride": "B045- MQID ( Mandatory for [ActivePower], [ReactivePower] and [ActivePowerRejected] )" },
-        { "type": "block", "id": "B050_ECS_CCC_Data", "titleOverride": "> B050 - ECS CCC Determination Data (Mandatory for [ActivePowerDefaulted]) - Block Repeated for each variation" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": ">> B046 - UTC Settlement Day Mandatory except [ReplayRequestRejected] - Block(s) below Repeated for each UTC Settlement Date as Required" },
-        { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">>> B047 - UTC Settlement Period Consumption Data ( Mandatory for [ActivePower], [ReactivePower] and [ActivePowerRejected] )" },
-        { "type": "block", "id": "B048_UTCSettlementDefaulted", "titleOverride": ">>> B048 - UTC Settlement Period Consumption Defaulted Data (Mandatory for [ActivePowerDefaulted])" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "S2 - Original Message (S1) Info (Mandatory for [ActivePower], [ReactivePower], [ActivePowerRejected],[ActivePowerDefaulted])"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R1_ConsumptionReqResponse"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B044_DataServiceInfo"
+        },
+        {
+          "type": "block",
+          "id": "B043_ImpactedParticipants"
+        },
+        {
+          "type": "block",
+          "id": "B049_SettlementRunInfo"
+        },
+        {
+          "type": "block",
+          "id": "B067_ConnectionType"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B050_ECS_CCC_Data"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B047_UTCSettlementConsumption"
+        },
+        {
+          "type": "block",
+          "id": "B048_UTCSettlementDefaulted"
+        }
       ],
       "eventCodes": [
         "ActivePower",
@@ -1819,18 +2265,54 @@
       "context": "This interface is to notify participants of changes to Registration Service Data Items, principally those maintained by the LDSO or notified to Registration Service directly by CSS",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B001_GSPEffectiveFrom", "titleOverride": "B001 - GSP EffectiveFrom (Mandatory for Events [AddressChg] & [GSPChg])" },
-        { "type": "block", "id": "B022_MPAN_Address", "titleOverride": "B022 - MPAN Address (Mandatory for Events [AddressChg] & [GSPChg])" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo", "titleOverride": "B023 - MPAN Connection Info (Mandatory for Events [EnergyDirection], [MUMIndicator])" },
-        { "type": "block", "id": "B024_DUOS_Tariff", "titleOverride": "B024 - MPAN DUOS Tariff ID (Mandatory for [DUOSTariffIDChg] )" },
-        { "type": "block", "id": "B028_DomPremiseIndicator", "titleOverride": "B028 - Domestic Premise Indicator (Mandatory for Event [DomPremInd])" },
-        { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment (Mandatory for Event [DCCEnrolment]) (Mandatory for Commissioned Smart Meters)" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B001_GSPEffectiveFrom"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B028_DomPremiseIndicator"
+        },
+        {
+          "type": "block",
+          "id": "B029_DCC_Enrolment"
+        }
       ],
       "eventCodes": [
         "AddressChg",
@@ -1873,13 +2355,38 @@
         "REG1067"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M1_PrincipalMPAN" },
-        { "type": "block", "id": "B090_SubsidiaryMPAN", "titleOverride": "*B090- MPAN Relationship Subsidiary MPAN (Mandatory) - Group below repeated for each Secondary MPAN as Required" },
-        { "type": "block", "id": "B091_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "M1_PrincipalMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B090_SubsidiaryMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B091_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "LinkedImportExportAdd",
@@ -1899,24 +2406,75 @@
       "context": "Interface providing the Registration Service Response to an MPAN Relationship request to create/change.",
       "supplier_type": "supplier_receive",
       "rejectionCodeIds": [
-        "REG0000", "REG0005", "REG0006", "REG0007", "REG1050", "REG1051",
-        "REG1052", "REG1053", "REG1054", "REG1055", "REG1056", "REG1057",
-        "REG1058", "REG1059", "REG1060", "REG1061", "REG1062", "REG1063",
-        "REG1064", "REG1065", "REG1067", "REG9004", "REG9010"
+        "REG0000",
+        "REG0005",
+        "REG0006",
+        "REG0007",
+        "REG1050",
+        "REG1051",
+        "REG1052",
+        "REG1053",
+        "REG1054",
+        "REG1055",
+        "REG1056",
+        "REG1057",
+        "REG1058",
+        "REG1059",
+        "REG1060",
+        "REG1061",
+        "REG1062",
+        "REG1063",
+        "REG1064",
+        "REG1065",
+        "REG1067",
+        "REG9004",
+        "REG9010"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M1_PrincipalMPAN", "titleOverride": "M1 - MPAN Relationship Principal MPAN (Mandatory)" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "header", "title": "B090 - MPAN Relationship Subsidary MPAN Group below repeated for each Secondary MPAN as Required" },
-        { "type": "block", "id": "B090_SubsidiaryMPAN", "titleOverride": "*B090 - MPAN Relationship Subsidiary MPAN (Mandatory)" },
-        { "type": "block", "id": "B091_AdditionalInfo", "titleOverride": "B091 - MPAN Relationship Additonal Information (Optional)" },
-        { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists) - *B907 block repeated for each Linked I/E MPAN in the group" },
-        { "type": "block", "id": "B036_LinkedMeterDetails", "titleOverride": "> *B036 - Linked Import/Export Meter Details - *B910 B036 & B075 below repeated for each Meter /MAP pair" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> *B075 - MPAN Linked Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B036 Meter provided above" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M1_PrincipalMPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B090_SubsidiaryMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B091_AdditionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "B035_LinkedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B036_LinkedMeterDetails"
+        },
+        {
+          "type": "block",
+          "id": "B075_ExistingMeterMAPInfo"
+        }
       ],
       "eventCodes": [
         "LinkedImportExportAdd",
@@ -1936,16 +2494,46 @@
       "context": "Data Service will provide Actual or Estimated UTC Settlement Period Consumption data (Active and where appropriate Reactive), for each MPAN, for each day that they are appointed.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B044_DataServiceInfo" },
-        { "type": "block", "id": "B067_ConnectionType" },
-        { "type": "block", "id": "B045_MQID", "titleOverride": "B045 - MQID (Mandatory)" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "> *B046 - UTC Settlement Day (Mandatory) - Block below Repeated for each UTC Settlement Date" },
-        { "type": "block", "id": "B047_UTCSettlementConsumption", "titleOverride": ">> *B047- UTC Settlement Period Consumption Data (Mandatory) - Block below Repeated for each UTC Settlement Consumption Period as Required" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B044_DataServiceInfo"
+        },
+        {
+          "type": "block",
+          "id": "B067_ConnectionType"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B047_UTCSettlementConsumption"
+        }
       ],
       "eventCodes": [
         "ActivePower",
@@ -1961,13 +2549,34 @@
       "context": "Central settlement will calculate Settlement Period Load Shapes on a daily basis. These new load shapes are created for each UTC Settlement Period of a UTC Settlement Date and must be delivered to the Data Services, within agreed timescales, so as to allow for Data Service Validation & Estimation processes to operate in an accurate & timely fashion.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "*B046 - UTC Settlement Day" },
-        { "type": "block", "id": "B051_LoadShapeCriteria", "titleOverride": "> *B051 - Load Shape Criteria (Mandatory), Repeated for each combination of LS Criteria" },
-        { "type": "block", "id": "B052_LoadShapePeriodData", "titleOverride": ">> *B052 Load Shape Period Data (Mandatory), Repeated for each Settlement Period" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B051_LoadShapeCriteria"
+        },
+        {
+          "type": "block",
+          "id": "B052_LoadShapePeriodData"
+        }
       ],
       "eventCodes": [
         "LSSPeriodData"
@@ -1982,14 +2591,38 @@
       "context": "Central settlement will calculate Settlement Period Load Shapes on a daily basis. These new load shapes are created for each UTC Settlement Period of a UTC Settlement Date and must be delivered to the Data Services, within agreed timescales, so as to allow for Data Service Validation & Estimation processes to operate in an accurate & timely fashion.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "* B046 - UTC Settlement Day" },
-        { "type": "block", "id": "B051_LoadShapeCriteria", "titleOverride": "> *B051 - Load Shape Criteria (Mandatory), Repeated for each combination of LS Criteria" },
-        { "type": "block", "id": "B054_LoadShapeAnnualConsumption", "titleOverride": "> B054 - Load Shape Annual Consumption, Repeated for each combination of LS Criteria" },
-        { "type": "block", "id": "B053_LoadShapeTotalData", "titleOverride": ">> *B053 Load Shape Total Data (Mandatory), Repeated for each Combination of Load Shape Criteria" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B051_LoadShapeCriteria"
+        },
+        {
+          "type": "block",
+          "id": "B054_LoadShapeAnnualConsumption"
+        },
+        {
+          "type": "block",
+          "id": "B053_LoadShapeTotalData"
+        }
       ],
       "eventCodes": [
         "LSSTotalsData"
@@ -2004,15 +2637,42 @@
       "context": "Notification to the Data Service of circumstances which may impact or influence Data Service treatment of a site",
       "supplier_type": "supplier_send",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B057_SupplierAdvisory", "titleOverride": "B057 - Supplier Advisory Notification (Mandatory, not required for SN-OffPeakDec)" },
-        { "type": "block", "id": "B069_AdvisoryMeterID", "titleOverride": "B069 Supplier Advisory Notification Meter ID ( Mandatory for SN-RemoteEnabled and SN-RemoteDisabled)" },
-        { "type": "block", "id": "B058_SupplierNominatedAC", "titleOverride": "B058 - Supplier Nominated Annual Consumption (Mandatory for Event [SN-SupplierAC])" },
-        { "type": "block", "id": "B097_OffPeakDeclaration", "titleOverride": "*B097 - Off Peak Declaration (Mandatory for Event [SN-OffPeakDec]) - Block below Repeated for each Off Peak Consumption Day" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B057_SupplierAdvisory"
+        },
+        {
+          "type": "block",
+          "id": "B069_AdvisoryMeterID"
+        },
+        {
+          "type": "block",
+          "id": "B058_SupplierNominatedAC"
+        },
+        {
+          "type": "block",
+          "id": "B097_OffPeakDeclaration"
+        }
       ],
       "eventCodes": [
         "SN-NoComms",
@@ -2051,16 +2711,46 @@
         "REG1078"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available)" },
-        { "type": "block", "id": "B068_ConsentInfo", "titleOverride": "B068 - MPAN Consent Info (Mandatory for Event [ConsentGranularity]" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030- IHD Info (Mandatory for Event [IHDInfo])" },
-        { "type": "block", "id": "B031_SMSO_Info", "titleOverride": "B031 - SMSO (Mandatory for Event [SMSO])" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory where event is [SSCandProfileClass] AND Traditional Meters / Optional for other Meters)" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B068_ConsentInfo"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        }
       ],
       "eventCodes": [
         "ConsentGranularity",
@@ -2098,17 +2788,50 @@
         "REG1088"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B068_ConsentInfo", "titleOverride": "B068 - MPAN Consent Info (Mandatory for Event [ConsentGranularity] )" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - IHD Info (Mandatory for Event [IHDInfo])" },
-        { "type": "block", "id": "B031_SMSO_Info", "titleOverride": "B031 - SMSO (Mandatory for Event [SMSO])" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory where event is [SSCandProfileClass] AND Traditional Meters / Optional for other Meters)" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B068_ConsentInfo"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        }
       ],
       "eventCodes": [
         "ConsentGranularity",
@@ -2129,13 +2852,34 @@
         "REG0000"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B045_MQID", "titleOverride": "*B045 - MQID (Block repeated for each MQID as Required)" },
-        { "type": "block", "id": "B073_ConsumptionAmendmentReq", "titleOverride": "*B073 - Supplier Consumption Amendment Request (Block repeated for each Consumption Period)" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B073_ConsumptionAmendmentReq"
+        }
       ],
       "eventCodes": [
         "ConsumptionAmendment"
@@ -2150,19 +2894,56 @@
       "context": "Response from the Data Service to a Supplier Request Calculate and Submit a Consumption Amendment",
       "supplier_type": "supplier_receive",
       "rejectionCodeIds": [
-        "DSCA001", "DSCA002", "DSCA003", "DSCA004", "DSCA005", "DSCA006",
-        "DSCA007", "DSCA008", "DSCA009", "DSCA010", "DSCA011", "DSCA012",
-        "DSCA013", "DSCA014", "DSCA015", "DSCA999"
+        "DSCA001",
+        "DSCA002",
+        "DSCA003",
+        "DSCA004",
+        "DSCA005",
+        "DSCA006",
+        "DSCA007",
+        "DSCA008",
+        "DSCA009",
+        "DSCA010",
+        "DSCA011",
+        "DSCA012",
+        "DSCA013",
+        "DSCA014",
+        "DSCA015",
+        "DSCA999"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B045_MQID", "titleOverride": "*B045 - MQID (Block repeated for each MQID as Required)" },
-        { "type": "block", "id": "B073_ConsumptionAmendmentReq", "titleOverride": ">*B073 - Supplier Consumption Amendment Request (Block repeated for each Consumption Period(s))" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B073_ConsumptionAmendmentReq"
+        }
       ],
       "eventCodes": [
         "ConsumptionAmendment"
@@ -2219,14 +3000,38 @@
         "REG1074"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available)" },
-        { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSApp])" },
-        { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071 - Proposed Data Service Details (Mandatory for Event [DSApp])" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B070_ProposedMS"
+        },
+        {
+          "type": "block",
+          "id": "B071_ProposedDS"
+        }
       ],
       "eventCodes": [
         "DSApp",
@@ -2242,32 +3047,146 @@
       "context": "Registration Service Response to Suppliers initial request to Appoint a Service Provider, either Metering Service or Data Service",
       "supplier_type": "supplier_receive",
       "rejectionCodeIds": [
-        "REG1043", "REG1075", "REG1076", "REG1077", "REG1078", "REG1079", "REG1080",
-        "REG1081", "REG1082", "REG1083", "REG1084", "REG1085", "REG1086", "REG1087",
-        "REG1088", "REG1089", "REG1090", "REG1091", "REG1092", "REG1093", "REG1094",
-        "REG1095", "REG1096", "REG1097", "REG1098", "REG1099", "REG1100", "REG1101",
-        "REG1102", "REG1103", "REG1104", "REG1105", "REG1106", "REG1107", "REG1108",
-        "REG1109", "REG1110", "REG1111", "REG1112", "REG1113", "REG1114", "REG1115",
-        "REG1116", "REG1117", "REG1118", "REG1119", "REG1120", "REG1121", "REG1122",
-        "REG1123", "REG1124", "REG1125", "REG1126", "REG1127", "REG1128", "REG1129",
-        "REG1130", "REG1131", "REG1132", "REG1133", "REG1134", "REG1135", "REG1136",
-        "REG1137", "REG1138", "REG1139", "REG1140", "REG1141", "REG1142", "REG1143",
-        "REG1144", "REG1145", "REG1146", "REG1147", "REG1148", "REG1149", "REG1150",
-        "REG1151", "REG1152", "REG1153", "REG1154", "REG1155", "REG1156", "REG1157",
-        "REG1158", "REG1159", "REG1160", "REG1161", "REG1162", "REG1163", "REG1164",
-        "REG1165", "REG1166", "REG1167", "REG1168", "REG1169", "REG1170", "REG1171",
-        "REG1172", "REG1173", "REG1174", "REG1175"
+        "REG1043",
+        "REG1075",
+        "REG1076",
+        "REG1077",
+        "REG1078",
+        "REG1079",
+        "REG1080",
+        "REG1081",
+        "REG1082",
+        "REG1083",
+        "REG1084",
+        "REG1085",
+        "REG1086",
+        "REG1087",
+        "REG1088",
+        "REG1089",
+        "REG1090",
+        "REG1091",
+        "REG1092",
+        "REG1093",
+        "REG1094",
+        "REG1095",
+        "REG1096",
+        "REG1097",
+        "REG1098",
+        "REG1099",
+        "REG1100",
+        "REG1101",
+        "REG1102",
+        "REG1103",
+        "REG1104",
+        "REG1105",
+        "REG1106",
+        "REG1107",
+        "REG1108",
+        "REG1109",
+        "REG1110",
+        "REG1111",
+        "REG1112",
+        "REG1113",
+        "REG1114",
+        "REG1115",
+        "REG1116",
+        "REG1117",
+        "REG1118",
+        "REG1119",
+        "REG1120",
+        "REG1121",
+        "REG1122",
+        "REG1123",
+        "REG1124",
+        "REG1125",
+        "REG1126",
+        "REG1127",
+        "REG1128",
+        "REG1129",
+        "REG1130",
+        "REG1131",
+        "REG1132",
+        "REG1133",
+        "REG1134",
+        "REG1135",
+        "REG1136",
+        "REG1137",
+        "REG1138",
+        "REG1139",
+        "REG1140",
+        "REG1141",
+        "REG1142",
+        "REG1143",
+        "REG1144",
+        "REG1145",
+        "REG1146",
+        "REG1147",
+        "REG1148",
+        "REG1149",
+        "REG1150",
+        "REG1151",
+        "REG1152",
+        "REG1153",
+        "REG1154",
+        "REG1155",
+        "REG1156",
+        "REG1157",
+        "REG1158",
+        "REG1159",
+        "REG1160",
+        "REG1161",
+        "REG1162",
+        "REG1163",
+        "REG1164",
+        "REG1165",
+        "REG1166",
+        "REG1167",
+        "REG1168",
+        "REG1169",
+        "REG1170",
+        "REG1171",
+        "REG1172",
+        "REG1173",
+        "REG1174",
+        "REG1175"
       ],
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSAppInitalResp])" },
-        { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071- Proposed Data Service Details (Mandatory for Event [DSAppInitalResp])" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B070_ProposedMS"
+        },
+        {
+          "type": "block",
+          "id": "B071_ProposedDS"
+        }
       ],
       "eventCodes": [
         "DSAppInitalResp",
@@ -2283,37 +3202,102 @@
       "context": "Registration Service request to a Service Provider to consider Appointment to an MPAN as either a Metering Service or Data Service",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B012_RequestingSupplier" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070- Proposed Metering Service Details (Mandatory for Event [MSAppSPRequest])" },
-        { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071- Proposed Data Service Details (Mandatory for Event [DSAppSPRequest])" },
-        { "type": "block", "id": "B072_IncumbentMS", "titleOverride": "B072 - Incumbent Metering Service (Conditionally Mandatory - where available in Registration Service - Ref Interfaces Notes)" },
-        { "type": "block", "id": "B022_MPAN_Address" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" },
-        { "type": "block", "id": "B024_DUOS_Tariff" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B026_MarketSegment" },
-        { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment Status (Conditionally Mandatory - Required only for Smart Meters if available)" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory for Traditional Meters / Optional for other Meters OR where not available in Registration Service)" },
-        { "type": "header", "title": "B905* - B074 and B075 Blocks below are repeated for each Installed Meter" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - MPAN Existing Meter Info (Mandatory if Metering Installed)" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": "> B075 - MPAN Existing Meter Map Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" },
-        { "type": "header", "title": "B907* - B035 blocks below are repeated for each Linked Import/Export MPAN" },
-        { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
-        { "type": "header", "title": "> Repeated for each Installed Meter at the Linked MPAN" },
-        { "type": "block", "id": "B036_LinkedMeterDetails", "titleOverride": "> B036 - Linked Import/Export Meter Details (Mandatory if Meter(s) exist)" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record only for each B036 Meter provided above" },
-        { "type": "header", "title": "B908* B036 blocks are repeated for each Related MPAN, if Related exists" },
-        { "type": "block", "id": "B037_RelatedMPAN" },
-        { "type": "header", "title": "> Repeated for each Installed Meter (B036) at the Related MPAN" },
-        { "type": "block", "id": "B038_RelatedMeterDetails", "titleOverride": "> B038 - Related MPAN Meter Details" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": ">> B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record only for each B038 Meter provided above" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B070_ProposedMS"
+        },
+        {
+          "type": "block",
+          "id": "B071_ProposedDS"
+        },
+        {
+          "type": "block",
+          "id": "B072_IncumbentMS"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B029_DCC_Enrolment"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B075_ExistingMeterMAPInfo"
+        },
+        {
+          "type": "block",
+          "id": "B035_LinkedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B036_LinkedMeterDetails"
+        },
+        {
+          "type": "block",
+          "id": "B037_RelatedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B038_RelatedMeterDetails"
+        }
       ],
       "eventCodes": [
         "DSAppSPRequest",
@@ -2329,17 +3313,50 @@
       "context": "Service Providers Response to request for Appointment or Change of Appointment for an MPAN",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B007_AppointmentOutcome", "titleOverride": "B007 - Service Provider Appointment Outcome Mandatory for [MSAppSPReponse] & [DSAppSPReponse] - NOT required for [SDS-MDRUpdate]" },
-        { "type": "block", "id": "B012_RequestingSupplier" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available)" },
-        { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSAppSPResponse])" },
-        { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071 - Proposed Data Service Details (Mandatory for Event [DSAppSPResponse )" },
-        { "type": "block", "id": "B018_SDS_Nominated_MDR", "titleOverride": "B018 - SDS Nominated MDR (Mandatory for Event [SDS-MDRUpdate] & ([DSAppSPResponse] where Smart meters installed))" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B007_AppointmentOutcome"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B070_ProposedMS"
+        },
+        {
+          "type": "block",
+          "id": "B071_ProposedDS"
+        },
+        {
+          "type": "block",
+          "id": "B018_SDS_Nominated_MDR"
+        }
       ],
       "eventCodes": [
         "DSAppSPResponse",
@@ -2356,20 +3373,62 @@
       "context": "Registration Service Notification on Appointment Status. This could be that Appointment has been Accepted or Rejected by Service Provider; has become Lapsed (i.e. could not be successfully matched with a SecuredActive Switch). It is also used to advise the Incumbent Metering Service to issue MTDs to incoming Service Providers.",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B007_AppointmentOutcome", "titleOverride": "B007 - Service Provider Appointment Outcome (not required for [SDS-MDROutcome], [DCC-MDROutcome])" },
-        { "type": "block", "id": "B012_RequestingSupplier" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B070_ProposedMS", "titleOverride": "B070 - Proposed Metering Service Details (Mandatory for Event [MSAppAccepted], [MSAppRejected],[MSAppLapsed])" },
-        { "type": "block", "id": "B071_ProposedDS", "titleOverride": "B071 - Proposed Data Service Details (Mandatory for Event [DSAppAccepted],[DSAppRejected],[DSAppLapsed])" },
-        { "type": "block", "id": "B019_Assigned_MDR", "titleOverride": "B019 - Assigned MDR (Conditionally Mandatory - [DSAppAccepted] Smart Meters Only)" },
-        { "type": "block", "id": "B066_DCC_MDR_Outcome", "titleOverride": "B066 - DCC MDR Outcome (Mandatory For Event[DCC-MDROutcome] Only)" },
-        { "type": "block", "id": "B092_SDS_MDR_Update_Outcome", "titleOverride": "B092 - SDS MDR Update Outcome (Mandatory for Event [SDS-MDROutcome] Only)" },
-        { "type": "block", "id": "B099_SDS_MDR_Update_Response", "titleOverride": "B099 - SDS MDR Update Outcome (Mandatory for Event [SDS-MDROutcome] Only)" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B007_AppointmentOutcome"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B070_ProposedMS"
+        },
+        {
+          "type": "block",
+          "id": "B071_ProposedDS"
+        },
+        {
+          "type": "block",
+          "id": "B019_Assigned_MDR"
+        },
+        {
+          "type": "block",
+          "id": "B066_DCC_MDR_Outcome"
+        },
+        {
+          "type": "block",
+          "id": "B092_SDS_MDR_Update_Outcome"
+        },
+        {
+          "type": "block",
+          "id": "B099_SDS_MDR_Update_Response"
+        }
       ],
       "eventCodes": [
         "DCC-MDROutcome",
@@ -2392,38 +3451,122 @@
       "context": "Registration Service formal Confirmation of Appointment & provision of MPAN Supporting Data and MTDs",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B012_RequestingSupplier" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B014_MS_Details", "titleOverride": "B014 - Metering Service Details (Mandatory for Event [MSAppActive])" },
-        { "type": "block", "id": "B015_DS_Details", "titleOverride": "B015 - Data Service Details (Mandatory for Event [DSAppActive])" },
-        { "type": "block", "id": "B019_Assigned_MDR", "titleOverride": "B019 - Assigned MDR (Conditionally Mandatory - [DSAppActive] Smart Meters Only)" },
-        { "type": "block", "id": "B005_IncumbentServiceProviders", "titleOverride": "B005 - Incumbent/Outgoing Service Providers (Conditionally Mandatory - where availible in Registration Service)" },
-        { "type": "block", "id": "B016_Partner_MS_Info", "titleOverride": "B016 - Partner Metering Service Info - Conditionally Mandatory for [DSAppActive] and where available in Registration Service" },
-        { "type": "block", "id": "B017_Partner_DS_Info", "titleOverride": "B017 - Partner Data Service Info - Conditionally Mandatory for [MSAppActive] and where available in Registration Service" },
-        { "type": "block", "id": "B022_MPAN_Address" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" },
-        { "type": "block", "id": "B024_DUOS_Tariff" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B026_MarketSegment" },
-        { "type": "block", "id": "B027_AnnualConsumption", "titleOverride": "B027 - Assumed Annual Consumption (Conditionally Mandatory - if available in Regsitration)" },
-        { "type": "block", "id": "B028_DomPremiseIndicator", "titleOverride": "B028 - Domestic Premise Indicator (Mandatory)" },
-        { "type": "block", "id": "B068_ConsentInfo", "titleOverride": "B068 - MPAN Consent Info (Mandatory for event 'DSAppActive' only, and where available In Registration Service)" },
-        { "type": "block", "id": "B029_DCC_Enrolment", "titleOverride": "B029 - DCC Enrolment Status (Conditionally Mandatory - Required only for Smart Meters if available)" },
-        { "type": "block", "id": "B030_IHD_Info", "titleOverride": "B030 - MPAN IHD Information (Optional)" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "block", "id": "B032_LegacyInfo", "titleOverride": "B032 - MPAN Legacy Info (Mandatory for Traditional Meters / Optional for other Meters OR where not available in Registration Service)" },
-        { "type": "header", "title": "B905 - B074 and B075 Blocks below are repeated for each Installed Meter" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - Existing MPAN Meter Details (Mandatory if Metering Installed)" },
-        { "type": "block", "id": "B075_ExistingMeterMAPInfo", "titleOverride": "> B075 - Existing Meter MAP Info (Mandatory for each Meter Provided) - Most Recent Record only for each B074 Meter provided above" },
-        { "type": "header", "title": "B035 block below are repeated for each Linked Import/Export MPAN" },
-        { "type": "block", "id": "B035_LinkedMPAN", "titleOverride": "B035 - Linked Import / Export MPAN (Mandatory if Linked MPAN Exists)" },
-        { "type": "header", "title": "B037 block below are repeated for each Related MPAN, where Related MPAN(s) exist" },
-        { "type": "block", "id": "B037_RelatedMPAN" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B014_MS_Details"
+        },
+        {
+          "type": "block",
+          "id": "B015_DS_Details"
+        },
+        {
+          "type": "block",
+          "id": "B019_Assigned_MDR"
+        },
+        {
+          "type": "block",
+          "id": "B005_IncumbentServiceProviders"
+        },
+        {
+          "type": "block",
+          "id": "B016_Partner_MS_Info"
+        },
+        {
+          "type": "block",
+          "id": "B017_Partner_DS_Info"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B027_AnnualConsumption"
+        },
+        {
+          "type": "block",
+          "id": "B028_DomPremiseIndicator"
+        },
+        {
+          "type": "block",
+          "id": "B068_ConsentInfo"
+        },
+        {
+          "type": "block",
+          "id": "B029_DCC_Enrolment"
+        },
+        {
+          "type": "block",
+          "id": "B030_IHD_Info"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B032_LegacyInfo"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B075_ExistingMeterMAPInfo"
+        },
+        {
+          "type": "block",
+          "id": "B035_LinkedMPAN"
+        },
+        {
+          "type": "block",
+          "id": "B037_RelatedMPAN"
+        }
       ],
       "eventCodes": [
         "DSAppActive",
@@ -2439,23 +3582,42 @@
       "context": "Notification to a Service Provider that they have been De-Appointed, and no longer have responsibility for the MPAN",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B013_CSS_ID", "titleOverride": "B013 CSS Registration Request ID (Mandatory if available in Registration Service)" },
-        { "type": "block", "id": "B008_MS_DeApp", "titleOverride": "B008 - Metering Service De-Appointment Details (Mandatory for [MSDeApp])" },
-        { "type": "block", "id": "B009_DS_DeApp", "titleOverride": "B009 - Data Service De-Appointment Details (Mandatory for [DSDeApp])" },
-        { "type": "header", "title": "B010 - Incoming Metering Service Details (Conditionally Mandatory for Event [MSDeApp] if [DI-819] is not DEREG) - where available in Registration Service / Mandatory for [MSDeAppUpdate] - Ref Interface Notes" },
-        { "type": "item", "id": "DI-822" },
-        { "type": "item", "id": "DI-204" },
-        { "type": "item", "id": "DI-824" },
-        { "type": "header", "title": "B011 - Incoming Data Service Details (Conditionally Mandatory for Event [DSDeApp] if [DI-819] is not DEREG) - where available in Registration Service / Mandatory for [DSDeAppUpdate]- Ref Interface Notes" },
-        { "type": "item", "id": "DI-825" },
-        { "type": "item", "id": "DI-205" },
-        { "type": "item", "id": "DI-827" },
-        { "type": "block", "id": "B002_IncomingSupplier", "titleOverride": "B002 - Incoming Supplier Information - Mandatory for Event [MSDeApp] & [DSDeApp] where De-appointment Reason Code is 'CSUPP'" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B013_CSS_ID"
+        },
+        {
+          "type": "block",
+          "id": "B008_MS_DeApp"
+        },
+        {
+          "type": "block",
+          "id": "B009_DS_DeApp"
+        },
+        {
+          "type": "block",
+          "id": "B002_IncomingSupplier"
+        }
       ],
       "eventCodes": [
         "DSDeApp",
@@ -2473,13 +3635,34 @@
       "context": "Request from Service Provider either to record, delete or amend a Customer Direct Contract with that Service Provider, for a given MPAN",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B020_CDC_MS_Info", "titleOverride": "B020 - Customer Direct Contract MS Info ~ Mandatory for event [DirectContractMSAdd]" },
-        { "type": "block", "id": "B021_CDC_DS_Info", "titleOverride": "B021 - Customer Direct Contract DS Info ~ Mandatory for event [DirectContractDSAdd]" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B020_CDC_MS_Info"
+        },
+        {
+          "type": "block",
+          "id": "B021_CDC_DS_Info"
+        }
       ],
       "eventCodes": [
         "DirectContractDSAdd",
@@ -2497,14 +3680,38 @@
       "context": "The response from Registration Service, confirming the acceptance or rejection of the Customer Direct Contract Request",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B020_CDC_MS_Info", "titleOverride": "B020 - Customer Direct Contract MS Info ~ Mandatory for event [DirectContractMSAdd]" },
-        { "type": "block", "id": "B021_CDC_DS_Info", "titleOverride": "B021 - Customer Direct Contract DS Info ~ Mandatory for event [DirectContractDSAdd]" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B020_CDC_MS_Info"
+        },
+        {
+          "type": "block",
+          "id": "B021_CDC_DS_Info"
+        }
       ],
       "eventCodes": [
         "DirectContractDSAdd",
@@ -2522,12 +3729,30 @@
       "context": "Used to send an ECS (Elexon Calculation Service) Calculated Annual Consumption (AC) to a Registration Service. IF-040 is only used for Profile Class 03, 04, 05, 06, 07 and 08 MPANs.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B059_AAC" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B059_AAC"
+        }
       ],
       "eventCodes": [
         "AnnualConsumption"
@@ -2542,13 +3767,34 @@
       "context": "This interface is to allow Cumulative Reads and/or, Smart/Advanced Register Redings, to be exchanged in a number of business scenarios. Following MHHS implementation, in most cases consumption values will be available directly from the meter. However, there may be occasions when consumption may not be available, therefore a Cumulative Reading will need to be captured/shared as a 'fall back' measure",
       "supplier_type": "supplier_both",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B064_CumulativeReading", "titleOverride": "* B064 - Cumulative Reading Information (Conditionally Mandatory) - Block Repeated for each Meter(s) associated with the MPAN" },
-        { "type": "block", "id": "B065_ConfigurableReading", "titleOverride": "* B065 - Meter Configurable Register Reading (Conditionally Mandatory) - Block Repeated for each set of Configured Register(s) for each Meter" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B064_CumulativeReading"
+        },
+        {
+          "type": "block",
+          "id": "B065_ConfigurableReading"
+        }
       ],
       "eventCodes": [
         "DSEstimate",
@@ -2572,12 +3818,30 @@
       "context": "Used by the Registration Service (REGS) to notify the DCC of a change in connection type for a given MPAN, i.e. a change in connection from LV with CT to LV with CT/WHOLE CURRENT.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        }
       ],
       "eventCodes": [
         "ConnectionTypeChange"
@@ -2592,13 +3856,34 @@
       "context": "Registration Service Notification of a Change in Market Segment",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B026_MarketSegment" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        }
       ],
       "eventCodes": [
         "MarketSegmentChange"
@@ -2613,12 +3898,30 @@
       "context": "Reminder Notification to a Supplier that some element of Registration Data is inconsistent or invalid, & action is required to resolve it",
       "supplier_type": "supplier_receive",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "ConsentGranularityInvalid",
@@ -2636,13 +3939,30 @@
       "context": "The purpose of this interface is to notify DIP Participants of the Publication of a Downloadable Asset, such as ISD or other Reports, and the URI that can be used to access the publication.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "P01_PublicationInfo" },
-        { "type": "header", "title": "> P01 Block Below Repeated for each Distribution Variant" },
-        { "type": "block", "id": "P02_DistributionVariant" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "P01_PublicationInfo"
+        },
+        {
+          "type": "block",
+          "id": "P02_DistributionVariant"
+        }
       ],
       "eventCodes": [
         "ISD"
@@ -2657,19 +3977,58 @@
       "context": "Registration Service sends this to provide updates to EES which are not required to be serviced by any other interface.",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Optional for non-Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B001_GSPEffectiveFrom", "titleOverride": "B001 - GSP EffectiveFrom (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B022_MPAN_Address", "titleOverride": "B022 - MPAN Address (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B023_MPAN_ConnectionInfo", "titleOverride": "B023 - MPAN Connection Info (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B024_DUOS_Tariff", "titleOverride": "B024 - MPAN DUOS Tariff ID (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B025_EnergisationStatus", "titleOverride": "B025 - MPAN Energisation Status (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B026_MarketSegment", "titleOverride": "B026 - MPAN Market Segment (Mandatory for Event [MPANCreation])" },
-        { "type": "block", "id": "B079_MP_Status", "titleOverride": "B079 - Meter Point Registration Statuses (Mandatory for Event [MPStatusChange] & [MPANCreation])" },
-        { "type": "block", "id": "B080_GreenDeal", "titleOverride": "B080 - Green Deal Information (Mandatory for Event [GreenDeal])" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Optional for non-Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B001_GSPEffectiveFrom"
+        },
+        {
+          "type": "block",
+          "id": "B022_MPAN_Address"
+        },
+        {
+          "type": "block",
+          "id": "B023_MPAN_ConnectionInfo"
+        },
+        {
+          "type": "block",
+          "id": "B024_DUOS_Tariff"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B026_MarketSegment"
+        },
+        {
+          "type": "block",
+          "id": "B079_MP_Status"
+        },
+        {
+          "type": "block",
+          "id": "B080_GreenDeal"
+        }
       ],
       "eventCodes": [
         "GreenDeal",
@@ -2686,20 +4045,58 @@
       "context": "Request from the SDS that an MDR starts Data Retrieval Activity",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Required - Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B019_Assigned_MDR", "titleOverride": "B019 - Assigned MDR (Mandatory)" },
-        { "type": "block", "id": "B012_RequestingSupplier", "titleOverride": "B012 Service Provider Requesting Supplier (Optional)" },
-        { "type": "block", "id": "B078_EnergyDirection" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B068_ConsentInfo", "titleOverride": "B068 - MPAN Consent Info (Mandatory)" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "header", "title": "*B074 Block below repeated for each Installed Meter" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - Existing MPAN Meter Details (Mandatory if Metering Installed)" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Required - Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B019_Assigned_MDR"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B078_EnergyDirection"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B068_ConsentInfo"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "MDRStart"
@@ -2714,21 +4111,62 @@
       "context": "This is the reponse from MDR to SDS Request to Start Data Retrieval Activity",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Required - Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "R0_Response" },
-        { "type": "block", "id": "B019_Assigned_MDR", "titleOverride": "B019 - Assigned MDR (Mandatory)" },
-        { "type": "block", "id": "B012_RequestingSupplier", "titleOverride": "B012 Service Provider Requesting Supplier (Optional)" },
-        { "type": "block", "id": "B078_EnergyDirection" },
-        { "type": "block", "id": "B025_EnergisationStatus" },
-        { "type": "block", "id": "B068_ConsentInfo", "titleOverride": "B068 - MPAN Consent Info (Mandatory)" },
-        { "type": "block", "id": "B031_SMSO_Info" },
-        { "type": "header", "title": "*B074 Block below repeated for each Installed Meter" },
-        { "type": "block", "id": "B074_ExistingMeterInfo", "titleOverride": "B074 - Existing MPAN Meter Details (Mandatory if Metering Installed)" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Required - Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "R0_Response"
+        },
+        {
+          "type": "block",
+          "id": "B019_Assigned_MDR"
+        },
+        {
+          "type": "block",
+          "id": "B012_RequestingSupplier"
+        },
+        {
+          "type": "block",
+          "id": "B078_EnergyDirection"
+        },
+        {
+          "type": "block",
+          "id": "B025_EnergisationStatus"
+        },
+        {
+          "type": "block",
+          "id": "B068_ConsentInfo"
+        },
+        {
+          "type": "block",
+          "id": "B031_SMSO_Info"
+        },
+        {
+          "type": "block",
+          "id": "B074_ExistingMeterInfo"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "MDRStartResponse"
@@ -2743,13 +4181,34 @@
       "context": "Request from the SDS that an MDR stops Data Retrieval Activity",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Required - Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B083_MDR_End_Date" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Required - Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B083_MDR_End_Date"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "MDRStartResponse"
@@ -2764,17 +4223,42 @@
       "context": "MDR Provide Consumption to SDS",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Required - Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "block", "id": "B045_MQID", "titleOverride": "B045 - MQID (Mandatory)" },
-        { "type": "header", "title": "> B046 Block below Repeated for each UTC Settlement Date" },
-        { "type": "block", "id": "B046_UTCSettlementDate", "titleOverride": "> *B046 - UTC Settlement Day (Mandatory)" },
-        { "type": "header", "title": ">> B084 Block below Repeated for each UTC Settlement Consumption Period as Required" },
-        { "type": "block", "id": "B084_MDR_Consumption", "titleOverride": ">> *B084 - MDR Settlement Period Consumption Data (Mandatory)" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Required - Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B045_MQID"
+        },
+        {
+          "type": "block",
+          "id": "B046_UTCSettlementDate"
+        },
+        {
+          "type": "block",
+          "id": "B084_MDR_Consumption"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "MDRConsumption"
@@ -2789,18 +4273,42 @@
       "context": "MDR Provide Meter Reading(s) to SDS",
       "supplier_type": "none",
       "composition": [
-        { "type": "block", "id": "S0_TransactionalInfo" },
-        { "type": "header", "title": "S1 - Sender Info (Mandatory)" },
-        { "type": "header", "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)" },
-        { "type": "header", "title": "A0 - Addressing (Required - Primary Routing)" },
-        { "type": "block", "id": "M0_MPAN" },
-        { "type": "header", "title": "Mandatory to provide (as a minimum) either a B076 Block or B065 Block where Event Type is [ReadingRemote]" },
-        { "type": "header", "title": "B076 Block Below Repeated for each Meter(s) associated with the MPAN" },
-        { "type": "block", "id": "B076_MDR_CumulativeReading", "titleOverride": "* B076 - MDR Cumulative Reading Information (Conditionally Mandatory for [ReadingRemote])" },
-        { "type": "header", "title": "B065 Block Below Repeated for each set of Configured Register(s) for each Meter" },
-        { "type": "block", "id": "B065_ConfigurableReading", "titleOverride": "* B065 - Meter Configurable Register Reading (Conditionally Mandatory for [ReadingRemote])" },
-        { "type": "block", "id": "B077_MDR_RequestDate", "titleOverride": "B077- MDR Request Reference Date (Mandatory for [MDRTOU] & [MDRConsumption]" },
-        { "type": "block", "id": "B060_AdditionalInfo" }
+        {
+          "type": "header",
+          "title": "S1 - Sender Info (Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "D0- Transactional Info - DIP Set (Added by DIP - Mandatory)"
+        },
+        {
+          "type": "header",
+          "title": "A0 - Addressing (Required - Primary Routing)"
+        },
+        {
+          "type": "block",
+          "id": "S0_TransactionalInfo"
+        },
+        {
+          "type": "block",
+          "id": "M0_MPAN"
+        },
+        {
+          "type": "block",
+          "id": "B076_MDR_CumulativeReading"
+        },
+        {
+          "type": "block",
+          "id": "B065_ConfigurableReading"
+        },
+        {
+          "type": "block",
+          "id": "B077_MDR_RequestDate"
+        },
+        {
+          "type": "block",
+          "id": "B060_AdditionalInfo"
+        }
       ],
       "eventCodes": [
         "MDRConsumption",
@@ -2810,4 +4318,3 @@
       ]
     }
   ]
-}
