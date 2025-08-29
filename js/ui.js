@@ -1,6 +1,5 @@
 import { state, saveFavorites } from './state.js';
 import { escapeHtml, highlightSearchTerms } from './utils.js';
-// The incorrect import for 'generateInterfaceForm' has been removed from here.
 
 // A central cache for frequently accessed DOM elements.
 export const DOMElements = {};
@@ -13,23 +12,38 @@ export function cacheDOMElements() {
         'formInterfaceName', 'senderName', 'senderContact', 'receiverName', 'receiverContact',
         'formContent', 'exportFormBtn', 'loading-indicator'
     ];
-    ids.forEach(id => DOMElements[id] = document.getElementById(id));
+    
+    // Helper function to convert kebab-case (like 'loading-indicator') to camelCase (like 'loadingIndicator')
+    const toCamelCase = (str) => str.replace(/-(\w)/g, (_, c) => c.toUpperCase());
+
+    ids.forEach(id => {
+        const camelCaseId = toCamelCase(id);
+        DOMElements[camelCaseId] = document.getElementById(id);
+    });
+    
     DOMElements.filterButtons = document.querySelectorAll('.filter-btn');
     DOMElements.interfaceCardTemplate = document.getElementById('interface-card-template');
 }
 
 export function showLoading() {
-    DOMElements.loadingIndicator.style.display = 'flex';
+    // This will now work because cacheDOMElements creates DOMElements.loadingIndicator
+    if (DOMElements.loadingIndicator) {
+        DOMElements.loadingIndicator.style.display = 'flex';
+    }
 }
 
 export function hideLoading() {
-    DOMElements.loadingIndicator.style.display = 'none';
+    if (DOMElements.loadingIndicator) {
+        DOMElements.loadingIndicator.style.display = 'none';
+    }
 }
 
 // Renders the list of interfaces based on the current filters and search term.
 export function renderInterfaceList() {
     const { interfaceList, interfaceCardTemplate } = DOMElements;
     
+    if (!interfaceList || !interfaceCardTemplate) return;
+
     if (state.filteredInterfaces.length === 0) {
         interfaceList.innerHTML = `<div class="text-center text-[var(--purple)] opacity-80 p-4 bg-[var(--birch)] rounded-2xl">
             <p class="text-base font-medium">No interfaces found</p>
