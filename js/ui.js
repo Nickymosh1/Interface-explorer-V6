@@ -1,6 +1,6 @@
 import { state, saveFavorites } from './state.js';
 import { escapeHtml, highlightSearchTerms } from './utils.js';
-import { generateInterfaceForm } from './formBuilder.js';
+// The incorrect import for 'generateInterfaceForm' has been removed from here.
 
 // A central cache for frequently accessed DOM elements.
 export const DOMElements = {};
