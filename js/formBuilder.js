@@ -29,6 +29,9 @@ function generateFormHTML(interfaceItem) {
         return '<p class="text-center text-[var(--purple)] opacity-80 p-8">No data items to fill for this interface.</p>';
     }
     return interfaceItem.composition.map(comp => {
+        // Assign a data-block-id to each containing div for the exporter
+        const blockIdAttr = comp.id ? `data-block-id="${comp.id}"` : '';
+
         if (comp.type === 'header') {
             return `<div class="bg-[var(--birch)] p-4 rounded-xl"><h3 class="font-bold text-[var(--dark-purple)] text-lg">${escapeHtml(comp.title)}</h3></div>`;
         }
@@ -38,11 +41,11 @@ function generateFormHTML(interfaceItem) {
                 const dataItem = state.dataItemsCatalogue[itemId];
                 return dataItem ? generateDataItemInput(itemId, dataItem) : '';
             }).join('');
-            return `<div class="bg-white rounded-xl p-4 border border-gray-200"><h4 class="font-bold text-[var(--eon-red)] mb-4">${escapeHtml(comp.titleOverride || block.title)}</h4><div class="grid gap-4">${itemsHtml}</div></div>`;
+            return `<div class="bg-white rounded-xl p-4 border border-gray-200" ${blockIdAttr}><h4 class="font-bold text-[var(--eon-red)] mb-4">${escapeHtml(comp.titleOverride || block.title)}</h4><div class="grid gap-4">${itemsHtml}</div></div>`;
         }
         if (comp.type === 'item') {
             const dataItem = state.dataItemsCatalogue[comp.id];
-            return dataItem ? `<div class="bg-white rounded-xl p-4 border border-gray-200">${generateDataItemInput(comp.id, dataItem)}</div>` : '';
+            return dataItem ? `<div class="bg-white rounded-xl p-4 border border-gray-200" ${blockIdAttr}><div class="grid gap-4">${generateDataItemInput(comp.id, dataItem)}</div></div>` : '';
         }
         return '';
     }).join('');
@@ -56,9 +59,13 @@ function generateDataItemInput(itemId, dataItem) {
     let options = [];
     let inputHtml = '';
     
-    // Check for enumerated data items to create dropdowns
-    if (dataItem.enumerated) {
-        // SPECIAL LOGIC FOR DI-999 EVENT CODE DROPDOWN
+    // Auto-populate DI-000 (Interface Id) and DI-992 (Schema Version)
+    const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
+    const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : (itemId === 'DI-992' ? '1.0.0' : '');
+
+    if (isAutoPopulated) {
+         inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
+    } else if (dataItem.enumerated) {
         if (itemId === 'DI-999') {
             const currentInterface = state.interfaces.find(i => i.id === state.currentInterfaceId);
             const validCodes = currentInterface?.eventCodes || [];
@@ -69,24 +76,22 @@ function generateDataItemInput(itemId, dataItem) {
                     .map(code => ({ value: code, label: code }));
             }
         } 
-        // LOGIC FOR ALL OTHER ENUMERATED DROPDOWNS
         else if (dataItem.populationNotes && typeof dataItem.populationNotes === 'string') {
             options = parsePopulationNotes(dataItem.populationNotes);
         }
-    }
 
-    if (options.length > 0) {
-        const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
-        inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
-    } else {
+        if (options.length > 0) {
+            const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
+            inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
+        }
+    } 
+    
+    if (!inputHtml) { // If it's not auto-populated or a dropdown, create a standard input
         const inputType = determineInputType(dataItem);
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         switch (inputType) {
-            case 'date':
-                inputHtml = `<input type="date" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="date" ${isRequired ? 'required' : ''}>`;
-                break;
             case 'datetime':
-                inputHtml = `<input type="datetime-local" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
+                inputHtml = `<input type="text" placeholder="YYYY-MM-DDTHH:mm:ssZ" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
                 break;
             case 'number':
                 inputHtml = `<input type="number" placeholder="${escapeHtml(placeholder)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="number" ${isRequired ? 'required' : ''}>`;
@@ -102,7 +107,23 @@ function generateDataItemInput(itemId, dataItem) {
     return `<div class="form-group"><div class="flex items-start gap-3"><div class="flex-shrink-0 w-16"><code class="text-xs font-mono font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">${escapeHtml(itemId)}</code></div><div class="flex-1"><label class="block text-sm ${labelClass} mb-1">${escapeHtml(dataItem.name)}${requiredIndicator} <span class="text-xs font-normal text-gray-600 ml-2">(${escapeHtml(dataItem.cmo)})</span></label>${inputHtml}${validationHtml}<div class="validation-error text-xs text-red-600 mt-1 hidden"></div></div></div></div>`;
 }
 
-// Helper functions for the form builder
+
+function parsePopulationNotes(notes) {
+    return notes.split('\n').map(line => {
+        const parts = line.split(/[-=]\s+/).map(s => s.trim()).filter(Boolean);
+        if (parts.length >= 2) {
+            return { value: parts[0], label: `${parts[0]} - ${parts.slice(1).join(' ')}` };
+        }
+        if (parts.length === 1 && parts[0]) {
+             const singleParts = parts[0].split(/\s{2,}/);
+             if(singleParts.length >= 2) {
+                return { value: singleParts[0], label: `${singleParts[0]} - ${singleParts.slice(1).join(' ')}` };
+             }
+        }
+        return null;
+    }).filter(Boolean);
+}
+
 function determineInputType(dataItem) {
     const name = dataItem.name.toLowerCase();
     const rule = (dataItem.rule || '').toLowerCase();
@@ -113,41 +134,37 @@ function determineInputType(dataItem) {
 }
 
 function getPlaceholderByType(type) {
-    return { date: 'YYYY-MM-DD', datetime: 'YYYY-MM-DDTHH:mm', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
+    return { datetime: 'YYYY-MM-DDTHH:mm:ssZ', number: '12345', textarea: 'Enter details...' }[type] || 'Enter value...';
 }
 
-function parsePopulationNotes(notes) {
-    return notes.split('\n').map(line => {
-        const parts = line.split(/[-=]\s+/).map(s => s.trim()).filter(Boolean);
-        if (parts.length >= 2) {
-            return { value: parts[0], label: `${parts[0]} - ${parts.slice(1).join(' ')}` };
-        }
-        if (parts.length === 1 && parts[0]) {
-             const singleParts = parts[0].split(/\s{2,}/); // Split by 2+ spaces
-             if(singleParts.length >= 2) {
-                return { value: singleParts[0], label: `${singleParts[0]} - ${singleParts.slice(1).join(' ')}` };
-             }
-        }
-        return null;
-    }).filter(Boolean);
-}
-
+// --- NEW EXPORT FUNCTION ---
 export function exportFormData() {
-    if (validateForm()) {
-        const currentInterface = state.interfaces.find(i => i.id === state.currentInterfaceId);
-        const formData = {
-            interfaceId: state.currentInterfaceId,
-            interfaceName: currentInterface?.name,
-            timestamp: new Date().toISOString(),
-            metadata: { sender: { name: DOMElements.senderName.value, contact: DOMElements.senderContact.value }, receiver: { name: DOMElements.receiverName.value, contact: DOMElements.receiverContact.value } },
-            dataItems: {}
-        };
-        DOMElements.formContent.querySelectorAll('[data-item-id]').forEach(input => {
-            if (input.value) formData.dataItems[input.dataset.itemId] = { name: state.dataItemsCatalogue[input.dataset.itemId]?.name, value: input.value };
+    if (!validateForm()) return;
+
+    const finalPayload = {};
+    const formBlocks = DOMElements.formContent.querySelectorAll('[data-block-id]');
+
+    formBlocks.forEach(blockElement => {
+        const blockId = blockElement.dataset.blockId;
+        const blockObject = {};
+        
+        const inputs = blockElement.querySelectorAll('[data-item-id]');
+        inputs.forEach(input => {
+            const itemId = input.dataset.itemId;
+            if (input.value) {
+                blockObject[itemId] = input.value.trim();
+            }
         });
-        downloadFile(JSON.stringify(formData, null, 2), `${state.currentInterfaceId}_form_data.json`, 'application/json');
-        showSuccessMessage('Form data exported successfully!');
-    }
+
+        // Only add the block to the payload if it contains data
+        if (Object.keys(blockObject).length > 0) {
+            finalPayload[blockId] = blockObject;
+        }
+    });
+
+    const filename = `${state.currentInterfaceId.replace('/', '_')}_payload.json`;
+    downloadFile(JSON.stringify(finalPayload, null, 2), filename, 'application/json');
+    showSuccessMessage('Payload exported successfully!');
 }
 
 function validateForm() {
