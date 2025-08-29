@@ -15,9 +15,11 @@ export function showFormBuilder() {
     // Initialize all new date/time pickers after the form is built
     flatpickr(".flatpickr-datetime", {
         enableTime: true,
-        dateFormat: "Y-m-d\\TH:i:S.000Z", // Store data in UTC ISO 8601 format
-        altInput: true, // Show a user-friendly format
-        altFormat: "F j, Y h:i K", // e.g., "August 29, 2025 01:37 PM"
+        enableSeconds: true,
+        // CORRECTED: This now saves in the required format with timezone offset
+        dateFormat: "Y-m-d\\TH:i:S P", 
+        altInput: true, // Show a user-friendly format in the input box
+        altFormat: "F j, Y h:i:S K", // e.g., "August 29, 2025 01:49:27 PM"
     });
 }
 
@@ -68,10 +70,11 @@ function generateDataItemInput(itemId, dataItem) {
     let inputType = 'text';
     
     const isAutoPopulated = (itemId === 'DI-000' || itemId === 'DI-992');
-    const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : (itemId === 'DI-992' ? '1.0.0' : '');
-
+    
+    // CORRECTED LOGIC STRUCTURE
     if (isAutoPopulated) {
-         inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
+        const autoValue = itemId === 'DI-000' ? state.currentInterfaceId : '1.0.0';
+        inputHtml = `<input type="text" value="${escapeHtml(autoValue)}" class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg bg-gray-100 text-gray-500" data-item-id="${itemId}" readonly>`;
     } else if (dataItem.enumerated) {
         inputType = 'enum';
         options = parsePopulationNotes(dataItem.populationNotes);
@@ -81,17 +84,15 @@ function generateDataItemInput(itemId, dataItem) {
             const validCodes = currentInterface?.eventCodes || [];
             options = options.filter(opt => validCodes.includes(opt.value));
         }
-    }
-
-    if (options.length > 0) {
         const optionsHtml = options.map(opt => `<option value="${escapeHtml(opt.value)}" title="${escapeHtml(opt.label)}">${escapeHtml(opt.label)}</option>`).join('');
         inputHtml = `<select class="form-input w-full p-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--eon-red)] focus:border-transparent" data-item-id="${itemId}" data-input-type="enum" ${isRequired ? 'required' : ''}><option value="">Select an option...</option>${optionsHtml}</select>`;
+
     } else { 
         inputType = determineInputType(dataItem);
         const placeholder = dataItem.example ? `e.g., ${dataItem.example}` : getPlaceholderByType(inputType);
         
         if (inputType === 'datetime') {
-            const nowISOString = new Date().toISOString();
+            const nowISOString = getFormattedDateTime();
             // Add a specific class for flatpickr to target
             inputHtml = `<input type="text" value="${nowISOString}" placeholder="Select Date and Time..." class="form-input flatpickr-datetime w-full p-2 text-sm border border-gray-300 rounded-lg" data-item-id="${itemId}" data-input-type="datetime" ${isRequired ? 'required' : ''}>`;
         } else {
@@ -142,6 +143,16 @@ function parsePopulationNotes(notes) {
     return Array.from(options.values());
 }
 
+export function getFormattedDateTime() {
+    const now = new Date();
+    const timezoneOffset = -now.getTimezoneOffset();
+    const sign = timezoneOffset >= 0 ? '+' : '-';
+    const pad = num => String(num).padStart(2, '0');
+    const hoursOffset = pad(Math.floor(Math.abs(timezoneOffset) / 60));
+    const minutesOffset = pad(Math.abs(timezoneOffset) % 60);
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}${sign}${hoursOffset}:${minutesOffset}`;
+}
+
 function determineInputType(dataItem) {
     const name = dataItem.name.toLowerCase();
     const rule = (dataItem.rule || '').toLowerCase();
@@ -165,13 +176,9 @@ export function exportFormData() {
         const inputs = blockElement.querySelectorAll('[data-item-id]');
         inputs.forEach(input => {
             const itemId = input.dataset.itemId;
+            // For flatpickr, it stores the machine-readable value on the input element itself
             if (input.value) {
-                // For flatpickr, get the actual data value from the hidden input
-                if (input.classList.contains('flatpickr-datetime')) {
-                    blockObject[itemId] = input._flatpickr.input.value;
-                } else {
-                    blockObject[itemId] = input.value.trim();
-                }
+                blockObject[itemId] = input.value.trim();
             }
         });
         if (Object.keys(blockObject).length > 0) {
